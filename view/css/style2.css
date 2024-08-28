@@ -1,0 +1,118 @@
+:root{
+    --font-family-primary: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --primary-color: #a800c4;
+    --secondary-color: #8c52ff;
+}
+body{
+    background: url(../img/background-img-3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    overflow: hidden;
+}
+/*Início da personalização do cabeçalho*/
+.header-style{
+    padding: 40px;
+    font-family: var(--font-family-primary);
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+}
+.header-style li{
+    list-style: none;
+}
+.header-style-logo{
+    display: flex;
+    margin-top: 10px;
+}
+.header-style-logo p{
+    margin-top: 16px;
+    font-size: 25px;
+    color: black;
+    font-weight: bolder;
+}
+.icon-atom{
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    padding-right: 250px;
+}
+.topic{
+    margin-left: -250px;
+    transition: 0.5s;
+}
+.topic a:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--primary-color);
+}
+.topic a{
+    text-decoration: none;
+    color: white;
+}
+/*Fim da personalização do cabeçalho*/
+/*Começo da personalização do conteúdo principal*/
+
+.ul-style{
+    list-style: none;
+    font-weight: bolder;
+    font-family: var(--font-family-primary);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+.ul-style h1{
+    font-size: 120px;
+}
+.ul-style li{
+    font-size: 30px;
+    width: 400px;
+}
+/*Fim da personalização do conteúdo principal*/
+/*Começo da personalização do rodapé*/
+footer{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--primary-color);
+    background-size: cover;
+    width: 101%;
+    padding: 0;
+    margin:0;
+    border:none;
+    margin-left: -10px;
+    margin-top: 40px;
+    font-family: var(--font-family-primary);
+    color: white;
+}
+.icons{
+    margin-left: -80px;
+}
+.icons ul{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+.icons li{
+    padding: 0px 40px 20px 20px;
+}
+.icons img{
+    width: 50px;
+    padding: 5px;
+    border-bottom: 1px solid white;
+}
+.suport{
+    font-size: 20px;
+    margin-right: 90px;
+    margin-top: -40px;
+}
+.suport p{
+    width: 350px;
+    font-size: 20px;
+}

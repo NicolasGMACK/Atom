@@ -1,0 +1,80 @@
+:root{
+    --font-family-primary: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --primary-color: #a800c4;
+    --secondary-color: #8c52ff;
+}
+body{
+    background: url(../img/background-img-2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/*Início da personalização do cabeçalho*/
+.header-style{
+    padding: 40px;
+    font-family: var(--font-family-primary);
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+}
+.header-style li{
+    list-style: none;
+}
+.header-style-logo{
+    display: flex;
+    margin-top: 10px;
+}
+.header-style-logo p{
+    margin-top: 16px;
+    font-size: 25px;
+    color: black;
+    font-weight: bolder;
+}
+.icon-atom{
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    padding-right: 250px;
+}
+.topic{
+    margin-left: -250px;
+    transition: 0.5s;
+}
+.topic a:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--primary-color);
+}
+.topic a{
+    text-decoration: none;
+    color: white;
+}
+/*Fim da personalização do cabeçalho*/
+/*Inicio Da personalização do corpo do site*/
+.body-style{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 20px;
+}
+.box{
+    align-items: center;
+    text-align: center;
+    font-family: var(--font-family-primary);
+    color: white;
+}
+.box p{
+    width: 300px;
+}
+.box-icon{
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+.box-icon img{
+    width: 150px;
+    padding: 70px;
+}

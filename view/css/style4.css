@@ -1,0 +1,237 @@
+:root{
+    --font-family-primary: 'League Spartan', sans-serif;
+    --font-family-secondary: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --primary-color: #a800c4;
+    --secondary-color: #8c52ff;
+}
+body {
+    background: url(../img/background-4.png);    
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  ;
+  
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+   
+}
+
+
+.corpo{
+    display: flex;
+    width: 90vw;
+    height: 85vh;
+    border-radius: 10px 10px 5px 20px;
+}
+
+.tela1{
+    background-color: #fff;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box; 
+   border-radius: 5px 0px 0px 5px;
+}
+.logo{
+    width: 100%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: var(--font-family-primary);
+}
+
+.logo img{
+  margin-left: -5px;  height: 3rem;
+
+}
+.image{
+    width: 100%;
+    height: 92%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.image img{
+    
+    width: 80%;
+    height: 80%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.tela2{
+   width: 50%;
+    height: 100%;
+    border-radius: 0px 5px 5px 0px;  
+    background-image: url(../img/fundo-login.png); 
+    background-size: cover;
+    background-repeat: no-repeat;
+  
+}
+
+.login-cadastro{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 5;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    min-width: 238px;
+    padding: 0 10px;
+}
+
+form .login{
+    opacity: 1;
+    transition: 0.5 ease-in-out;
+    transition-delay: 1s;
+}
+
+.title{
+    font-size: 60px;
+    color: #FFF;
+    font-family: var(--font-family-primary);
+    font-style: italic;
+    font-weight: 700;
+    margin: 50px 0;
+    
+}
+.caixa-texto{    
+  width: 100%;
+  height: 60px;
+  background: #F4F4F4;
+  margin: 10px 0 5px 0;  
+  border-radius: 50px;
+  display: flex; 
+  align-items: center;
+  margin: 12px 0;
+}
+
+.caixa-texto1{    
+    width: 100%;
+    height: 50px;
+    background: #F4F4F4;
+    border-radius: 50px;
+    display: flex; 
+    align-items: center;
+    margin: 6px 0;
+  }
+.simbolo{
+   text-align: center;
+   padding: 0 15px;
+}
+
+.simbolo img{
+    width: 20px;
+    height: 20px;
+}
+
+.caixa-texto input{
+    flex: 5;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(56, 56, 56);
+}
+.caixa-texto input::placeholder{    
+  color: #a6a6a6;
+}
+.caixa-texto1 input{
+    flex: 5;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgb(56, 56, 56);
+}
+.caixa-texto1 input::placeholder{    
+  color: #a6a6a6;
+}
+.esquecer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.subtexto{
+    color: #fff;
+    font-family: var(--font-family-primary);
+    margin: 0px 0 8px 0;
+}
+.subtexto1{
+    color: #fff;
+    font-family: var(--font-family-primary);
+    margin: 0px 0 8px 0;
+}
+.bloco-botao{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+}
+.blocao-justify{
+    width: 100%;
+}
+.btn{
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    font-family: var(--font-family-primary);
+    font-weight: bold;  
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #d6d6d6;
+}
+
+.cadastro{
+    display: flex;
+    justify-content: end;
+}
+.cadastro label{
+    width: 100%;
+    
+}
+
+.subtexto1 strong:hover{
+    cursor: pointer;
+    color: #d6d6d6;
+}
+.subtexto1 a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.subtexto{
+    cursor: pointer;
+}

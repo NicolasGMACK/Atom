@@ -1,0 +1,92 @@
+:root{
+    --font-family-primary: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --primary-color: #a800c4;
+    --secondary-color: #8c52ff;
+}
+body{
+    background: url(../img/background-img-1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/*Início da personalização do cabeçalho*/
+.header-style{
+    padding: 40px;
+    font-family: var(--font-family-primary);
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+}
+.header-style li{
+    list-style: none;
+}
+.header-style-logo{
+    display: flex;
+    margin-top: 10px;
+}
+.header-style-logo p{
+    margin-top: 16px;
+    font-size: 25px;
+    color: black;
+    font-weight: bolder;
+}
+.icon-atom{
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    padding-right: 250px;
+}
+.topic{
+    margin-left: -250px;
+    transition: 0.5s;
+}
+.topic a:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--primary-color);
+}
+.topic a{
+    text-decoration: none;
+    color: white;
+}
+/*Fim da personalização do cabeçalho*/
+/*Personalização da Main*/
+main{
+    align-items: center;
+    text-align: left;
+    margin-top: -110px;
+}
+section{
+    font-size: 80px;
+    padding-left: 220px;
+    width: 490px;
+    font-weight: bolder;
+    font-family: var(--font-family-primary);
+}
+.atom-text{
+    margin-top: -70px;
+    margin-bottom: -10px;
+}
+.button-start-now{
+    background-color: #a800c4;
+    align-items: center;
+    text-align: center;
+    border: none;
+    margin-left: 100px;
+    padding: 25px;
+    border-radius: 50px;
+    font-family: var(--font-family-primary);
+    font-size: 20px;
+    color: var(--secondary-color);
+    background-color: white;
+    transition: 0.5s;
+}
+.button-start-now:hover{
+    transition: 0.5s;
+    color: white ;
+    background-color: var(--secondary-color);
+}
