@@ -10,6 +10,12 @@
 </head>
 <body>
     <nav>
+
+
+
+
+
+        
         <ul class="sidebar">
             <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
             <li><a href="">Blog</a></li>
@@ -20,11 +26,9 @@
         </ul>
         <ul>
             <li><a class="atom" href="">Atom<img src="../view/img/logo3.png" alt=""></a></li>
-            <li class="hideOnMobile"><a class="topic" href="">Blog</a></li>
-            <li class="hideOnMobile"><a class="topic" href="">Products</a></li>
-            <li class="hideOnMobile"><a class="topic" href="">About</a></li>
-            <li class="hideOnMobile"><a class="topic" href="">Forum</a></li>
-            <li class="hideOnMobile"><a class="topic" href="">Login</a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/home.html">Home</a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
             <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
         </ul>
     </nav>
@@ -41,21 +45,21 @@
         <div class="lado-direito">
             <div class="lista">
                 <div class="bloco">
-                    <div class="upload-top">
-                        <div class="foto-upload">
-                            <img src="../view/img/kayky.png" alt="img teste" class="user-photo">
-                        </div>
-                        <div class="input-area">
-                            <textarea placeholder="Escreva o título do seu artigo..."></textarea>
-                        </div>
+                    <div class="bloco-mid">
+                        <div class="cabecalho-postagem">                              
+                            <div class="conteudo-postagem">
+                                <a>Interessado em publicar seu projeto? Faça sua postagem!</a>
+                            </div>
+                            <div class="butao">
+                                <button class="publicar">PUBLICAR</button>                            
+                            </div> 
+                        </div>      
                     </div>
                     <div class="upload-mid">
-                        <input type="file" id="file-upload" class="file-input">
-                        <label for="file-upload" class="upload-label"><span class="material-symbols-outlined">upload_file</span>Escolher arquivo</label>
+                        <input type="file" id="file-upload" class="none">
+
                     </div>
-                    <div class="upload-bot">
-                        <button class="btn-postar">Publicar</button>
-                    </div>
+                    
                 </div>
                 
                 <div class="bloco">
@@ -64,7 +68,7 @@
                     </div>
                     <div class="bloco-mid">
                             <div class="cabecalho">
-                                <div class="foto">
+                                <div class="foto user">
                                     <img src="../view/img/kayky.png" alt="img teste" class="user-photo">
                                 </div>
                                 <div class="profile">
