@@ -51,7 +51,7 @@
                                 <a>Interessado em publicar seu projeto? Faça sua postagem!</a>
                             </div>
                             <div class="butao">
-                                <button class="publicar">PUBLICAR</button>                            
+                                <button class="publicar" id="openPopup">PUBLICAR</button>                            
                             </div> 
                         </div>      
                     </div>
@@ -98,6 +98,48 @@
             </div>
         </div>        
     </div>
+
+<!-- formulario-->
+<div id="popupForm" class="popup">
+    <div class="popup-content">
+        <span class="close" id="closePopup">&times;</span>
+        <h2>Publicar Artigo</h2>
+        <form class="formulario">
+            <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
+            
+            <label for="data-artigo">Data do Artigo</label>
+            <input type="date" id="data-artigo" name="data-artigo" class="input-data">
+
+            <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
+            <select class="estilo" required id="tema" name="tema">
+                <option value="" disabled selected>Escolha o tema</option>
+                <option value="geografia">Geografia</option>
+                <option value="historia">História</option>
+                <option value="ciencias">Ciências</option>
+                <option value="literatura">Literatura</option>
+            </select>
+
+            <label for="status-group">Status do Artigo</label>
+            <div class="status-group">
+                <div class="status-option">
+                    <input type="radio" id="em-andamento" name="status" value="em-andamento">
+                    <label for="em-andamento">Em andamento</label>
+                </div>
+                <div class="status-option">
+                    <input type="radio" id="concluido" name="status" value="concluido">
+                    <label for="concluido">Concluído</label>
+                </div>
+            </div>
+
+            <!-- Input para adicionar PDF -->
+            <input class="estilo" type="file" id="pdf" name="pdf" accept=".pdf">
+            
+            <button class="add" type="submit">Adicionar Artigo</button>
+        </form>
+    </div>
+</div>
+
+<script src="../view/js/script.js"></script>
 
     <script>
         function showSidebar(){

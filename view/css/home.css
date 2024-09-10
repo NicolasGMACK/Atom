@@ -300,7 +300,123 @@ nav li:first-child{
     border-bottom: 2px solid #8c52ff;
 }
 
+.popup {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+}
 
+.popup-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    position: relative;
+    font-family: var(--font-family-primary);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.close:hover{
+color: #d10000;
+}
+
+/* Estilos do Formulário */
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.estilo {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: none; /* Inputs sem borda */
+    background-color: #f9f9f9; /* Cor de fundo sutil */
+    border-radius: 5px;
+    font-family: var(--font-family-primary);
+    outline: none; /* Remove o contorno */
+    width: 100%; /* Ocupando toda a largura */
+}
+
+#descricao {
+    resize: none; /* Impede o redimensionamento do textarea */
+    height: 100px; /* Altura da descrição */
+}
+
+.add{
+    font-size: 16px;
+    margin-top: 20px;
+    background-color: var(--secondary-color); 
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.add:hover {
+    background-color: #6631cf; 
+}
+
+/* Estilos para os status em bolinhas (radio buttons) */
+.status-group {
+    display: flex;
+    margin-top: 15px;
+}
+
+.status-option {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.status-option input {
+    margin-right: 10px;
+}
+input[type="radio"] {
+    display: none; /* Esconde o botão de rádio */
+}
+
+.status-option label {
+    font-size: 16px;
+    cursor: pointer;
+    
+}
+
+input[type="radio"]:checked + label {
+    color: blue;
+}
+
+input[type="date"], .input-data {
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    width: 100%;
+}
+
+input[type="date"]:focus, .input-data:focus {
+    border-bottom: 2px solid #8c52ff;
+}
 
 @media(max-width: 800px){
     .hideOnMobile{
