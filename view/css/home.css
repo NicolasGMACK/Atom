@@ -300,6 +300,69 @@ nav li:first-child{
     border-bottom: 2px solid #8c52ff;
 }
 
+.bloco-filtro {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-family: var(--font-family-primary);
+}
+
+.bloco-filtro h3 {
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.filtro-categoria p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.filtro-categoria ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.filtro-categoria li {
+    margin-bottom: 8px;
+}
+
+.filtro-categoria a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.filtro-categoria a:hover {
+    color: var(--primary-color);
+}
+
+.filtro-categoria input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.filtro-alerta {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.filtro-alerta:hover {
+    background-color: #6631cf;
+}
+
+
 .popup {
     display: flex;
     position: fixed;

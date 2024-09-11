@@ -40,6 +40,45 @@
                     <div class="linha"><input class="pesquisar" type="text" placeholder="Procure por artigos, assuntos, pessoas, etc.">
                 <div class="lp"><img src="/view/img/lupa.png" alt=""></div></div>
             </div>
+
+            <div class="bloco-filtro">
+                <h3>Filtrar Resultados</h3>
+                <div class="filtro-categoria">
+                    <p>Por Data</p>
+                    <ul>
+                        <li><a href="#">Qualquer período</a></li>
+                        <li><a href="#">Desde 2024</a></li>
+                        <li><a href="#">Desde 2023</a></li>
+                        <li><a href="#">Desde 2020</a></li>
+                        <li><a href="#">Intervalo personalizado...</a></li>
+                    </ul>
+                </div>
+            
+                <div class="filtro-categoria">
+                    <p>Ordenar por</p>
+                    <ul>
+                        <li><a href="#">Relevância</a></li>
+                        <li><a href="#">Data</a></li>
+                    </ul>
+                </div>
+            
+                <div class="filtro-categoria">
+                    <p>Tipo de Conteúdo</p>
+                    <ul>
+                        <li><a href="#">Artigos de Revisão</a></li>
+                    </ul>
+                    <div>
+                        <input type="checkbox" id="patents">
+                        <label for="patents">Incluir Patentes</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="citations" checked>
+                        <label for="citations">Incluir Citações</label>
+                    </div>
+                </div>
+            
+                <button class="filtro-alerta">Criar Alerta</button>
+            </div>
             </div>
         </div>
         <div class="lado-direito">
@@ -106,7 +145,7 @@
         <h2>Publicar Artigo</h2>
         <form class="formulario">
             <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
-            
+
             <label for="data-artigo">Data do Artigo</label>
             <input type="date" id="data-artigo" name="data-artigo" class="input-data">
 
