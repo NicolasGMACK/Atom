@@ -402,6 +402,13 @@ color: #d10000;
     flex-direction: column;
 }
 
+.center{
+    justify-content: center;
+}
+
+.formulario h3{
+}
+
 .estilo {
     margin-top: 15px;
     padding: 10px;
@@ -456,13 +463,13 @@ input[type="radio"] {
 }
 
 .status-option label {
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     
 }
 
 input[type="radio"]:checked + label {
-    color: blue;
+    color: rgb(15, 119, 255);
 }
 
 input[type="date"], .input-data {

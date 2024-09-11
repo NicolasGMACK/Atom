@@ -142,11 +142,11 @@
 <div id="popupForm" class="popup">
     <div class="popup-content">
         <span class="close" id="closePopup">&times;</span>
-        <h2>Publicar Artigo</h2>
+        <div class="rodape center"><h1>Publicar Artigo</h1></div>
         <form class="formulario">
             <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
 
-            <label for="data-artigo">Data do Artigo</label>
+            <h3 for="data-artigo">Data do Artigo:</h3>
             <input type="date" id="data-artigo" name="data-artigo" class="input-data">
 
             <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
@@ -158,8 +158,9 @@
                 <option value="literatura">Literatura</option>
             </select>
 
-            <label for="status-group">Status do Artigo</label>
+          
             <div class="status-group">
+                <h3>Status do Projeto:</h3>
                 <div class="status-option">
                     <input type="radio" id="em-andamento" name="status" value="em-andamento">
                     <label for="em-andamento">Em andamento</label>
