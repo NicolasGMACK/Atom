@@ -364,7 +364,7 @@ nav li:first-child{
 
 
 .popup {
-    display: flex;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -407,6 +407,7 @@ color: #d10000;
 }
 
 .formulario h3{
+    margin-top: 15px;
 }
 
 .estilo {
@@ -446,7 +447,13 @@ color: #d10000;
 /* Estilos para os status em bolinhas (radio buttons) */
 .status-group {
     display: flex;
+    flex-direction: column;
     margin-top: 15px;
+}
+
+.status-bloco{
+    margin-top: 10px;
+    display: flex;
 }
 
 .status-option {
@@ -457,9 +464,6 @@ color: #d10000;
 
 .status-option input {
     margin-right: 10px;
-}
-input[type="radio"] {
-    display: none; /* Esconde o botão de rádio */
 }
 
 .status-option label {
