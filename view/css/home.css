@@ -300,28 +300,37 @@ nav li:first-child{
     border-bottom: 2px solid #8c52ff;
 }
 .titulo-filtro{
-    padding: 8px 20px;
+    padding: 20px 50px 12px 50px;
 }
 .filtro-categoria{
      border-top: 1px solid rgb(156, 156, 156);
      border-bottom: 1px solid rgb(156, 156, 156);
 }
 .space-categoria{
-    padding: 0 10px 0 10px;
+    padding: 0 30px 0 30px;
+}
+
+.space-bottom{
+    padding-bottom: 25px;
 }
 .margin{
     margin-bottom: 5px;
 }
 
-.space-categoria h4{
-    margin-top: 10px;
-    padding-left: 5px;
+.space-categoria h3{
+    margin: 10px 0 5px 0;
+    padding-left: 15px;
 }
 .filtro-categoria2{
     border-bottom: 1px solid rgb(156, 156, 156);
     
 }
 .filtro-categoria3{
+    border-bottom: 1px solid rgb(156, 156, 156);
+}
+
+.filtro-bottom{
+    padding-bottom: 5px;
 }
 
 .opcoes {
@@ -329,37 +338,31 @@ nav li:first-child{
     margin: 0;
     padding: 0;
 }
+
+.topico{
+    margin-bottom: 5px;
+}
 .texto {
     color: #333;
     text-decoration: none;
-    font-size: 14px;
-    transition: color 0.2s;
-    margin-bottom: 3px;
+    font-size: 16px;
 }
 
-.filtro-categoria3 a:hover {
-    color: var(--primary-color);
+.texto:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
 }
 
 .filtro-categoria3 input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.filtro-alerta {
-    background-color: var(--secondary-color);
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-    font-size: 14px;
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: #999;
 }
 
-.filtro-alerta:hover {
-    background-color: #6631cf;
-}
-
+/* Estilos do Popup */
 
 .popup {
     display: none;
