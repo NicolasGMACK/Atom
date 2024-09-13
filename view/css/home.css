@@ -299,51 +299,49 @@ nav li:first-child{
 .pesquisar:focus{
     border-bottom: 2px solid #8c52ff;
 }
-
-.bloco-filtro {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin-top: 20px;
-    font-family: var(--font-family-primary);
+.titulo-filtro{
+    padding: 8px 20px;
+}
+.filtro-categoria{
+     border-top: 1px solid rgb(156, 156, 156);
+     border-bottom: 1px solid rgb(156, 156, 156);
+}
+.space-categoria{
+    padding: 0 10px 0 10px;
+}
+.margin{
+    margin-bottom: 5px;
 }
 
-.bloco-filtro h3 {
-    font-size: 18px;
-    color: var(--primary-color);
-    margin-bottom: 15px;
+.space-categoria h4{
+    margin-top: 10px;
+    padding-left: 5px;
+}
+.filtro-categoria2{
+    border-bottom: 1px solid rgb(156, 156, 156);
+    
+}
+.filtro-categoria3{
 }
 
-.filtro-categoria p {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.filtro-categoria ul {
+.opcoes {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
-.filtro-categoria li {
-    margin-bottom: 8px;
-}
-
-.filtro-categoria a {
+.texto {
     color: #333;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.2s;
+    margin-bottom: 3px;
 }
 
-.filtro-categoria a:hover {
+.filtro-categoria3 a:hover {
     color: var(--primary-color);
 }
 
-.filtro-categoria input[type="checkbox"] {
+.filtro-categoria3 input[type="checkbox"] {
     margin-right: 10px;
 }
 
