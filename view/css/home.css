@@ -37,12 +37,25 @@ nav li{
 }
 nav a {
     height: 100%;
-    padding: 0 30px;
+    padding: 0 20px;
     text-decoration: none;
     display: flex;
     align-items: center;
     color: #fff;
     font-size: 18px;
+}
+.usuario{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 20px 0 0;
+    font-size: 20px;
+    text-decoration: none;  
+    cursor: pointer;
+    color: #fff;
+}
+.user-space{
+    margin-right: 10px;
 }
 .atom{
     font-size: 24px;
