@@ -438,9 +438,7 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.intervalo input[type="number"] {
-  -moz-appearance: textfield;
-}
+
 .intervalo input{
     padding: 5px;
     outline-color: var(--secondary-color);
@@ -479,6 +477,18 @@ input[type="number"]::-webkit-outer-spin-button {
    user-select: contain;
 }
 
+.open {
+    color: var(--secondary-color);
+    text-decoration: underline; 
+}
+
+.closed important{
+    color: #333;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+   user-select: contain;
+}
 .texto:hover {
     color: var(--secondary-color);
     text-decoration: underline;
@@ -487,11 +497,16 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .filtro-categoria input[type="checkbox"] {
     margin-right: 10px;
+    -webkit-user-select: none; /* Para navegadores WebKit (Chrome, Safari, etc.) */
+    -moz-user-select: none;    /* Para Firefox */
+    -ms-user-select: none;     /* Para Internet Explorer/Edge */
+    user-select: none;         /* Padrão */
 }
 
 input[type="checkbox"]:checked + label {
     text-decoration: line-through;
     color: #999;
+    user-select: none;
 }
 
 /* Estilos do Popup */
