@@ -51,8 +51,19 @@
                                 <li class="topico"><a class="texto" href="#">Desde 2024</a></li>
                                 <li class="topico"><a class="texto" href="#">Desde 2023</a></li>
                                 <li class="topico"><a class="texto" href="#">Desde 2020</a></li>
-                                <li class="margin topico"><a class="texto" href="#">Intervalo personalizado...</a></li>
+                                <li class="margin topico"><a class="texto" id="openIntervalo">Intervalo personalizado...</a></li>
                             </ul>
+                            <script src="js/filtroIntervalo.js"></script>
+                            <div class="intervalo">
+                                <div>
+                                    <input placeholder="Início" type="number" class="year-input" min="2000" max="2059">
+                                    ____
+                                    <input placeholder="Fim" type="number" class="year-input"  min="2000" max="2059">
+                                    <input type="submit" value="Buscar">
+                                    <script src="js/digitos-input-filtro.js"></script>
+                                </div>
+                                
+                            </div>
                         </div></div>                
                         <div class="space-categoria">
                             <div class="filtro-categoria">
@@ -186,7 +197,7 @@
     </div>
 </div>
 
-<script src="../view/js/script.js"></script>
+<script src="../view/js/showArtigo.js"></script>
 
     <script>
         function showSidebar(){
