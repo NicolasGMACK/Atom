@@ -296,7 +296,7 @@ nav li:first-child{
     background-color: #fff;
     border-radius: 20px;
     border: #8c52ff 1px solid;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     color: #8c52ff;
     font-size: 17px;
@@ -305,11 +305,58 @@ nav li:first-child{
     padding: 5px;
     transition: background-color 0.19s ease-in-out;
     margin-right: 10px;
+    width: 115px;
+    height: 36px;
+    position: relative;
+    outline: none;
 }
 .relevante:hover{
     color: #EAEDEF;
     background-color: #8c52ff;
     fill: #fff;
+}
+.vote{
+    margin-left: 10px;
+}
+
+.relevante.liked {
+    background-color: #fff;
+    color: #8c52ff;
+    border-color: #8c52ff;
+  
+}
+
+.relevante .like-icon {
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 6px;
+    transition: background-color 0.19s ease-in-out;
+    position: absolute; /* Faz com que ocupe a área desejada */
+    left: 0px;
+}
+
+.relevante.liked .like-icon {
+    background-color: #8c52ff;
+    color: #fff;
+}
+.liked:hover .like-icon{
+    background-color: #6631cf;
+    transition: background-color 0.1s ease-in-out;
+    
+}
+.liked:hover{
+    color: #6631cf;
+    transition: color 0.1s ease-in-out;
+}
+.relevante .like-count {
+    margin-top: 3px;
+    margin-left: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Centraliza os números */
+    font-size: 16px;
+    font-weight: bold;
 }
 .botoes{
     font-size: 17px;

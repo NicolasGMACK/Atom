@@ -31,23 +31,22 @@
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/kayky.png" alt="">
+                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
                 </div>
                Vitor Capeleti
             </div>
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="#">Entrar no seu perfil</a>
+                    <a href="#">Visualizar perfil</a>
                     <a href="#">Configurações</a>
-                    <a href="#">Log out</a>
+                    <a href="#">Sair</a>
                     
                 </div>
                 <script src="js/perfilDropdown.js"></script>
             <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
         </ul>
-    </nav>
-    
+    </nav>    
     <div class="tela">
         <div class="lado-esquerdo">
             <div class="lista">
@@ -131,8 +130,7 @@
 
                     </div>
                     
-                </div>
-                
+                </div>                
                 <div class="bloco">
                     <div class="bloco-top">
                         <p>Relacionado a <strong>Geografia</strong></p>
@@ -156,13 +154,15 @@
                     <div class="bloco-bot">
                         <div class="rodape">
                             <div class="rod">
-                            <button class="relevante"><span class="material-symbols-outlined">shift</span>Relevante</button>
+                            <button class="relevante" onclick="toggleLike(this)">
+                                <span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>
+                            </button>
                             <button class="botoes">Salvar</button>        
                             </div>
                             <div class="ape">
                                 <button class="botoes">Compartilhar</button>
                             </div>
-                           
+                           <script src="js/upvote.js"></script>
                         </div>
                     </div>                      
                 </div>
