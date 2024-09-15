@@ -11,14 +11,18 @@ saveButton.addEventListener('click', function() {
         saveButton.textContent = 'Em biblioteca';
         saveButton.classList.add('saved');
 
-        // Show notification with the title and text
-        notificationTitle.textContent = `Arquivo salvo com sucesso!`;
-        notificationText.textContent = `Você pode encontrar o arquivo no seu perfil.`;
+        // Mostra a notificação
         notification.style.display = 'block';
+        setTimeout(() => {
+            notification.classList.add('show'); // Aparece com transição de opacidade
+        }, 10); // Atraso pequeno para garantir que o estilo é aplicado
 
-        // Hide the notification after 3 seconds
+        // Esconde a notificação após 3 segundos
         setTimeout(function() {
-            notification.style.display = 'none';
+            notification.classList.remove('show'); // Inicia o fade out
+            setTimeout(function() {
+                notification.style.display = 'none'; // Esconde completamente
+            }, 500); // Aguarda a transição de 0.5s para finalizar
         }, 3000);
     }
 });
