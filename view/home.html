@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                             <div class="conteudo">
-                                <a>Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>
+                                <a >Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>
                                 <br><br>
                                 <span>Agosto 2024 &#8226; Em andamento</span>
                             </div>
@@ -158,13 +158,19 @@
                     <div class="bloco-bot">
                         <div class="rodape">
                             <div class="rod">
-                            <button class="relevante" onclick="toggleLike(this)">
-                                <span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>
-                            </button>                            
-                            <button class="comentarios"><i class="fa-regular fa-comment"></i>37</button>   
-                            <button class="botoes" id="Salvar">Salvar</button>
-                            <script src="../view/js/salvar.js"></script>     
+                                <button class="relevante" onclick="toggleLike(this)">
+                                    <span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>
+                                </button>                            
+                                <button class="comentarios"><i class="fa-regular fa-comment"></i>37</button>   
+                                <button class="botoes" id="Salvar">Salvar</button>  
                             </div>
+                                    <div class="notification" id="notification">
+                                        <h4 id="notificationTitle"></h4>
+                                        <p id="notificationText"></p>                                        
+                                    </div>                                    
+                            <script src="../view/js/salvar.js"></script>   
+
+                            
                             <div class="ape">
                                 <button id="openCompartilhar" class="botoes">Compartilhar</button>
                             </div>
@@ -271,7 +277,6 @@
             const sidebar = document.querySelector('.sidebar')
             sidebar.style.display = 'none'
         }
-    </script>
-    
+    </script>    
 </body>
 </html>
