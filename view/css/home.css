@@ -266,6 +266,9 @@ nav li:first-child{
     align-items: center;
     justify-content: flex-start;
 }
+.rod button{
+    margin-right: 10px;
+}
 .ape{
     width: 50%;
     display: flex;
@@ -316,12 +319,12 @@ nav li:first-child{
     fill: #fff;
 }
 .vote{
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .relevante.liked {
-    background-color: #fff;
-    color: #8c52ff;
+    background-color: #8c52ff;
+    color: #fff;
     border-color: #8c52ff;
   
 }
@@ -336,17 +339,19 @@ nav li:first-child{
 }
 
 .relevante.liked .like-icon {
-    background-color: #8c52ff;
+    background-color: #743ce6;
     color: #fff;
 }
 .liked:hover .like-icon{
-    background-color: #6631cf;
+    background-color: #6735ca;
     transition: background-color 0.1s ease-in-out;
-    
+    color: #e2e2e2;
+        
 }
 .liked:hover{
-    color: #6631cf;
+    color: #e2e2e2;
     transition: color 0.1s ease-in-out;
+    background-color: #743ce6;
 }
 .relevante .like-count {
     margin-top: 3px;
@@ -356,7 +361,24 @@ nav li:first-child{
     justify-content: center;
     width: 100%; /* Centraliza os números */
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
+}
+.comentarios{
+    background-color: #edf4f7;
+    border-radius: 20px;
+    border: none;
+    display: inline-flex;
+    color: #000000;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 10px;
+}
+.comentarios i{
+    margin-right: 5px;
+    font-size: 16px;
+}
+.comentarios:hover{
+    background-color: #e5ebee;
 }
 .botoes{
     font-size: 17px;
@@ -364,6 +386,7 @@ nav li:first-child{
     border-radius: 20px;
    border: none;
    cursor: pointer;
+   margin-left: 10px;
   }
 .botoes:hover{
     text-decoration: underline;
