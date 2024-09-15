@@ -52,8 +52,9 @@
         <div class="lado-esquerdo">
             <div class="lista">
                 <div class="bloco">
-                    <div class="linha"><input class="pesquisar" type="text" placeholder="Procure por artigos, assuntos, pessoas, etc.">
-                <div class="lp"><img src="/view/img/lupa.png" alt=""></div></div>
+                    <div class="linha">
+                        <input class="pesquisar" type="text" placeholder="Procure por artigos, assuntos, pessoas, etc.">
+                    </div>
                 </div>
 
                 <div class="bloco">
@@ -161,10 +162,11 @@
                                 <span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>
                             </button>                            
                             <button class="comentarios"><i class="fa-regular fa-comment"></i>37</button>   
-                            <button class="botoes">Salvar</button>     
+                            <button class="botoes" id="Salvar">Salvar</button>
+                            <script src="../view/js/salvar.js"></script>     
                             </div>
                             <div class="ape">
-                                <button class="botoes">Compartilhar</button>
+                                <button id="openCompartilhar" class="botoes">Compartilhar</button>
                             </div>
                            <script src="js/upvote.js"></script>
                         </div>
@@ -174,7 +176,7 @@
         </div>        
     </div>
 
-<!-- formulario-->
+<!-- formulario Artigo-->
 <div id="popupForm" class="popup">
     <div class="popup-content">
         <span class="close" id="closePopup">&times;</span>
@@ -216,6 +218,49 @@
 </div>
 
 <script src="../view/js/showArtigo.js"></script>
+
+<!-- Popup Compartihar-->
+
+<div class="compartilhar" id="compartilhar">
+    <div class="compartilhar-conteudo">
+        <h1>Compartilhe a publicação com quem você conhece</h1>
+        <br>
+        <div class="linha-compartilhar">
+            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
+        </div>
+        <br>
+        <ul class="lista-sugestao">
+            <li class="user-linha">
+                <img src="../view/img/capeleti.png" alt="Profile">
+                <span>Vitor Capeleti</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/capeleti.png" alt="Profile">
+                <span>Abhinav Pandey</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/capeleti.png" alt="Profile">
+                <span>Sanket Nandan</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/capeleti.png" alt="Profile">
+                <span>Prasanta K. Panigrahi</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/capeleti.png" alt="Profile">
+                <span>Jose ANGEL Alvarez Garcia</span>
+            </li>
+        </ul>
+        <div class="compartilhar-footer">
+            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
+            <button class="compartilhar-btn">Compartilhar</button>
+        </div>
+    </div>
+</div>
+<script src="../view/js/showCompartilhar.js"></script>
+
+    </div>
+</div>
 
     <script>
         function showSidebar(){
