@@ -6,6 +6,10 @@
     --secondary-color: #8c52ff;
 }
 
+.none{
+    display: none;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -33,12 +37,25 @@ nav li{
 }
 nav a {
     height: 100%;
-    padding: 0 30px;
+    padding: 0 20px;
     text-decoration: none;
     display: flex;
     align-items: center;
     color: #fff;
     font-size: 18px;
+}
+.usuario{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 20px 0 0;
+    font-size: 20px;
+    text-decoration: none;  
+    cursor: pointer;
+    color: #fff;
+}
+.user-space{
+    margin-right: 10px;
 }
 .atom{
     font-size: 24px;
@@ -84,13 +101,49 @@ nav li:first-child{
     width: 100%;
     display: flex;
 }
-.lado-esquerdo{
+.lado-direito{
     width: 60%;
+    display: flex;
+    justify-content: flex-start;
+}
+.lado-esquerdo{    
+    width: 40%;
     display: flex;
     justify-content: flex-end;
 }
-.lado-direito{    
-    width: 40%;
+
+.profile {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+    /* Ajustar a posição para que fique abaixo e à esquerda */
+    top: 60px;  /* Ajuste para que fique abaixo do nome/imagem */
+    right: 0;
+    transform: translateX(-30px);  /* Levemente à esquerda */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.profile:hover .dropdown-content {
+    display: block;
 }
 
 .lista{
@@ -107,12 +160,14 @@ nav li:first-child{
     width: 95%; /* Largura do card */
    display: flex;
    flex-direction: column;
+   margin-bottom: 20px;
   
 }
 .bloco-top{
     border-bottom: 1px solid rgb(156, 156, 156);
     padding: 20px;
     font-size: 18px;
+    display: flex;
 }
 
 
@@ -123,6 +178,10 @@ nav li:first-child{
 }
 .bloco-mid{
     padding: 20px;
+}
+.cabecalho-postagem{
+    display: flex;
+    width: 100%;
 }
 .cabecalho{
     display: flex;
@@ -137,13 +196,17 @@ nav li:first-child{
     padding-right: 10px;
 }
 .foto img {
-    width: 100%;
-    height: 100%;
+    width: 50px;
+    height: 50px;
    border-radius: 50%; /* Foto redonda */
     object-fit: cover; /* Ajusta a foto sem distorcer */
     
 }
-.profile{
+.user{
+    width: 60px;
+    height: 60px;
+}
+.profile-artigo{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -161,6 +224,17 @@ nav li:first-child{
     text-decoration: underline;
     
 }
+.conteudo-postagem{
+    font-size: 26px;
+    font-weight: 700;
+    width: 60%;
+}
+.butao{	
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: center;
+}
 .conteudo{
     padding: 10px;
 }
@@ -169,6 +243,9 @@ nav li:first-child{
     font-weight: 700;
     width: 100%;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    
 }
 .conteudo a:hover{
     text-decoration: underline;
@@ -192,30 +269,119 @@ nav li:first-child{
     align-items: center;
     justify-content: flex-start;
 }
+.rod button{
+    margin-right: 10px;
+}
 .ape{
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
+.publicar{
+    width: 70%;
+    height: 100%;
+    color: #EAEDEF;
+    background-color: #8c52ff;
+    border: #8c52ff 1px solid;
+   justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 20px;  
+   
+}
+.publicar:hover{
+    background-color: #6631cf;
+    transform: scale(1.05);   
+}
 .relevante{
     background-color: #fff;
     border-radius: 20px;
     border: #8c52ff 1px solid;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     color: #8c52ff;
     font-size: 17px;
     font-weight: 500;
     cursor: pointer;
     padding: 5px;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.19s ease-in-out;
     margin-right: 10px;
+    width: 115px;
+    height: 36px;
+    position: relative;
+    outline: none;
 }
 .relevante:hover{
     color: #EAEDEF;
     background-color: #8c52ff;
     fill: #fff;
+}
+.vote{
+    margin-left: 5px;
+}
+
+.relevante.liked {
+    background-color: #8c52ff;
+    color: #fff;
+    border-color: #8c52ff;
+  
+}
+
+.relevante .like-icon {
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 6px;
+    transition: background-color 0.19s ease-in-out;
+    position: absolute; /* Faz com que ocupe a área desejada */
+    left: 0px;
+}
+
+.relevante.liked .like-icon {
+    background-color: #743ce6;
+    color: #fff;
+}
+.liked:hover .like-icon{
+    background-color: #6735ca;
+    transition: background-color 0.1s ease-in-out;
+    color: #fff;
+        
+}
+.liked:hover{
+    color: #fff;
+    transition: color 0.1s ease-in-out;
+    background-color: #743ce6;
+}
+.relevante .like-count {
+    margin-top: 3px;
+    margin-left: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Centraliza os números */
+    font-size: 16px;
+    font-weight: 500;
+}
+.comentarios{
+    background-color: #edf4f7;
+    border-radius: 20px;
+    border: none;
+    display: inline-flex;
+    color: #000000;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 10px;
+}
+.comentarios i{
+    margin-right: 5px;
+    font-size: 16px;
+}
+.comentarios:hover{
+    background-color: #e5ebee;
 }
 .botoes{
     font-size: 17px;
@@ -223,7 +389,34 @@ nav li:first-child{
     border-radius: 20px;
    border: none;
    cursor: pointer;
+   margin-left: 10px;
   }
+
+.botoes.saved{
+    color: #0c302f;
+    font-weight: 500;
+}
+.notification {
+    display: none;
+    position: fixed;
+    bottom: 40px; /* Mantenha a notificação visível inicialmente */
+    right: 30px;
+    background-color: #0073b1;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.5s ease, bottom 0.5s ease; /* Transição de opacidade e posição */
+}
+
+.notification.show {
+    opacity: 1; /* Torna a notificação visível */
+}
+
+.notification h4 {
+    margin: 0 0 5px;
+}
 .botoes:hover{
     text-decoration: underline;
 
@@ -231,32 +424,387 @@ nav li:first-child{
 .linha{
     display: flex;
     width: 100%;
-    border-bottom: 1px solid rgb(156, 156, 156);
-   
+    border-bottom: 1px solid rgb(156, 156, 156);   
 }
-.lp{
-    display: flex;
-    height: 100%;
-}
-.linha img{
-    height: 100%;
-}
+
 .pesquisar{
     border: none;
     font-size: 20px;
     outline: none;
     width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
 }
 .pesquisar:focus{
-    border-bottom: 1px solid #8c52ff;
+    border-bottom: 1.7px solid #8c52ff;
+    box-sizing: border-box;
+}
+.titulo-filtro{
+    padding: 20px 50px 12px 50px;
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.space-categoria{
+    padding: 10px 30px;
+    border-bottom: 1px solid rgb(201, 201, 201);
+    
+}
+.line-bottom{    
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+.filtro-categoria select{
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    font-family: var(--font-family-primary);
+     width: 100%;
+     outline: none;
+}
+.filtro-categoria label{
+    cursor: pointer;
+}
+.space-bottom{
+    padding-bottom: 30px;
+}
+.margin{
+    margin-bottom: 5px;
+}
+
+.intervalo{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
 
-/* Estilo para o botão */
+.intervalo input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.intervalo input{
+    padding: 5px;
+    outline-color: var(--secondary-color);
+    font-size: 16px;
+}
+.intervalo input[type="submit"]{
+    padding: 5px 10px;
+    cursor: pointer;
+     
+}
 
 
+.space-categoria h3{
+    margin: 10px 0 5px 0;
+    padding-left: 15px;
+}
 
+.filtro-bottom{
+    padding-bottom: 5px;
+}
+
+.opcoes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topico{
+    margin-bottom: 5px;
+}
+.texto {
+    color: #333;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+   user-select: contain;
+}
+
+.open {
+    color: var(--secondary-color);
+    text-decoration: underline; 
+}
+
+.closed important{
+    color: #333;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+   user-select: contain;
+}
+.texto:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+
+.filtro-categoria input[type="checkbox"] {
+    margin-right: 10px;
+    -webkit-user-select: none; /* Para navegadores WebKit (Chrome, Safari, etc.) */
+    -moz-user-select: none;    /* Para Firefox */
+    -ms-user-select: none;     /* Para Internet Explorer/Edge */
+    user-select: none;         /* Padrão */
+}
+
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: #999;
+    user-select: none;
+}
+
+/* Estilos do Popup */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    position: relative;
+    font-family: var(--font-family-primary);
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.close:hover{
+color: #d10000;
+}
+
+/* Estilos do Formulário */
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.center{
+    justify-content: center;
+}
+
+.formulario h3{
+    margin-top: 15px;
+}
+
+.estilo {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: none; /* Inputs sem borda */
+    background-color: #f9f9f9; /* Cor de fundo sutil */
+    border-radius: 5px;
+    font-family: var(--font-family-primary);
+    outline: none; /* Remove o contorno */
+    width: 100%; /* Ocupando toda a largura */
+}
+
+#descricao {
+    resize: none; /* Impede o redimensionamento do textarea */
+    height: 100px; /* Altura da descrição */
+}
+/* Tela de fundo do modal */
+.compartilhar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 61, 61, 0.85);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Conteúdo do modal */
+.compartilhar-conteudo {
+    background-color: #fff;
+    padding: 40px;
+    width: 500px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+}
+
+/* Títulos */
+.compartilhar-conteudo h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+}
+
+.compartilhar-conteudo h4 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #555;
+}
+
+/* Barra de pesquisa */
+.linha-compartilhar {
+    display: flex;
+    width: 100%;
+    border: 1px solid rgb(156, 156, 156);
+   
+}
+
+.pesquisa-compartilhar {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Bloco de sugestões */
+
+.lista-sugestao{    
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 4px;    
+}
+.user-linha {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+.user-linha:hover{
+    background-color: #ccc;
+}
+.user-linha:last-child {
+    border-bottom: none;
+}
+.user-linha img{
+    border-radius: 50%;
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        
+}
+.user-linha span{
+    font-size: 20px;
+}
+/* Rodapé com botões */
+.compartilhar-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.cancelar-btn,
+.compartilhar-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.cancelar-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+.compartilhar-btn {
+    background-color: #8c52ff;
+    color: #fff;
+}
+
+.cancelar-btn:hover {
+    background-color: #bbb;
+}
+
+.compartilhar-btn:hover {
+    background-color: #6631cf;
+}
+
+.add{
+    font-size: 16px;
+    margin-top: 20px;
+    background-color: var(--secondary-color); 
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.add:hover {
+    background-color: #6631cf; 
+}
+
+/* Estilos para os status em bolinhas (radio buttons) */
+.status-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.status-bloco{
+    margin-top: 10px;
+    display: flex;
+}
+
+.status-option {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.status-option input {
+    margin-right: 10px;
+}
+
+.status-option label {
+    font-size: 20px;
+    cursor: pointer;
+    
+}
+
+input[type="radio"]:checked + label {
+    color: rgb(15, 119, 255);
+}
+
+input[type="date"], .input-data {
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    width: 100%;
+}
+
+input[type="date"]:focus, .input-data:focus {
+    border-bottom: 2px solid #8c52ff;
+}
 
 @media(max-width: 800px){
     .hideOnMobile{
