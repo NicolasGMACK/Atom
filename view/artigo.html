@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/artigo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <nav>
+
+
+
+
+
+        
+        <ul class="sidebar">
+            <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Forum</a></li>
+            <li><a href="">Login</a></li>
+        </ul>
+        <ul>
+            <li><a class="atom" href="">Atom<img src="../view/img/logo3.png" alt=""></a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
+            <li class="profile">
+                <div id="profileDropdown" class="topic usuario">
+                <div  id="profileDropdown" class="foto user-space">
+                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
+                </div>
+               Vitor Capeleti
+            </div>
+            </li>
+               
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="#">Visualizar perfil</a>
+                    <a href="#">Configurações</a>
+                    <a href="#">Sair</a>
+                    
+                </div>
+                <script src="js/perfilDropdown.js"></script>
+            <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+        </ul>
+    </nav>
+    <div class="tela">
+        <div class="topo">
+            <div class="voltar">
+                <div class="circulo">                   
+                    <a href="home.html">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>                    
+                </div>
+            </div>
+            <div class="cartao">
+                <div class="cartao-top">
+                    <div class="status">Em andamento</div><div class="tema">Geografia</div>  
+                </div>
+                    <h1>Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</h1>
+                    <div class="linha-autor"><div class="autor">Kayky Paiva</div></div>
+                    <div class="data-postagem">Postado em 26 de outubro, 2024</div>
+                <div class="cartao-bot">
+                    <div class="rod">
+                        <button>Relevante</button>
+                        <button class="comentarios"><i class="fa-regular fa-comment"></i>37</button>
+                    </div>
+                    <div class="ape">
+                        <button class="botoes" id="Salvar">Salvar</button>
+                        <button id="openCompartilhar" class="botoes">Compartilhar</button>                            
+                           <script src="js/upvote.js"></script>
+                           <button>Download</button>
+                    </div>
+                </div>                    
+                
+            </div>
+        </div>
+    </div>

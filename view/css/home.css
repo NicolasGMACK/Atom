@@ -243,6 +243,9 @@ nav li:first-child{
     font-weight: 700;
     width: 100%;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    
 }
 .conteudo a:hover{
     text-decoration: underline;
@@ -396,8 +399,8 @@ nav li:first-child{
 .notification {
     display: none;
     position: fixed;
-    bottom: 20px; /* Mantenha a notificação visível inicialmente */
-    right: 20px;
+    bottom: 40px; /* Mantenha a notificação visível inicialmente */
+    right: 30px;
     background-color: #0073b1;
     color: white;
     padding: 15px;
