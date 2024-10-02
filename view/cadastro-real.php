@@ -14,6 +14,11 @@
             <img src="../view/img/mocas.png" alt="">
         </div>
        </div>
+<?php
+require_once('../view/php/conection.php');
+require_once('../view/php/insert.php');
+inserirUsuarios($conection);
+?>
     <div class="tela2">
         <div class="login-cadastro">
             <form action="" method="post" class="login">
@@ -30,11 +35,15 @@
                     <div class="simbolo"><img src="../view/img/lock-cinza.png" alt=""></div>
                     <input type="password" name="password" placeholder="Digite sua senha...">
                 </div>
+                <div class="caixa-texto1">
+                    <div class="simbolo"><img src="../view/img/lock-cinza.png" alt=""></div>
+                    <input type="password" name="repetepassword" placeholder="Confirme sua senha...">
+                </div>
                 <div class="esquecer">
                </div>
                 <div class="bloco-botao">
                     <div class="botao-justify">
-                        <input type="submit" value="Entrar" class="btn">
+                        <input type="submit" name="cadastrar" value="Cadastrar" class="btn">
                         <div class="esquecer">
                          <label for="" class="subtexto1">Já tem uma conta? <a href="login-real.html"><strong>Entrar</strong></a></label>
                         </div>
