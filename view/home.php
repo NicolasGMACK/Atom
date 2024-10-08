@@ -1,3 +1,8 @@
+<?php
+require_once('../view/php/protect.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,14 +39,14 @@
                 <div  id="profileDropdown" class="foto user-space">
                     <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
                 </div>
-               Vitor Capeleti
+               <?php echo $_SESSION['name'] ?>
             </div>
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
                     <a href="#">Visualizar perfil</a>
                     <a href="#">Configurações</a>
-                    <a href="#">Sair</a>
+                    <a href="../view/php/logout.php">Sair</a>
                     
                 </div>
                 <script src="js/perfilDropdown.js"></script>

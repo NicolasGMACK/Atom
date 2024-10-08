@@ -6,7 +6,7 @@ function inserirUsuarios($conection){
         $erros = array();
         $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
         $nome = mysqli_real_escape_string($conection, $_POST['nome']);
-        $senha = sha1($_POST['password']);
+        $senha = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         if($_POST['password'] != $_POST['repetepassword']){
             $erros[] = "Senhas não conferem"; 
@@ -24,15 +24,16 @@ function inserirUsuarios($conection){
              VALUES ('$nome','$email','$senha')";
             $executar = mysqli_query($conection, $query);
             if($executar){
-                echo "Usuário Inserido com sucesso";
+                header('Refresh: 0.5, url=login-real.php');
             }else{
-                echo "Erro ao inserir usuário";
+                echo"<script>window.alert('Erro ao inserir, por favor tente novamente')</script>";
             }
 
 
         }else{
             foreach($erros as $erro){
-                echo"<p>$erro</p>";
+                echo"<script>window.alert('$erro')</script>";
+
             }
         }
 
