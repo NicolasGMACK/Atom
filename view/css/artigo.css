@@ -1,13 +1,20 @@
-.topo{
+html {
+    scroll-behavior: smooth;
+  }
+  .topo{
     display: flex;
     width: 100%;
-    padding-top: 50px;
+    padding-top: 30px;
     background-color: #fff;
     justify-content: center;
     border-bottom: 1px solid rgb(156, 156, 156);   
 }
-.voltar{
-    margin-right: 20px;   
+.topo-bloco{
+    display: flex;
+    width: 60%;
+}
+.circulo-padding{
+    margin-right: 10px; 
 }
 .circulo{
     width: 30px;
@@ -17,6 +24,7 @@
     display: flex; /* Flexbox para centralizar o conteúdo (seta) */
     align-items: center; /* Alinha verticalmente */
     justify-content: center; /* Alinha horizontalmente */
+    
    
 }
 .circulo a{  font-size: 20px; /* Tamanho da seta */
@@ -25,7 +33,7 @@
     text-decoration: none;
 }
 .cartao{
-    width: 50%;
+    width: 100%;
 }
 .cartao-top{
     display: inline-flex;
@@ -51,7 +59,300 @@
     display: flex;
 }
 
+.linha-autor{
+    width: 100%;
+    display: inline-flex;
+}
+.autor{
+    display: flex;
+    text-transform: uppercase;
+    color: #333;
+    margin: 1px 0 5px 0;
+    font-size: 15px;
+    text-decoration: underline;
+   
+}
+.data-postagem{
+    color: #333;
+    margin: 5px 0 30px 0;
+    font-size: 15px;
+}
 .cartao-bot{
     display: flex;
     width: 100%;
+    padding: 7px 0 7px 0; 
+    border-top: 1px solid rgb(156, 156, 156); 
+    align-items: center;
+}
+
+.votos{
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 5px;
+}
+.votos:hover{
+    border-radius: 15px;
+    background-color: #f1f1f1;
+}
+.votos p{
+    padding: 5px 2px 0 5px;
+}
+.baixar{
+    display: flex;
+    margin-left: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #8c52ff;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    align-items: center;
+}
+.baixar i{
+    padding-left: 5px;
+    margin-right: 5px;
+    font-size: 18px;
+}
+.baixar p{
+    padding-right: 5px;
+}
+.baixar:hover{
+    background-color: #6631cf;
+}
+.tela2{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.telas-da-tela2{
+    display: flex;
+    width: 60%;
+}
+.tela2-esquerda{
+    margin-left: 40px;
+    width: 67%;
+    display: flex;
+    flex-direction: column;
+}
+.desc-bloco{
+    margin-top: 25px;
+    background-color: #fff;
+}
+.autores{
+    position: sticky;
+    top: 0;
+}
+.desc-title{
+    display: flex;
+    padding: 25px;
+    border-bottom: 1px solid rgb(156, 156, 156);
+    align-items: center;
+    font-size: 20px;
+}
+.follow-title{
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid rgb(156, 156, 156);
+    align-items: center;
+    font-size: 20px;
+}
+.desc-title h4{
+    padding-left: 5px;
+}
+.desc-text{
+    font-size: 17px;
+    padding: 30px;
+    text-align: justify;
+    line-height: 1.2;
+}
+
+.tela2-direita{
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.autor-follow{
+    display: flex;
+    flex-direction: column;
+}
+.autor-bloco{
+    padding: 12px;
+    display: inline-flex;
+    width: 100%;
+    border-bottom: 1px solid rgb(156, 156, 156);
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.autor-entrar{
+    display: flex;
+}
+.autor-entrar:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.autor-foto{
+    width: auto;
+}
+.autor-foto img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.autor-nome{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.follow{
+    width: auto;
+    color: #3691db;
+    display: flex;
+    align-items: center;
+}
+.follow p:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.comentarios-bloco {
+    margin: 20px auto;   
+}
+.my-comment{
+    flex-direction: column;
+    display: flex;
+    padding: 10px;
+}
+.my-comment textarea{
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;    
+}
+textarea:focus{
+    outline: none;
+}
+
+
+.comment-btn{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+/* Comentário individual */
+.comentarios-comentario {
+    padding: 0 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.comentarios-space{
+    margin-bottom: 30px;
+}
+
+/* Cabeçalho do comentário (nome do usuário e ações) */
+.comentarios-cabecalho {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.comentarios-cabecalho img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Nome do usuário */
+.comentarios-usuario {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+}
+
+/* Ações (exibir/esconder respostas, tempo de postagem) */
+.comentarios-acoes {
+    font-size: 0.9em;
+    color: #777;
+    cursor: pointer;
+}
+
+.comentarios-mostrar-resposta-btn {
+    color: #007BFF;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.comentarios-mostrar-resposta-btn:hover {
+    color: #0056b3;
+}
+
+/* Corpo do comentário (texto) */
+.comentarios-corpo {
+    margin-bottom: 10px;
+    color: #222;
+}
+
+/* Botão para responder */
+.comentarios-responder-btn {
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.comentarios-responder-btn:hover {
+    text-decoration: underline;
+}
+
+/* Formulário de resposta */
+.comentarios-formulario-resposta {
+    display: none;
+    margin-top: 10px;
+}
+
+.comentarios-formulario-resposta textarea {
+    width: 95%;
+    padding: 10px;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.comentarios-enviar-btn {
+    background-color: #8c52ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.comentarios-enviar-btn:hover {
+    background-color: #6b39ff;
+}
+
+/* Seção de respostas */
+.comentarios-secao-respostas {
+    display: none; /* Inicialmente escondido */
+    margin-left: 30px;
+    margin-top: 10px;
+    border-left: 2px solid #ccc;
+    padding-left: 15px;
 }

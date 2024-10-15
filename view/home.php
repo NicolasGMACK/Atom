@@ -166,7 +166,13 @@ require_once('../view/php/protect.php');
                                 <button class="relevante" onclick="toggleLike(this)">
                                     <span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>
                                 </button>                            
-                                <button class="comentarios"><i class="fa-regular fa-comment"></i>37</button>   
+                                <button id="goToComments" class="comentarios"><i class="fa-regular fa-comment"></i>37</button>
+                                <script>
+                                    document.getElementById('goToComments').addEventListener('click', function() {
+                                        window.location.href = 'artigo.html#comments';
+                                        });
+
+                                </script>   
                                 <button class="botoes" id="Salvar">Salvar</button>  
                             </div>
                                     <div class="notification" id="notification">
