@@ -17,12 +17,6 @@ require_once('../view/php/protect.php');
 </head>
 <body>
     <nav>
-
-
-
-
-
-        
         <ul class="sidebar">
             <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
             <li><a href="">Blog</a></li>
@@ -45,7 +39,7 @@ require_once('../view/php/protect.php');
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="#">Visualizar perfil</a>
+                    <a href="perfil.php">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
@@ -58,11 +52,11 @@ require_once('../view/php/protect.php');
         <div class="topo">
             <div class="topo-bloco">
             <div class="voltar">
-            <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+                    <script>
+                function goBack() {
+                    window.history.back();
+                }
+                    </script>
                 <div class="circulo-padding">
                     <div class="circulo">                   
                         <a onclick="goBack()">
