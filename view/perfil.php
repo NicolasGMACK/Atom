@@ -83,7 +83,7 @@ require_once('../view/php/protect.php');
             </div>
         </div>
         
-<div class="tela espaco" id="publicacoes" style="display: none">
+<div class="tela espaco" id="publicacoes" style="display: non">
     <div class="tela-coluna">
         <div class="lado-esquerdo1">
             <div class="bloco">
@@ -210,7 +210,7 @@ require_once('../view/php/protect.php');
     
 
 <div class="tela espaco">
-    
+
 </div>
 
             </body>

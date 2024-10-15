@@ -140,11 +140,11 @@ require_once('../view/php/protect.php');
                     </div>
                     <div class="bloco-mid">
                             <div class="cabecalho">
-                                <div class="foto user">
+                                <a href="perfil.php"><div class="foto user">
                                     <img src="../view/img/kayky.png" alt="img teste" class="user-photo">
                                 </div>
                                 <div class="profile-artigo">
-                                    <div class="nome">Kayky Paiva</div>                        
+                                    <div class="nome">Kayky Paiva</a></div>                        
                                     <p>Publicou um <a>artigo</a></p>
                                 </div>
                             </div>
