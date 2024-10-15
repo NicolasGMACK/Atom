@@ -155,7 +155,7 @@ require_once('../view/php/protect.php');
                                 </div>
                             </div>
                             <div class="conteudo">
-                                <a href="artigo.html">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>
+                                <a href="artigo.php">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>
                                 <br><br>
                                 <span>Agosto 2024 &#8226; Em andamento</span>
                             </div>
@@ -169,7 +169,7 @@ require_once('../view/php/protect.php');
                                 <button id="goToComments" class="comentarios"><i class="fa-regular fa-comment"></i>37</button>
                                 <script>
                                     document.getElementById('goToComments').addEventListener('click', function() {
-                                        window.location.href = 'artigo.html#comments';
+                                        window.location.href = 'artigo.php#comments';
                                         });
 
                                 </script>   
