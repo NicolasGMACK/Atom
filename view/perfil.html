@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <nav>
+        <ul class="sidebar">
+            <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Forum</a></li>
+            <li><a href="">Login</a></li>
+        </ul>
+        <ul>
+            <li><a class="atom" href="">Atom<img src="../view/img/logo3.png" alt=""></a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
+            <li class="profile">
+                <div id="profileDropdown" class="topic usuario">
+                <div  id="profileDropdown" class="foto user-space">
+                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
+                </div>
+               <?php echo $_SESSION['name'] ?>
+            </div>
+            </li>
+               
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="#">Visualizar perfil</a>
+                    <a href="#">Configurações</a>
+                    <a href="../view/php/logout.php">Sair</a>
+                    
+                </div>
+                <script src="js/perfilDropdown.js"></script>
+            <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+        </ul>
+    </nav> 
+    <div class="profile-container">
+        <!-- Capa do perfil -->
+        <div class="cover-photo">
+            <img src="../view/img/background-img-2.png" alt="Foto de Capa">
+        </div>
+        
+        <!-- Informações do perfil -->
+        <div class="profile-info">
+            <div class="profile-picture">
+                <img src="../view/img/kayky.png" alt="Foto de Perfil">
+            </div>
+            <div class="profile-name">
+                <h1>Rafael Lima <span>(Lima)</span></h1>
+                <p>1,8 mil amigos • 1 em comum</p>
+            </div>
+            <div class="profile-actions">
+                <button class="btn">Amigos</button>
+                <button class="btn">Mensagem</button>
+            </div>
+        </div>
+
+        <!-- Navegação do perfil -->
+        <div class="profile-navigation">
+            <ul>
+                <li><a href="#">Publicações</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Amigos</a></li>
+                <li><a href="#">Fotos</a></li>
+                <li><a href="#">Vídeos</a></li>
+                <li><a href="#">Check-ins</a></li>
+                <li><a href="#">Mais</a></li>
+            </ul>
+        </div>
+
+        <!-- Apresentação -->
+        <div class="profile-presentation">
+            <h2>Apresentação</h2>
+            <p>Frequentou Colégio Adventista de Taubaté-Tremembé</p>
+            <p>Frequentou Colégio Idesa</p>
+            <p>Mora em Wasaga Beach, Ontario</p>
+            <p>De Taubaté</p>
+        </div>
+
+    </div>
+</body>
+</html>

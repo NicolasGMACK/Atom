@@ -58,9 +58,14 @@ require_once('../view/php/protect.php');
         <div class="topo">
             <div class="topo-bloco">
             <div class="voltar">
+            <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
                 <div class="circulo-padding">
                     <div class="circulo">                   
-                        <a href="home.php">
+                        <a onclick="goBack()">
                             <i class="fa-solid fa-arrow-left"></i>
                         </a>                    
                     </div>
