@@ -131,6 +131,7 @@
 
 .sobre{
     padding: 20px;
+    font-size: 17.5px;
 }
 .tela-coluna{
     width: 60%;
@@ -142,9 +143,14 @@
 .lado-direito1{
     width: 60%;
 }
+.lista1{
+    display: flex;
+    flex-direction: column;
+}
 .bloco1{
     background-color: #fff;
     width: 100%;
+    margin-bottom: 15px;
 }
 .espaco{
     margin-top: 20px;
