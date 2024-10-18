@@ -27,7 +27,7 @@ require_once('../view/php/protect.php');
             <li><a href="">Login</a></li>
         </ul>
         <ul>
-            <li><a class="atom" href="">Atom<img src="../view/img/logo3.png" alt=""></a></li>
+            <li><a class="atom" href="home.php">Atom<img src="../view/img/logo3.png" alt=""></a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
             <li class="profile">
