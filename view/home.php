@@ -192,7 +192,7 @@ require_once('../view/php/protect.php');
     <div class="popup-content">
         <span class="close" id="closePopup">&times;</span>
         <div class="rodape center"><h1>Publicar Artigo</h1></div>
-        <form class="formulario">
+        <form action="../view/php/postagem.php" method="post" class="formulario">
             <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
 
             
