@@ -1,6 +1,8 @@
 <?php
 require_once('conection.php'); // Conexão com o banco de dados
-require_once('protect.php'); // Verifica se o usuário esta autenticado
+require_once('protect.php'); // Verifica se o usuário está autenticado
+session_start(); // Inicia a sessão para armazenar mensagens
+
 // Verifica se o formulário foi enviado e chama a função para inserir o artigo
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     inserirArtigo($conection);
@@ -24,7 +26,7 @@ function inserirArtigo($conection) {
             $arquivoTmp = $_FILES['pdf']['tmp_name'];
             $nomeArquivo = $_FILES['pdf']['name'];
             $diretorioDestino = $_SERVER['DOCUMENT_ROOT'] . '/pi-UNIAOSINISTRA/Atom/uploads/';
-$caminhoCompleto = $diretorioDestino . basename($nomeArquivo);
+            $caminhoCompleto = $diretorioDestino . basename($nomeArquivo);
 
             // Mover o arquivo para o diretório de uploads
             if (move_uploaded_file($arquivoTmp, $caminhoCompleto)) {
@@ -39,20 +41,28 @@ $caminhoCompleto = $diretorioDestino . basename($nomeArquivo);
                     header('Location: ../home.php'); // Redireciona para a home
                     exit();
                 } else {
-                    echo "<script>window.alert('Erro ao inserir o artigo, por favor tente novamente')</script>";
+                    // Define a mensagem de erro na sessão e redireciona
+                    $_SESSION['mensagem_erro'] = "Erro ao inserir o artigo, por favor tente novamente.";
+                    header('Location: ../home.php');
+                    exit();
                 }
             } else {
-                echo "<script>window.alert('Erro ao salvar o arquivo. Verifique permissões e diretório.')</script>";
+                // Define mensagem de erro para problema ao salvar o arquivo e redireciona
+                $_SESSION['mensagem_erro'] = "Erro ao salvar o arquivo. Verifique permissões e diretório.";
+                header('Location: ../home.php');
+                exit();
             }
         } else {
-            $erros[] = "Nenhum arquivo PDF enviado!";
+            // Define mensagem de erro para arquivo PDF não enviado e redireciona
+            $_SESSION['mensagem_erro'] = "Nenhum arquivo PDF enviado!";
+            header('Location: ../home.php');
+            exit();
         }
-
-        if (!empty($erros)) {
-            foreach ($erros as $erro) {
-                echo "<script>window.alert('$erro')</script>";
-            }
-        }
+    } else {
+        // Define mensagem de erro caso algum campo obrigatório não esteja preenchido e redireciona
+        $_SESSION['mensagem_erro'] = "Todos os campos são obrigatórios!";
+        header('Location: ../home.php');
+        exit();
     }
 }
 ?>

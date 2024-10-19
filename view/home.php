@@ -1,7 +1,8 @@
 <?php
 require_once('../view/php/protect.php');
-
+include('../view/php/mensagens_postagem.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
