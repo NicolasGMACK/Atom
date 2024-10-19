@@ -35,7 +35,7 @@ function carregarArtigos($conection) {
                     <div class='cabecalho'>
                         <a href='perfil.php'>
                             <div class='foto user'>
-                                <img src='../view/img/kayky.png' alt='img teste' class='user-photo'>
+                                <img src='../view/img/user.jpg' alt='img teste' class='user-photo'>
                             </div>
                         </a>
                         <div class='profile-artigo'>

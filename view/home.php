@@ -32,7 +32,7 @@ include('../view/php/mensagens_postagem.php');
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
+                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>
@@ -200,23 +200,23 @@ include('../view/php/mensagens_postagem.php');
         <br>
         <ul class="lista-sugestao">
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Vitor Capeleti</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Abhinav Pandey</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Sanket Nandan</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Prasanta K. Panigrahi</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Jose ANGEL Alvarez Garcia</span>
             </li>
         </ul>
