@@ -139,9 +139,9 @@ include('../view/php/mensagens_postagem.php');
             <!-- Segunda div bloco -->
             <?php
 // Incluir o arquivo que carrega os artigos
-include 'php/carregar_artigos.php';
-?>
-
+            include 'php/carregar_artigos.php';
+            ?>
+<script src="js/upvote.js"></script>
 
         </div> <!-- Fecha a div.lista -->
     </div> <!-- Fecha a div.lado-direito -->
