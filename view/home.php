@@ -186,7 +186,7 @@ include 'php/carregar_artigos.php';
     </div>
 </div>
 
-<script src="../view/js/showArtigo.js"></script>
+<script src="../view/js/showFormulario.js"></script>
 
 <!-- Popup Compartihar-->
 
