@@ -1,7 +1,8 @@
 <?php
 require_once('../view/php/protect.php');
-
+include('../view/php/mensagens_postagem.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@ require_once('../view/php/protect.php');
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
+                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>
@@ -85,7 +86,7 @@ require_once('../view/php/protect.php');
                             <div class="filtro-categoria">
                                 <h3>Tipo de Conteúdo</h3>                                
                                     <select>
-                                        <option value="" disabled selected>Escolha o tema</option>
+                                        <option value="" disabled selected>Escolha a categoria</option>
                                         <option value="geografia">Geografia</option>
                                         <option value="historia">História</option>
                                         <option value="ciencias">Ciências</option>
@@ -116,119 +117,76 @@ require_once('../view/php/protect.php');
             </div>
         </div>
         <div class="lado-direito">
-            <div class="lista">
-                <div class="bloco">
-                    <div class="bloco-mid">
-                        <div class="cabecalho-postagem">                              
-                            <div class="conteudo-postagem">
-                                <a>Interessado em publicar seu projeto? Faça sua postagem!</a>
-                            </div>
-                            <div class="butao">
-                                <button class="publicar" id="openPopup">PUBLICAR</button>                            
-                            </div> 
-                        </div>      
-                    </div>
-                    <div class="upload-mid">
-                        <input type="file" id="file-upload" class="none">
+        <div class="lista">
 
-                    </div>
-                    
-                </div>                
-                <div class="bloco">
-                    <div class="bloco-top">
-                        <p>Relacionado a <strong>Geografia</strong></p>
-                    </div>
-                    <div class="bloco-mid">
-                            <div class="cabecalho">
-                                <a href="perfil.php"><div class="foto user">
-                                    <img src="../view/img/kayky.png" alt="img teste" class="user-photo">
-                                </div>
-                                <div class="profile-artigo">
-                                    <div class="nome">Kayky Paiva</a></div>                        
-                                    <p>Publicou um <a>artigo</a></p>
-                                </div>
-                            </div>
-                            <div class="conteudo">
-                                <a href="artigo.php">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>
-                                <br><br>
-                                <span>Agosto 2024 &#8226; Em andamento</span>
-                            </div>
-                    </div>                    
-                    <div class="bloco-bot">
-                        <div class="rodape">
-                            <div class="rod">
-                                <button class="relevante" onclick="toggleLike(this)">
-                                    <span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>
-                                </button>                            
-                                <button id="goToComments" class="comentarios"><i class="fa-regular fa-comment"></i>37</button>
-                                <script>
-                                    document.getElementById('goToComments').addEventListener('click', function() {
-                                        window.location.href = 'artigo.php#comments';
-                                        });
-
-                                </script>   
-                                <button class="botoes" id="Salvar">Salvar</button>  
-                            </div>
-                                    <div class="notification" id="notification">
-                                        <h4 id="notificationTitle">Arquivo salvo com sucesso!</h4>
-                                        <p id="notificationText">Você pode encontrar o arquivo no seu perfil.</p>                                        
-                                    </div>                                    
-                            <script src="../view/js/salvar.js"></script>   
-
-                            
-                            <div class="ape">
-                                <button id="openCompartilhar" class="botoes">Compartilhar</button>
-                            </div>
-                           <script src="js/upvote.js"></script>
+            <!-- Primeira div bloco -->
+            <div class="bloco">
+                <div class="bloco-mid">
+                    <div class="cabecalho-postagem">                              
+                        <div class="conteudo-postagem">
+                            <a>Interessado em publicar seu projeto? Faça sua postagem!</a>
                         </div>
-                    </div>                      
+                        <div class="butao">
+                            <button class="publicar" id="openPopup">PUBLICAR</button>                            
+                        </div> 
+                    </div>
                 </div>
-            </div>
-        </div>        
-    </div>
+                <div class="upload-mid">
+                    <input type="file" id="file-upload" class="none">
+                </div>
+            </div> <!-- Fecha a primeira div.bloco -->
+
+            <!-- Segunda div bloco -->
+            <?php
+// Incluir o arquivo que carrega os artigos
+            include 'php/carregar_artigos.php';
+            ?>
+<script src="js/upvote.js"></script>
+
+        </div> <!-- Fecha a div.lista -->
+    </div> <!-- Fecha a div.lado-direito -->
+</div> <!-- Fecha a div.tela -->
+            
+                
+    
 
 <!-- formulario Artigo-->
 <div id="popupForm" class="popup">
     <div class="popup-content">
         <span class="close" id="closePopup">&times;</span>
         <div class="rodape center"><h1>Publicar Artigo</h1></div>
-        <form class="formulario">
+        <form action="../view/php/postagem.php" method="post" enctype="multipart/form-data" class="formulario">
             <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
+             <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
 
-            
-            <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
-            <select class="estilo" required id="tema" name="tema">
-                <option value="" disabled selected>Escolha o tema</option>
-                <option value="geografia">Geografia</option>
-                <option value="historia">História</option>
-                <option value="ciencias">Ciências</option>
-                <option value="literatura">Literatura</option>
-            </select>
-
-          
-            <div class="status-group">
-                <h3>Status do Projeto:</h3>
-                <div class="status-bloco">
-                    <div class="status-option">
-                        <input type="radio" id="em-andamento" name="status" value="em-andamento">
-                        <label for="em-andamento">Em andamento</label>
-                    </div>
-                    <div class="status-option">
-                        <input type="radio" id="concluido" name="status" value="concluido">
-                        <label for="concluido">Concluído</label>
+                <select class="estilo" required id="categoria" name="categoria">
+                    <option value="" disabled selected>Escolha o categoria</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="História">História</option>
+                    <option value="Ciências">Ciências</option>
+                    <option value="Literatura">Literatura</option>
+                </select>
+                <div class="status-group">
+                    <h3>Status do Projeto:</h3>
+                    <div class="status-bloco">
+                        <div class="status-option">
+                            <input type="radio" id="em-andamento" name="status" value="Em andamento">
+                            <label for="em-andamento">Em andamento</label>
+                        </div>
+                        <div class="status-option">
+                            <input type="radio" id="concluido" name="status" value="Concluído">
+                            <label for="concluido">Concluído</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Input para adicionar PDF -->
-            <input class="estilo" type="file" id="pdf" name="pdf" accept=".pdf">
-            
-            <button class="add" type="submit">Adicionar Artigo</button>
+        <!-- Input para adicionar PDF -->
+        <input class="estilo" type="file" id="pdf" name="pdf" accept=".pdf">
+    <button class="add" type="submit">Adicionar Artigo</button>
         </form>
     </div>
 </div>
 
-<script src="../view/js/showArtigo.js"></script>
+<script src="../view/js/showFormulario.js"></script>
 
 <!-- Popup Compartihar-->
 
@@ -242,23 +200,23 @@ require_once('../view/php/protect.php');
         <br>
         <ul class="lista-sugestao">
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Vitor Capeleti</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Abhinav Pandey</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Sanket Nandan</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Prasanta K. Panigrahi</span>
             </li>
             <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
+                <img src="../view/img/user.jpg" alt="Profile">
                 <span>Jose ANGEL Alvarez Garcia</span>
             </li>
         </ul>
