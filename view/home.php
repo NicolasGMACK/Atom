@@ -85,7 +85,7 @@ require_once('../view/php/protect.php');
                             <div class="filtro-categoria">
                                 <h3>Tipo de Conteúdo</h3>                                
                                     <select>
-                                        <option value="" disabled selected>Escolha o tema</option>
+                                        <option value="" disabled selected>Escolha a categoria</option>
                                         <option value="geografia">Geografia</option>
                                         <option value="historia">História</option>
                                         <option value="ciencias">Ciências</option>
@@ -210,7 +210,7 @@ require_once('../view/php/protect.php');
                 <h3>Status do Projeto:</h3>
                 <div class="status-bloco">
                     <div class="status-option">
-                        <input type="radio" id="em-andamento" name="status" value="em-andamento">
+                        <input type="radio" id="em-andamento" name="status" value="andamento">
                         <label for="em-andamento">Em andamento</label>
                     </div>
                     <div class="status-option">
