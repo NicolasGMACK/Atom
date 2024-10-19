@@ -192,39 +192,39 @@ require_once('../view/php/protect.php');
     <div class="popup-content">
         <span class="close" id="closePopup">&times;</span>
         <div class="rodape center"><h1>Publicar Artigo</h1></div>
-        <form action="../view/php/postagem.php" method="post" class="formulario">
-            <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
+        <form action="../view/php/postagem.php" method="post" enctype="multipart/form-data" class="formulario">
+    <input class="estilo" type="text" id="titulo" name="titulo" placeholder="Título do Artigo">
 
-            
-            <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
-            <select class="estilo" required id="tema" name="tema">
-                <option value="" disabled selected>Escolha o tema</option>
-                <option value="geografia">Geografia</option>
-                <option value="historia">História</option>
-                <option value="ciencias">Ciências</option>
-                <option value="literatura">Literatura</option>
-            </select>
+    <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
 
-          
-            <div class="status-group">
-                <h3>Status do Projeto:</h3>
-                <div class="status-bloco">
-                    <div class="status-option">
-                        <input type="radio" id="em-andamento" name="status" value="andamento">
-                        <label for="em-andamento">Em andamento</label>
-                    </div>
-                    <div class="status-option">
-                        <input type="radio" id="concluido" name="status" value="concluido">
-                        <label for="concluido">Concluído</label>
-                    </div>
-                </div>
+    <select class="estilo" required id="categoria" name="categoria">
+        <option value="" disabled selected>Escolha o tema</option>
+        <option value="geografia">Geografia</option>
+        <option value="historia">História</option>
+        <option value="ciencias">Ciências</option>
+        <option value="literatura">Literatura</option>
+    </select>
+
+    <div class="status-group">
+        <h3>Status do Projeto:</h3>
+        <div class="status-bloco">
+            <div class="status-option">
+                <input type="radio" id="em-andamento" name="status" value="andamento">
+                <label for="em-andamento">Em andamento</label>
             </div>
+            <div class="status-option">
+                <input type="radio" id="concluido" name="status" value="concluido">
+                <label for="concluido">Concluído</label>
+            </div>
+        </div>
+    </div>
 
-            <!-- Input para adicionar PDF -->
-            <input class="estilo" type="file" id="pdf" name="pdf" accept=".pdf">
-            
-            <button class="add" type="submit">Adicionar Artigo</button>
-        </form>
+    <!-- Input para adicionar PDF -->
+    <input class="estilo" type="file" id="pdf" name="pdf" accept=".pdf">
+
+    <button class="add" type="submit">Adicionar Artigo</button>
+</form>
+
     </div>
 </div>
 
