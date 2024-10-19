@@ -1,7 +1,7 @@
 <?php
 require_once('conection.php'); // Conexão com o banco de dados
 require_once('protect.php'); // Verifica se o usuário está autenticado
-session_start(); // Inicia a sessão para armazenar mensagens
+ // Inicia a sessão para armazenar mensagens
 
 // Verifica se o formulário foi enviado e chama a função para inserir o artigo
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -31,10 +31,10 @@ function inserirArtigo($conection) {
             // Mover o arquivo para o diretório de uploads
             if (move_uploaded_file($arquivoTmp, $caminhoCompleto)) {
                 // Inserir artigo no banco de dados
-                $query = "INSERT INTO artigo (ART_VAR_TITULO, ART_VAR_DESCRICAO, ART_VAR_CATEGORIA, ART_CHA_STATUS, ART_VAR_ARQUIVO, USU_INT_ID) 
+                $query = "INSERT INTO artigo (ART_VAR_TITULO, ART_VAR_DESCRICAO, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_ARQUIVO, USU_INT_ID) 
                           VALUES ('$titulo', '$descricao', '$categoria', '$status', '$caminhoCompleto', '$usuario_id')";
             
-                $executar = mysqli_query($conection, $query);
+                   $executar = mysqli_query($conection, $query);
                 if ($executar) {
                     // Define a mensagem de sucesso na sessão
                     $_SESSION['mensagem_sucesso'] = "Artigo postado com sucesso!";

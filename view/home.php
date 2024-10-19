@@ -137,58 +137,11 @@ include('../view/php/mensagens_postagem.php');
             </div> <!-- Fecha a primeira div.bloco -->
 
             <!-- Segunda div bloco -->
-            <div class="bloco">
-                <div class="bloco-top">
-                    <p>Relacionado a <strong>Geografia</strong></p>
-                </div>
-                <div class="bloco-mid">
-                    <div class="cabecalho">
-                        <a href="perfil.php">
-                            <div class="foto user">
-                                <img src="../view/img/kayky.png" alt="img teste" class="user-photo">
-                            </div>
-                        </a>    
-                            <div class="profile-artigo">
-                            <a href="perfil.php"><div class="nome">Kayky Paiva</div></a>                        
-                                <p>Publicou um artigo</p>
-                            </div>                        
-                    </div>
-                    
-                    <div class="conteudo">
-                        <a href="artigo.php">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>
-                        <br><br>
-                        <span>Agosto 2024 &#8226; Em andamento</span>
-                    </div>
-                </div>
-                <div class="bloco-bot">
-                    <div class="rodape">
-                        <div class="rod">
-                            <button class="relevante" onclick="toggleLike(this)">
-                                <span class="material-symbols-outlined">shift</span>
-                                <div class="vote">Relevante</div>
-                            </button>
-                            <button id="goToComments" class="comentarios">
-                                <i class="fa-regular fa-comment"></i>37
-                            </button>
-                            <script>
-                                document.getElementById('goToComments').addEventListener('click', function() {
-                                    window.location.href = 'artigo.php#comments';
-                                });
-                            </script>   
-                            <button class="botoes" id="Salvar">Salvar</button>
-                        </div>
-                        <div class="notification" id="notification">
-                            <h4 id="notificationTitle">Arquivo salvo com sucesso!</h4>
-                            <p id="notificationText">Você pode encontrar o arquivo no seu perfil.</p>
-                        </div>
-                        <script src="../view/js/salvar.js"></script>   
-                        <div class="ape">
-                            <button id="openCompartilhar" class="botoes">Compartilhar</button>
-                        </div>
-                        <script src="js/upvote.js"></script>
-                    </div>
-                </div>
-            </div> <!-- Fecha a segunda div.bloco -->
+            <?php
+// Incluir o arquivo que carrega os artigos
+include 'php/carregar_artigos.php';
+?>
+
 
         </div> <!-- Fecha a div.lista -->
     </div> <!-- Fecha a div.lado-direito -->
@@ -208,20 +161,20 @@ include('../view/php/mensagens_postagem.php');
 
                 <select class="estilo" required id="categoria" name="categoria">
                     <option value="" disabled selected>Escolha o tema</option>
-                    <option value="geografia">Geografia</option>
-                    <option value="historia">História</option>
-                    <option value="ciencias">Ciências</option>
-                    <option value="literatura">Literatura</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="História">História</option>
+                    <option value="Ciências">Ciências</option>
+                    <option value="Literatura">Literatura</option>
                 </select>
                 <div class="status-group">
                     <h3>Status do Projeto:</h3>
                     <div class="status-bloco">
                         <div class="status-option">
-                            <input type="radio" id="em-andamento" name="status" value="andamento">
+                            <input type="radio" id="em-andamento" name="status" value="Em andamento">
                             <label for="em-andamento">Em andamento</label>
                         </div>
                         <div class="status-option">
-                            <input type="radio" id="concluido" name="status" value="concluido">
+                            <input type="radio" id="concluido" name="status" value="Concluído">
                             <label for="concluido">Concluído</label>
                         </div>
                     </div>
