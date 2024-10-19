@@ -16,12 +16,6 @@ require_once('../view/php/protect.php');
 </head>
 <body>
     <nav>
-
-
-
-
-
-        
         <ul class="sidebar">
             <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
             <li><a href="">Blog</a></li>
@@ -31,7 +25,7 @@ require_once('../view/php/protect.php');
             <li><a href="">Login</a></li>
         </ul>
         <ul>
-            <li><a class="atom" href="">Atom<img src="../view/img/logo3.png" alt=""></a></li>
+            <li><a class="atom" href="home.php">Atom<img src="../view/img/logo3.png" alt=""></a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
             <li class="profile">
@@ -44,7 +38,7 @@ require_once('../view/php/protect.php');
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="#">Visualizar perfil</a>
+                <a href="perfil.php">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
@@ -146,11 +140,11 @@ require_once('../view/php/protect.php');
                     </div>
                     <div class="bloco-mid">
                             <div class="cabecalho">
-                                <div class="foto user">
+                                <a href="perfil.php"><div class="foto user">
                                     <img src="../view/img/kayky.png" alt="img teste" class="user-photo">
                                 </div>
                                 <div class="profile-artigo">
-                                    <div class="nome">Kayky Paiva</div>                        
+                                    <div class="nome">Kayky Paiva</a></div>                        
                                     <p>Publicou um <a>artigo</a></p>
                                 </div>
                             </div>

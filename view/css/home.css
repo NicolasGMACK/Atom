@@ -220,6 +220,10 @@ nav li:first-child{
     cursor: pointer;
     
 }
+.nome a{
+    text-decoration: none;
+    color: inherit;
+}
 .nome:hover{
     text-decoration: underline;
     
@@ -390,6 +394,7 @@ nav li:first-child{
    border: none;
    cursor: pointer;
    margin-left: 10px;
+   
   }
 
 .botoes.saved{

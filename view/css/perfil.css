@@ -1,0 +1,159 @@
+.topo1{
+    width: 100%;
+    background-color: #fff;
+    justify-content: center;
+    display: flex;
+    border-bottom: 1px solid rgb(156, 156, 156);  
+    
+}
+.topo1-bloco{
+   width: 60%;   
+}
+.cover-photo {
+    width: 100%;
+    height: 300px;
+    background-color: #e2e2e2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.cover-photo img {
+    width: 100%;
+    height: 300px;
+    background-color: #e2e2e2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    object-fit: cover;    
+    display: none;
+}
+
+.cover-photo img[src]{
+    display: block; /* Mostra a imagem apenas se ela existir */
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    position: absolute;
+    top: -70px;
+    left: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid white;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-name {
+    margin-left: 180px;
+}
+
+.profile-name h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.profile-name span {
+    color: gray;
+    font-weight: normal;
+}
+
+.seguintes {
+    display: flex;
+    align-items: center;
+}
+.seguintes p{
+    margin-right: 5px;
+}
+
+.profile-actions {
+    margin-left: auto;
+}
+
+.profile-actions .btn {
+    background-color: #8c52ff;
+    color: white;
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 25px;
+    font-size: 16px;
+}
+
+.profile-actions .btn:hover {
+    background-color: #6631cf;
+}
+
+
+.profile-navigation {
+    background-color: white;
+    border-top: 1px solid rgb(156, 156, 156); 
+    display: flex;
+    padding: 5px 0 5px 0;
+}   
+
+.opcao{
+    padding: 15px;
+    font-size: 16px;
+}
+
+.marcada{
+    padding: 15px;
+    font-size: 16px;   
+    color: #8c52ff;
+    font-weight: bold;
+    border-bottom: 2px solid #8c52ff;
+    margin-bottom: -5px;
+    
+}
+.opcao:hover{
+    cursor: pointer;
+}
+.selecionar:hover{
+    cursor: pointer;
+    background-color: #dddddd;
+    border-radius: 10px;
+
+}
+
+.sobre{
+    padding: 20px;
+    font-size: 17.5px;
+}
+.tela-coluna{
+    width: 60%;
+    display: flex;
+}
+.lado-esquerdo1{
+    width: 40%;
+}
+.lado-direito1{
+    width: 60%;
+}
+.lista1{
+    display: flex;
+    flex-direction: column;
+}
+.bloco1{
+    background-color: #fff;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.espaco{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
