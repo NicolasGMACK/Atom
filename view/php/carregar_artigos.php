@@ -34,7 +34,7 @@ function carregarArtigos($conection) {
                 <div class='bloco-mid'>
                     <div class='cabecalho'>
                         <a href='perfil.php'>
-                            <div class='foto user'>
+                            <div class='foto1 user'>
                                 <img src='../view/img/user.jpg' alt='img teste' class='user-photo'>
                             </div>
                         </a>

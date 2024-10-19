@@ -160,7 +160,7 @@ include('../view/php/mensagens_postagem.php');
              <textarea class="estilo" id="descricao" name="descricao" placeholder="Descrição do Artigo"></textarea>            
 
                 <select class="estilo" required id="categoria" name="categoria">
-                    <option value="" disabled selected>Escolha o tema</option>
+                    <option value="" disabled selected>Escolha o categoria</option>
                     <option value="Geografia">Geografia</option>
                     <option value="História">História</option>
                     <option value="Ciências">Ciências</option>
