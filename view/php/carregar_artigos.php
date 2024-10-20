@@ -102,7 +102,7 @@ function carregarArtigos($conection) {
             </div>";
         }
     } else {
-        echo "<p>Nenhum artigo encontrado.</p>";
+        echo "<div class='bloco'><h1 style=' padding: 20px;'>Nenhum artigo encontrado. Seja primeiro a fazer uma publicação.</h1></div>";
     }
 }
 
