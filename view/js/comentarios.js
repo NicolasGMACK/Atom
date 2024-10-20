@@ -4,6 +4,21 @@ function toggleReplies(commentId) {
     const showReplyBtn = document.querySelector(`[onclick="toggleReplies(${commentId})"]`);
 
     if (replySection.style.display === 'none' || replySection.style.display === '') {
+        // Carrega respostas via AJAX se elas ainda não estiverem carregadas
+        if (!replySection.classList.contains('loaded')) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/pi-atom/atom/view/php/carregar_respostas.php?comentario_id=${commentId}`, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    replySection.innerHTML = xhr.responseText;
+                    replySection.classList.add('loaded');  // Marca como carregado
+                } else {
+                    console.error('Erro ao carregar respostas: ', xhr.status);
+                }
+            };
+            xhr.send();
+        }
+
         replySection.style.display = 'block';
         showReplyBtn.textContent = 'Esconder Respostas';
     } else {
@@ -11,6 +26,7 @@ function toggleReplies(commentId) {
         showReplyBtn.textContent = 'Mostrar Respostas';
     }
 }
+
 
 // Função para exibir/esconder o formulário de resposta de um comentário
 function toggleReplyForm(commentId) {
@@ -20,28 +36,23 @@ function toggleReplyForm(commentId) {
 
 // Função para enviar o comentário
 function submitReply(commentId) {
-    // Se commentId for 0, pega o valor do textarea principal
     const textarea = commentId === 0 ? document.getElementById('novo-comentario') : document.querySelector(`#reply-form-${commentId} textarea`);
 
     if (textarea.value.trim() !== '') {
         const xhr = new XMLHttpRequest();
-        // Ajuste o caminho para o inserir_comentario.php
         xhr.open('POST', '/pi-atom/atom/view/php/inserir_comentario.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         const data = `conteudo=${encodeURIComponent(textarea.value)}&usuario_id=${userId}&artigo_id=${artigoId}&pai_id=${commentId}`;
 
-        
         xhr.onload = function () {
-            console.log('Status:', xhr.status); // Adiciona o código de status no console
-            console.log('Response:', xhr.responseText); // Adiciona a resposta no console
-        
             if (xhr.status === 200) {
                 try {
                     const response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
-                        alert('Comentário enviado!');
-                        textarea.value = '';
+                        alert('Comentário enviado!');  // Exibe a mensagem de sucesso
+                        textarea.value = '';  // Limpa o campo de texto
+                        location.reload();  // Atualiza a página
                     } else {
                         alert('Erro ao enviar comentário: ' + response.message);
                     }
@@ -53,7 +64,6 @@ function submitReply(commentId) {
                 alert('Erro ao enviar comentário: ' + xhr.status);
             }
         };
-        
 
         xhr.send(data);
     } else {
