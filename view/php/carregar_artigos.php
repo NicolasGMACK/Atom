@@ -1,17 +1,17 @@
 <?php 
 require_once('conection.php'); // Conexão com o banco de dados
-
-// Definir locale para português
-setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
+$userId = $_SESSION['id']; // ID do usuário logado
 
 // Função para obter os artigos do banco de dados
-function carregarArtigos($conection) { 
+function carregarArtigos($conection, $userId) { 
     $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID,
-                     (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios
-              FROM artigo a 
-              JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
-              ORDER BY a.ART_DAT_POSTAGEM DESC";
-    
+                 (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios,
+                 (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = a.ART_INT_ID) AS num_likes,
+                 (SELECT COUNT(*) FROM upvote WHERE UP_USU_INT_ID = $userId AND UP_ART_INT_ID = a.ART_INT_ID) AS user_liked
+          FROM artigo a 
+          JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
+          ORDER BY a.ART_DAT_POSTAGEM DESC";
+
     $resultado = mysqli_query($conection, $query);
     
     if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -23,8 +23,9 @@ function carregarArtigos($conection) {
             $nomeUsuario = $artigo['USU_VAR_NAME'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
             $numComentarios = $artigo['num_comentarios']; // Número de comentários
+            $numLikes = $artigo['num_likes'];
+            $userLiked = $artigo['user_liked']; // Verifica se o usuário curtiu
 
-            // Verificar se já existe um token para este artigo
             $queryCheckToken = "SELECT TOK_VAR_TOK FROM tokens WHERE ART_INT_ID = $idArtigo";
             $resultadoToken = mysqli_query($conection, $queryCheckToken);
 
@@ -44,6 +45,9 @@ function carregarArtigos($conection) {
             // Converter data para formato legível (Mês por extenso e ano em PT-BR)
             $dataFormatada = strftime('%B %Y', strtotime($dataPostagem)); // Exemplo: "outubro 2024"
             $dataFormatada = ucfirst($dataFormatada); // Coloca a primeira letra do mês em maiúscula
+
+            $likeButtonClass = $userLiked > 0 ? 'liked' : ''; // Adiciona classe liked se o usuário curtiu
+            $likeButtonText = $userLiked > 0 ? "$numLikes" : "Relevante"; // Texto "Relevante" ou o número de likes
 
             // HTML para exibir o artigo
             echo "
@@ -75,9 +79,9 @@ function carregarArtigos($conection) {
                 <div class='bloco-bot'>
                     <div class='rodape'>
                         <div class='rod'>
-                            <button class='relevante' onclick='toggleLike(this)'>
-                                <span class='material-symbols-outlined'>shift</span>
-                                <div class='vote'>Relevante</div>
+                            <button class='relevante $likeButtonClass' onclick='toggleLike(this, $idArtigo)' data-article-id='$idArtigo'>
+                                <span class='material-symbols-outlined like-icon'>shift</span>
+                                <span class='like-count'>$likeButtonText</span>
                             </button>
                             <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$token#comments';\">
                                 <i class='fa-regular fa-comment'></i>$numComentarios
@@ -102,5 +106,5 @@ function carregarArtigos($conection) {
 }
 
 // Chama a função para exibir os artigos
-carregarArtigos($conection);
+carregarArtigos($conection, $userId);
 ?>
