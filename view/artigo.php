@@ -72,8 +72,14 @@ $userId = $_SESSION['id']; // ID do usuário logado
             ?>
                 <div class='cartao-bot'>
                     <div class='rod'>
-                        <button class='votos'><span class='material-symbols-outlined'>shift</span><p>3.956</p></button>
-                        <button id='scrollToComments' class='comentarios'><i class='fa-regular fa-comment'></i>37</button>
+                        <button class='votos'>
+                            <span class='material-symbols-outlined'>shift</span>
+                            <p><?php echo $numLikes; ?></p> <!-- Exibe o número de upvotes -->
+                        </button>
+                        <button id='scrollToComments' class='comentarios'>
+                            <i class='fa-regular fa-comment'></i>
+                            <?php echo $numComentarios; ?> <!-- Exibe o número de comentários -->
+                        </button>
                     </div>
                     <div class='ape'>
                         <button class='botoes' id='Salvar'>Salvar</button>

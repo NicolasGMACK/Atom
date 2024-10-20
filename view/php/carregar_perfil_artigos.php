@@ -20,9 +20,14 @@ if (isset($_GET['token'])) {
         $artigoId = $artigo['ART_INT_ID'];
 
         // Busca as informações do artigo
-        $sqlArtigo = "SELECT ART_VAR_TITULO, USU_INT_ID, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_DESCRICAO, ART_DAT_POSTAGEM FROM artigo WHERE ART_INT_ID = ?";
+        $sqlArtigo = "SELECT ART_VAR_TITULO, USU_INT_ID, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_DESCRICAO, ART_DAT_POSTAGEM,
+        (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = ?) AS num_comentarios,
+        (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = ?) AS num_likes
+    FROM artigo 
+    WHERE ART_INT_ID = ?
+";
         $stmtArtigo = $conection->prepare($sqlArtigo);
-        $stmtArtigo->bind_param('i', $artigoId);
+        $stmtArtigo->bind_param('iii', $artigoId, $artigoId, $artigoId);
         $stmtArtigo->execute();
         $resultArtigo = $stmtArtigo->get_result();
 
@@ -40,6 +45,9 @@ if (isset($_GET['token'])) {
 
             $dataFormatada = strftime('%d de %B, %Y.', strtotime($dataPostagem)); // Exemplo: "26 deoutubro 2024"
             $dataFormatada = ucfirst($dataFormatada); // Coloca a primeira letra do mês em maiúscula
+
+            $numLikes = $artigo['num_likes'];
+            $numComentarios = $artigo['num_comentarios'];
  
 
             // Pegar nome do autor com base no USU_INT_ID
