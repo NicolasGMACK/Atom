@@ -1,5 +1,6 @@
 <?php
 require_once('../view/php/protect.php');
+$userId = $_SESSION['id']; // ID do usuário logado
 
 ?>
 
@@ -106,90 +107,31 @@ require_once('../view/php/protect.php');
                     <div class="desc-title">
                         <h4>Comentários</h4>
                     </div>
-                    <script>
-                                               
+                    <script>                                               
                         document.getElementById('scrollToComments').addEventListener('click', function() {
                         document.getElementById('comments').scrollIntoView({ behavior: 'smooth' });
                         });
-
                     </script>
                     <div id="comments" class="comentarios-bloco">
-                        <div class="my-comment">
-                                <textarea rows="3" placeholder="Adicione um comentário..."></textarea>
-                            <div class="comment-btn">
-                                <button class="comentarios-enviar-btn" onclick="submitReply(1)">Enviar</button>
-                            </div>
-                        </div>
-                            <!-- Comentário principal -->
-                            <div class="comentarios-comentario" data-comment-id="1">
-
-                                <div class="um-comentario">
-                                    <div class="comentarios-cabecalho">
-                                        <img src="../view/img/sara.jpg" alt="Imagem de perfil do comentário" class="comentarios-imagem-perfil">
-                                        <span class="comentarios-usuario">Sara Camilly</span>
-                                        <span class="comentarios-acoes">2 dias atrás</span>
-                                    </div>
-
-                                    <div class="comentarios-corpo">
-                                    Parabéns pelo artigo Kayky, achei super positivo!
-                                    </div>
-                                    <button class="comentarios-responder-btn" onclick="toggleReplyForm(1)">Responder</button>
-                                    <span class="comentarios-mostrar-resposta-btn" onclick="toggleReplies(1)">Mostrar Respostas</span>
-                            
-                                    <!-- Formulário de resposta para o comentário principal -->
-                                    <div class="comentarios-formulario-resposta" id="reply-form-1">
-                                        <textarea rows="3" placeholder="Escreva sua resposta aqui..."></textarea>
-                                        <button class="comentarios-enviar-btn" onclick="submitReply(1)">Enviar</button>
-                                    </div>
-                                </div>
-                                <!-- Respostas ao comentário principal -->
-                                <div class="comentarios-secao-respostas" id="replies-1">
-                                    <div class="comentarios-comentario" data-comment-id="2">
-
-                                       <div class="um-comentario">
-                                        <div class="comentarios-cabecalho">
-                                            <img src="../view/img/capeleti.png" alt="Imagem de perfil do comentário" class="comentarios-imagem-perfil">
-                                            <span class="comentarios-usuario">Vitor Capeleti</span>
-                                            <span class="comentarios-acoes">1 dia atrás</span>
-                                        </div>
-                                        <div class="comentarios-corpo">
-                                            Boaa Sara, tá certinho.
-                                        </div>
-                                        <button class="comentarios-responder-btn" onclick="toggleReplyForm(2)">Responder</button>
-                                        <span class="comentarios-mostrar-resposta-btn" onclick="toggleReplies(2)">Mostrar Respostas</span>
-                                        <!-- Formulário de resposta para a resposta -->
-                                        <div class="comentarios-formulario-resposta" id="reply-form-2">
-                                            <textarea rows="3" placeholder="Escreva sua resposta aqui..."></textarea>
-                                            <button class="comentarios-enviar-btn" onclick="submitReply(2)">Enviar</button>
-                                        </div>
-                                    </div>
-                                        <!-- Respostas à resposta -->
-                                        <div class="comentarios-secao-respostas" id="replies-2">
-                                            <div class="comentarios-comentario" data-comment-id="3">
-                                                <div class="um-comentario">
-                                                    <div class="comentarios-cabecalho">
-                                                        <img src="../view/img/nicolas.jpeg" alt="Imagem de perfil do comentário" class="comentarios-imagem-perfil">
-                                                        <span class="comentarios-usuario">Nicolas Gmack</span>
-                                                        <span class="comentarios-acoes">1 dia atrás</span>
-                                                    </div>
-                                                    <div class="comentarios-corpo">
-                                                        ãhn?
-                                                    </div>
-                                                    <button class="comentarios-responder-btn" onclick="toggleReplyForm(3)">Responder</button>
-                                                     <!-- Formulário de resposta para a resposta -->
-                                        <div class="comentarios-formulario-resposta" id="reply-form-3">
-                                            <textarea rows="3" placeholder="Escreva sua resposta aqui..."></textarea>
-                                            <button class="comentarios-enviar-btn" onclick="submitReply(3)">Enviar</button>
-                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="my-comment">
+                                <textarea rows="3" placeholder="Adicione um comentário..." id="novo-comentario"></textarea>
+                                <div class="comment-btn">
+                                    <button class="comentarios-enviar-btn" onclick="submitReply(0)">Enviar</button>
                                 </div>
                             </div>
+
+                             <!-- Aqui você vai inserir os comentários do banco de dados -->
+                             <?php  
+                            include('php/exibir_comentarios.php');
+                            ?>
+
                         
                         
-                    
+                        <script>
+    // Definindo userId e artigoId com os valores correspondentes do PHP
+                        const userId = <?php echo json_encode($_SESSION['id']); ?>; // O ID do usuário logado
+                        const artigoId = <?php echo json_encode($artigoId); ?>; // O ID do artigo atual
+                    </script>
                         <script src="../view/js/comentarios.js"></script>
                     </div>
                 </div>
