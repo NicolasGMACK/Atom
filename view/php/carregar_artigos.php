@@ -6,7 +6,8 @@ setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 
 // Função para obter os artigos do banco de dados
 function carregarArtigos($conection) { 
-    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID
+    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID,
+                     (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios
               FROM artigo a 
               JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
               ORDER BY a.ART_DAT_POSTAGEM DESC";
@@ -21,6 +22,7 @@ function carregarArtigos($conection) {
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
+            $numComentarios = $artigo['num_comentarios']; // Número de comentários
 
             // Verificar se já existe um token para este artigo
             $queryCheckToken = "SELECT TOK_VAR_TOK FROM tokens WHERE ART_INT_ID = $idArtigo";
@@ -66,8 +68,6 @@ function carregarArtigos($conection) {
                     <div class='conteudo'>
                          <a href='artigo.php?token=$token'>$titulo</a>
 
-
-
                         <br><br>
                         <span>$dataFormatada &#8226; $status</span>
                     </div>
@@ -79,14 +79,9 @@ function carregarArtigos($conection) {
                                 <span class='material-symbols-outlined'>shift</span>
                                 <div class='vote'>Relevante</div>
                             </button>
-                            <button id='goToComments' class='comentarios'>
-                                <i class='fa-regular fa-comment'></i>37
-                            </button>
-                            <script>
-                                document.getElementById('goToComments').addEventListener('click', function() {
-                                    window.location.href = 'artigo.php#comments';
-                                });
-                            </script>   
+                            <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$token#comments';\">
+                                <i class='fa-regular fa-comment'></i>$numComentarios
+                            </button>                              
                             <button class='botoes' id='Salvar'>Salvar</button>
                         </div>
                         <div class='notification' id='notification'>
