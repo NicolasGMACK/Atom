@@ -253,16 +253,18 @@ nav li:first-child{
 .conteudo{
     padding: 10px;
 }
-.conteudo a{
+.link-artigo{
     font-size: 26px;
     font-weight: 700;
-    width: 100%;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    
+    border: none;
+    background: none;
+    text-align: left;
+    display: inline-block;
 }
-.conteudo a:hover{
+.link-artigo:hover{
     text-decoration: underline;
 }
 .conteudo span{

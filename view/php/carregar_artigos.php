@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once('conection.php'); // Conexão com o banco de dados
 
 // Definir locale para português
@@ -6,7 +6,7 @@ setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 
 // Função para obter os artigos do banco de dados
 function carregarArtigos($conection) {
-    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME
+    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID
               FROM artigo a 
               JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
               ORDER BY a.ART_DAT_POSTAGEM DESC";
@@ -20,6 +20,7 @@ function carregarArtigos($conection) {
             $status = $artigo['ART_VAR_STATUS'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
+            $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
 
             // Converter data para formato legível (Mês por extenso e ano em PT-BR)
             $dataFormatada = strftime('%B %Y', strtotime($dataPostagem)); // Exemplo: "outubro 2024"
@@ -46,7 +47,10 @@ function carregarArtigos($conection) {
                         </div>
                     </div>
                     <div class='conteudo'>
-                        <a href='artigo.php'>$titulo</a>
+                        <form action='artigo.php' method='POST'>
+                            <input type='hidden' name='id' value='$idArtigo'>
+                            <button type='submit' class='link-artigo''>$titulo</button>
+                        </form>
                         <br><br>
                         <span>$dataFormatada &#8226; $status</span>
                     </div>
