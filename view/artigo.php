@@ -82,7 +82,9 @@ require_once('../view/php/protect.php');
                         </div>
                         <script src='../view/js/salvar.js'></script>
                         <button id='openCompartilhar' class='botoes'>Compartilhar</button>
-                        <button class='baixar'><i class='fa-regular fa-circle-down'></i><p>Download</p></button>
+                        <button class='baixar' onclick="window.location.href='../view/php/baixar_artigo.php?token=<?php echo $token; ?>'">
+                            <i class='fa-regular fa-circle-down'></i><p>Download</p>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?php
-require_once('../view/php/protect.php');
-require_once('../view/php/conection.php'); // Arquivo com a conexão ao banco de dados
+require_once('protect.php');
+require_once('conection.php'); // Arquivo com a conexão ao banco de dados
 
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 
