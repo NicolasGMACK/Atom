@@ -54,7 +54,7 @@ function inserirArtigo($conection) {
             }
         } else {
             // Define mensagem de erro para arquivo PDF não enviado e redireciona
-            $_SESSION['mensagem_erro'] = "Nenhum arquivo PDF enviado!";
+            $_SESSION['mensagem_erro'] = "Postagem inválida, nenhum arquivo PDF enviado!";
             header('Location: ../home.php');
             exit();
         }
