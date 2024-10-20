@@ -24,12 +24,27 @@ function tempoDesde($data) {
     }
 }
 
+// Função para contar respostas de um comentário
+function contarRespostas($conection, $comentarioId) {
+    $sqlContar = "SELECT COUNT(*) AS total FROM comentario WHERE COM_INT_COM_ID = ?";
+    $stmtContar = $conection->prepare($sqlContar);
+    $stmtContar->bind_param('i', $comentarioId);
+    $stmtContar->execute();
+    $resultContar = $stmtContar->get_result();
+    $contagem = $resultContar->fetch_assoc();
+
+    return $contagem['total'];
+}
+
 // Função para renderizar cada comentário e suas respostas
-function renderComentario($comentario, $tempoDesdeComentario) {
+function renderComentario($comentario) {
     global $conection;
 
-    // Obter as respostas do comentário
-    $respostas = exibirRespostas($conection, $comentario['COM_INT_ID']); 
+    // Contar respostas do comentário
+    $numRespostas = contarRespostas($conection, $comentario['COM_INT_ID']);
+    $tempoDesdeComentario = tempoDesde($comentario['COM_DAT_POSTAGEM']);
+    $respostaTexto = $numRespostas === 1 ? '1 resposta' : "$numRespostas respostas";
+    $displayRespostas = $numRespostas > 0 ? '' : 'style="display: none;"';
 
     return '
     <div class="comentarios-comentario" data-comment-id="' . $comentario['COM_INT_ID'] . '">
@@ -41,9 +56,9 @@ function renderComentario($comentario, $tempoDesdeComentario) {
             </div>
             <div class="comentarios-corpo">' . htmlspecialchars($comentario['COM_VAR_CONTEUDO']) . '</div>
             <button class="comentarios-responder-btn" onclick="toggleReplyForm(' . $comentario['COM_INT_ID'] . ')">Responder</button>
-            <span class="comentarios-mostrar-resposta-btn" onclick="toggleReplies(' . $comentario['COM_INT_ID'] . ')">Mostrar Respostas</span>
+            <span class="comentarios-mostrar-resposta-btn" ' . $displayRespostas . ' onclick="toggleReplies(' . $comentario['COM_INT_ID'] . ')">' . $respostaTexto . '</span>
             <div class="comentarios-secao-respostas" id="replies-' . $comentario['COM_INT_ID'] . '" style="display: none;">
-                ' . $respostas . ' <!-- Aqui aparecem as respostas -->
+                ' . exibirRespostas($conection, $comentario['COM_INT_ID']) . ' <!-- Aqui aparecem as respostas -->
             </div>
             <div class="comentarios-formulario-resposta" id="reply-form-' . $comentario['COM_INT_ID'] . '" style="display: none;">
                 <textarea rows="3" placeholder="Escreva sua resposta aqui..."></textarea>
@@ -69,10 +84,7 @@ function exibirRespostas($conection, $comentarioId) {
     $respostasHtml = '';
 
     while ($resposta = $resultRespostas->fetch_assoc()) {
-        $dataCriacao = isset($resposta['COM_DAT_POSTAGEM']) ? $resposta['COM_DAT_POSTAGEM'] : null;
-        $tempoDesdeResposta = tempoDesde($dataCriacao);
-
-        $respostasHtml .= renderComentario($resposta, $tempoDesdeResposta); // Renderiza cada resposta
+        $respostasHtml .= renderComentario($resposta); // Renderiza cada resposta
     }
 
     return $respostasHtml;
@@ -93,9 +105,6 @@ $result = $stmt->get_result();
 
 // Exibe cada comentário principal
 while ($comentario = $result->fetch_assoc()) {
-    $dataCriacao = isset($comentario['COM_DAT_POSTAGEM']) ? $comentario['COM_DAT_POSTAGEM'] : null;
-    $tempoDesdeComentario = tempoDesde($dataCriacao);
-
-    echo renderComentario($comentario, $tempoDesdeComentario);
+    echo renderComentario($comentario);
 }
 ?>

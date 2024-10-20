@@ -1,29 +1,19 @@
 // Função para exibir/esconder as respostas de um comentário
+// Função para exibir/esconder as respostas de um comentário
 function toggleReplies(commentId) {
     const replySection = document.querySelector(`#replies-${commentId}`);
     const showReplyBtn = document.querySelector(`[onclick="toggleReplies(${commentId})"]`);
 
     if (replySection.style.display === 'none' || replySection.style.display === '') {
-        // Carrega respostas via AJAX se elas ainda não estiverem carregadas
-        if (!replySection.classList.contains('loaded')) {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', `/pi-atom/atom/view/php/carregar_respostas.php?comentario_id=${commentId}`, true);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    replySection.innerHTML = xhr.responseText;
-                    replySection.classList.add('loaded');  // Marca como carregado
-                } else {
-                    console.error('Erro ao carregar respostas: ', xhr.status);
-                }
-            };
-            xhr.send();
-        }
-
         replySection.style.display = 'block';
-        showReplyBtn.textContent = 'Esconder Respostas';
+        // Atualiza o texto para refletir que as respostas estão visíveis
+        const respostaCount = replySection.children.length; // Pega a quantidade de respostas
+        showReplyBtn.textContent = `${respostaCount} ${respostaCount === 1 ? 'resposta' : 'respostas'}`;
     } else {
         replySection.style.display = 'none';
-        showReplyBtn.textContent = 'Mostrar Respostas';
+        // Atualiza o texto para refletir que as respostas estão ocultas
+        const respostaCount = replySection.children.length; // Pega a quantidade de respostas
+        showReplyBtn.textContent = `${respostaCount} ${respostaCount === 1 ? 'resposta' : 'respostas'}`;
     }
 }
 
