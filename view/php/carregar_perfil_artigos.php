@@ -38,7 +38,7 @@ if (isset($_GET['token'])) {
             $descricao = $artigo['ART_VAR_DESCRICAO'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
 
-            $dataFormatada = strftime('%d de %B, %Y', strtotime($dataPostagem)); // Exemplo: "26 deoutubro 2024"
+            $dataFormatada = strftime('%d de %B, %Y.', strtotime($dataPostagem)); // Exemplo: "26 deoutubro 2024"
             $dataFormatada = ucfirst($dataFormatada); // Coloca a primeira letra do mês em maiúscula
  
 
