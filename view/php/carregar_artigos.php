@@ -5,7 +5,7 @@ require_once('conection.php'); // Conexão com o banco de dados
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 
 // Função para obter os artigos do banco de dados
-function carregarArtigos($conection) {
+function carregarArtigos($conection) { 
     $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID
               FROM artigo a 
               JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
@@ -21,6 +21,23 @@ function carregarArtigos($conection) {
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
+
+            // Verificar se já existe um token para este artigo
+            $queryCheckToken = "SELECT TOK_VAR_TOK FROM tokens WHERE ART_INT_ID = $idArtigo";
+            $resultadoToken = mysqli_query($conection, $queryCheckToken);
+
+            if ($resultadoToken && mysqli_num_rows($resultadoToken) > 0) {
+                // Token já existe, então apenas reutilize o token existente
+                $tokenData = mysqli_fetch_assoc($resultadoToken);
+                $token = $tokenData['TOK_VAR_TOK'];
+            } else {
+                // Gera um token único para o artigo, pois não existe nenhum ainda
+                $token = bin2hex(random_bytes(16));
+
+                // Insere o token na tabela tokens
+                $queryInsertToken = "INSERT INTO tokens (TOK_VAR_TOK, ART_INT_ID) VALUES ('$token', $idArtigo)";
+                mysqli_query($conection, $queryInsertToken);
+            }
 
             // Converter data para formato legível (Mês por extenso e ano em PT-BR)
             $dataFormatada = strftime('%B %Y', strtotime($dataPostagem)); // Exemplo: "outubro 2024"
@@ -47,10 +64,10 @@ function carregarArtigos($conection) {
                         </div>
                     </div>
                     <div class='conteudo'>
-                        <form action='artigo.php' method='POST'>
-                            <input type='hidden' name='id' value='$idArtigo'>
-                            <button type='submit' class='link-artigo''>$titulo</button>
-                        </form>
+                         <a href='artigo.php?token=$token'>$titulo</a>
+
+
+
                         <br><br>
                         <span>$dataFormatada &#8226; $status</span>
                     </div>
@@ -91,5 +108,4 @@ function carregarArtigos($conection) {
 
 // Chama a função para exibir os artigos
 carregarArtigos($conection);
-
 ?>

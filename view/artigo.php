@@ -49,47 +49,9 @@ require_once('../view/php/protect.php');
         </ul>
     </nav>
     <div class="tela1">
-        <div class="topo">
-            <div class="topo-bloco">
-            <div class="voltar">
-                    <script>
-                function goBack() {
-                    window.history.back();
-                }
-                    </script>
-                <div class="circulo-padding">
-                    <div class="circulo">                   
-                        <a onclick="goBack()">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </a>                    
-                    </div>
-                </div>
-            </div>
-            <div class="cartao">
-                <div class="cartao-top">
-                    <div class="status">Em andamento</div><div class="tema">Geografia</div>  
-                </div>
-                    <h1>Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</h1>
-                    <div class="linha-autor"><div class="autor">Kayky Paiva.</div></div>
-                    <div class="data-postagem">Postado em 26 de outubro, 2024.</div>
-                <div class="cartao-bot">
-                    <div class="rod">
-                        <button class="votos"><span class="material-symbols-outlined">shift</span><p>3.956</p></button>
-                        <button id="scrollToComments" class="comentarios"><i class="fa-regular fa-comment"></i>37</button>
-                    </div>
-                    <div class="ape">
-                        <button class="botoes" id="Salvar">Salvar</button>
-                                <div class="notification" id="notification">
-                                    <h4 id="notificationTitle">Arquivo salvo com sucesso!</h4>
-                                    <p id="notificationText">Você pode encontrar o arquivo no seu perfil.</p>                                        
-                                </div><script src="../view/js/salvar.js"></script>
-                        <button id="openCompartilhar" class="botoes">Compartilhar</button>
-                        <button class="baixar"><i class="fa-regular fa-circle-down"></i><p>Download</p></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+                <?php
+            require_once('php/carregar_perfil_artigos.php');
+            ?>
         <div class="tela2">
         <div class="telas-da-tela2">
             <div class="tela2-esquerda">
@@ -98,11 +60,7 @@ require_once('../view/php/protect.php');
                         <h4>Descrição</h4>
                     </div>
                     <div class="desc-text">
-                        <p>Este artigo analisa como as mudanças climáticas têm impactado a agricultura em Xique Xique, uma cidade localizada no semiárido baiano. A região, já caracterizada por um clima seco e chuvas irregulares, enfrenta agora desafios ainda maiores devido ao aquecimento global. O aumento das temperaturas médias e a imprevisibilidade dos períodos de chuva afetam diretamente a produtividade de culturas como milho, feijão e mandioca, que são fundamentais para a economia local. As secas prolongadas e as chuvas intensas em períodos curtos contribuem para a erosão do solo e a perda de safras, impactando negativamente a segurança alimentar dos pequenos agricultores.
-
-                            O estudo baseia-se em dados meteorológicos e entrevistas com agricultores, revelando que as mudanças climáticas têm intensificado a vulnerabilidade da agricultura familiar na região. O prolongamento das estiagens e a redução da umidade do solo estão dificultando o cultivo e aumentando os custos de produção. Além disso, o surgimento de novas pragas, impulsionado pelas alterações no clima, tem contribuído para o declínio da produtividade. Esses fatores têm levado muitos agricultores a reconsiderarem suas práticas agrícolas e buscarem novas formas de adaptação para garantir a sobrevivência de suas plantações.
-                            
-                            A pesquisa também explora as estratégias adotadas pelos agricultores de Xique Xique para mitigar os efeitos das mudanças climáticas, como o uso de tecnologias de irrigação, sistemas de captação de água da chuva e a adoção de técnicas de manejo sustentável. O artigo discute a importância de políticas públicas que incentivem o uso dessas tecnologias e garantam o suporte necessário para que os agricultores possam se adaptar às novas condições climáticas. O caso de Xique Xique serve como um alerta para outras regiões semiáridas, destacando a necessidade de ações urgentes e coordenadas para enfrentar os impactos do aquecimento global na agricultura.</p>
+                        <p><?php echo $descricao;?></p>
                     </div>
                 </div>
                 <div class="desc-bloco comentarios-space">
