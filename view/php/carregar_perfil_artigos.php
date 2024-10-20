@@ -57,52 +57,17 @@ if (isset($_GET['token'])) {
             }
 
             // Aqui você pode exibir as informações do artigo
-            echo "
-            <div class='topo'>
-                <div class='topo-bloco'>
-                    <div class='voltar'>
-                        <script>
-                            function goBack() {
-                                window.history.back();
-                            }
-                        </script>
-                        <div class='circulo-padding'>
-                            <div class='circulo'>
-                                <a onclick='goBack()'>
-                                    <i class='fa-solid fa-arrow-left'></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='cartao'>
-                        <div class='cartao-top'>
-                            <div class='status'>$status</div>
-                            <div class='tema'>$categoria</div>
-                        </div>
-                        <h1>$titulo</h1>
-                        <div class='linha-autor'>
-                            <div class='autor'>$autor.</div>
-                        </div>
-                        <div class='data-postagem'>Postado em $dataFormatada</div>
-                        <div class='cartao-bot'>
-                            <div class='rod'>
-                                <button class='votos'><span class='material-symbols-outlined'>shift</span><p>3.956</p></button>
-                                <button id='scrollToComments' class='comentarios'><i class='fa-regular fa-comment'></i>37</button>
-                            </div>
-                            <div class='ape'>
-                                <button class='botoes' id='Salvar'>Salvar</button>
-                                <div class='notification' id='notification'>
-                                    <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
-                                    <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
-                                </div>
-                                <script src='../view/js/salvar.js'></script>
-                                <button id='openCompartilhar' class='botoes'>Compartilhar</button>
-                                <button class='baixar'><i class='fa-regular fa-circle-down'></i><p>Download</p></button>
-                            </div>
-                        </div>
-                    </div>
+            echo "<div class='cartao-top'>
+                    <div class='status'>$status</div>
+                    <div class='tema'>$categoria</div>
                 </div>
-            </div>";
+                <div class='artigo-conteudo'>
+                <h1>$titulo</h1>
+                <div class='linha-autor'>
+                    <div class='autor'>$autor.</div>
+                </div>
+                <div class='data-postagem'>Postado em $dataFormatada</div>
+                </div>";
         } else {
             echo "Artigo não encontrado.";
             exit();

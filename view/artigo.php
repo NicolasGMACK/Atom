@@ -32,7 +32,7 @@ require_once('../view/php/protect.php');
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
+                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
                 </div>
                 <?php echo $_SESSION['name'] ?>
             </div>
@@ -49,9 +49,46 @@ require_once('../view/php/protect.php');
         </ul>
     </nav>
     <div class="tela1">
+    <div class='topo'>
+        <div class='topo-bloco'>
+            <div class='voltar'>
+                <script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                </script>
+                <div class='circulo-padding'>
+                    <div class='circulo'>
+                        <a onclick='goBack()'>
+                            <i class='fa-solid fa-arrow-left'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class='cartao'>
                 <?php
             require_once('php/carregar_perfil_artigos.php');
             ?>
+                <div class='cartao-bot'>
+                    <div class='rod'>
+                        <button class='votos'><span class='material-symbols-outlined'>shift</span><p>3.956</p></button>
+                        <button id='scrollToComments' class='comentarios'><i class='fa-regular fa-comment'></i>37</button>
+                    </div>
+                    <div class='ape'>
+                        <button class='botoes' id='Salvar'>Salvar</button>
+                        <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>
+                        <script src='../view/js/salvar.js'></script>
+                        <button id='openCompartilhar' class='botoes'>Compartilhar</button>
+                        <button class='baixar'><i class='fa-regular fa-circle-down'></i><p>Download</p></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                
         <div class="tela2">
         <div class="telas-da-tela2">
             <div class="tela2-esquerda">
@@ -164,9 +201,9 @@ require_once('../view/php/protect.php');
                         <div class="autor-bloco">
                             <div class="autor-entrar">
                            <div class="autor-foto">
-                            <img src="../view/img/kayky.png" alt="">                            
+                            <img src="../view/img/user.jpg" alt="">                            
                            </div>
-                           <div class="autor-nome"><p>Kayky Paiva</p></div>
+                           <div class="autor-nome"><p><?php echo $autor; ?></p></div>
                         </div>
                            <div class="follow"><p>Seguir</p></div>
                         </div>                        
