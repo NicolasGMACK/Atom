@@ -2,6 +2,7 @@
 require_once('conection.php'); // Conexão com o banco de dados
 $userId = $_SESSION['id']; // ID do usuário logado
 
+setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 // Função para obter os artigos do banco de dados
 function carregarArtigos($conection, $userId) { 
     $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID,
