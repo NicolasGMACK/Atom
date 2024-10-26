@@ -64,7 +64,7 @@ nav img{
     margin-left: 10px;
     height: 80%;
 }
-.topic:hover{
+.topic:hover{   
     color: #d1d1d1;
 }
 nav li:first-child{
@@ -90,7 +90,11 @@ nav li:first-child{
 
 }
 .sidebar a{
-    width: 100%;
+    width: 100%;    
+    color: #535252;
+}
+.sidebar a:hover{
+    color: #000000;
 }
 
 .menu-button{
@@ -253,18 +257,14 @@ nav li:first-child{
 .conteudo{
     padding: 10px;
 }
-.link-artigo{
+.conteudo a{
     font-size: 26px;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    border: none;
-    background: none;
-    text-align: left;
-    display: inline-block;
 }
-.link-artigo:hover{
+.conteudo a:hover{
     text-decoration: underline;
 }
 .conteudo span{

@@ -1,14 +1,19 @@
-function toggleLike(button) {
+function toggleLike(button, articleId) {
     const isLiked = button.classList.contains('liked');
-    const likeIcon = button.querySelector('.like-icon');
-    
-    if (!isLiked) {
-        // Se ainda não foi curtido, adiciona a classe 'liked'
-        button.classList.add('liked');
-        button.innerHTML = `<span class="material-symbols-outlined like-icon">shift</span><span class="like-count">3.9K</span>`; // Coloque o número de likes aqui
-    } else {
-        // Alterna para o estado original
-        button.classList.remove('liked');
-        button.innerHTML = `<span class="material-symbols-outlined">shift</span><div class="vote">Relevante</div>`;
-    }
+
+    fetch('php/like_handler.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId, action: isLiked ? 'unlike' : 'like' })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Recarrega a página para atualizar os likes
+            location.reload();
+        } else {
+            console.error('Erro ao processar a solicitação:', data.error);
+        }
+    })
+    .catch(error => console.error('Erro geral:', error));
 }
