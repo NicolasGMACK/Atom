@@ -20,13 +20,12 @@ include('../view/php/mensagens_postagem.php');
             <li><a class="topic" href="../view/about.html">Sobre</a></li>
             <li><a class="topic" href="../view/project.html">Projeto</a></li>            
         </ul>
-        <ul>
-            
+        <ul>            
             <li><a class="atom" href="home.php">Atom<img src="../view/img/logo3.png" alt=""></a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
             <li class="profile">
-                <div id="profileDropdown" class="topic usuario">
+            <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
                     <img id="profileDropdown" src="../view/img/user.jpg" alt="">
                 </div>
