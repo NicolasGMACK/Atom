@@ -27,7 +27,7 @@ function carregarArtigos($conection, $userId) {
             $numLikes = $artigo['num_likes'];
             $userLiked = $artigo['user_liked']; // Verifica se o usuário curtiu
 
-            $queryCheckToken = "SELECT TOK_VAR_TOK FROM tokens WHERE ART_INT_ID = $idArtigo";
+            $queryCheckToken = "SELECT TOK_VAR_TOK FROM tokens_artigo WHERE ART_INT_ID = $idArtigo";
             $resultadoToken = mysqli_query($conection, $queryCheckToken);
 
             if ($resultadoToken && mysqli_num_rows($resultadoToken) > 0) {
@@ -39,7 +39,7 @@ function carregarArtigos($conection, $userId) {
                 $token = bin2hex(random_bytes(16));
 
                 // Insere o token na tabela tokens
-                $queryInsertToken = "INSERT INTO tokens (TOK_VAR_TOK, ART_INT_ID) VALUES ('$token', $idArtigo)";
+                $queryInsertToken = "INSERT INTO tokens_artigo (TOK_VAR_TOK, ART_INT_ID) VALUES ('$token', $idArtigo)";
                 mysqli_query($conection, $queryInsertToken);
             }
 
