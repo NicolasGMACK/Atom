@@ -28,35 +28,10 @@ function carregarArtigos($conection, $userId) {
             $numLikes = $artigo['num_likes'];
             $userLiked = $artigo['user_liked']; // Verifica se o usuário curtiu
 
-            $queryTokenUser ="SELECT TOK_USU_VAR_TOK FROM tokens_usuario WHERE USU_INT_ID = $idUsuario";
-            $resultTokenUser = mysqli_query($conection, $queryTokenUser);
+            require_once('ObterOuCriarToken.php');
 
-            if ($resultTokenUser && mysqli_num_rows($resultTokenUser) > 0) {
-                $tokenDataUser = mysqli_fetch_assoc($resultTokenUser);
-                $tokenUser = $tokenDataUser['TOK_USU_VAR_TOK'];
-            } else {
-                $tokenUser = bin2hex(random_bytes(16));
-
-                $queryInsertTokenUser = "INSERT INTO tokens_usuario (TOK_USU_VAR_TOK, USU_INT_ID) VALUES ('$tokenUser', $idUsuario)";
-                mysqli_query($conection, $queryInsertTokenUser);
-            }
-
-
-            $queryCheckToken = "SELECT TOK_ART_VAR_TOK FROM tokens_artigo WHERE ART_INT_ID = $idArtigo";
-            $resultadoToken = mysqli_query($conection, $queryCheckToken);
-
-            if ($resultadoToken && mysqli_num_rows($resultadoToken) > 0) {
-                // Token já existe, então apenas reutilize o token existente
-                $tokenData = mysqli_fetch_assoc($resultadoToken);
-                $token = $tokenData['TOK_ART_VAR_TOK'];
-            } else {
-                // Gera um token único para o artigo, pois não existe nenhum ainda
-                $token = bin2hex(random_bytes(16));
-
-                // Insere o token na tabela tokens
-                $queryInsertToken = "INSERT INTO tokens_artigo (TOK_ART_VAR_TOK, ART_INT_ID) VALUES ('$token', $idArtigo)";
-                mysqli_query($conection, $queryInsertToken);
-            }
+            $tokenUser = obterOuCriarToken($conection, 'usuario', $idUsuario);
+            $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
 
             // Converter data para formato legível (Mês por extenso e ano em PT-BR)
             $dataFormatada = strftime('%B %Y', strtotime($dataPostagem)); // Exemplo: "outubro 2024"
@@ -86,7 +61,7 @@ function carregarArtigos($conection, $userId) {
                         </div>
                     </div>
                     <div class='conteudo'>
-                         <a href='artigo.php?token=$token'>$titulo</a>
+                         <a href='artigo.php?token=$tokenArtigo'>$titulo</a>
 
                         <br><br>
                         <span>$dataFormatada &#8226; $status</span>
@@ -99,7 +74,7 @@ function carregarArtigos($conection, $userId) {
                                 <span class='material-symbols-outlined like-icon'>shift</span>
                                 <span class='like-count'>$likeButtonText</span>
                             </button>
-                            <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$token#comments';\">
+                            <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$tokenArtigo#comments';\">
                                 <i class='fa-regular fa-comment'></i>$numComentarios
                             </button>                              
                             <button class='botoes' id='Salvar'>Salvar</button>
