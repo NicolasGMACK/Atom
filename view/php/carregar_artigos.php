@@ -5,7 +5,7 @@ $userId = $_SESSION['id']; // ID do usuário logado
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 // Função para obter os artigos do banco de dados
 function carregarArtigos($conection, $userId) { 
-    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.ART_INT_ID,
+    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.USU_INT_ID, a.ART_INT_ID,
                  (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios,
                  (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = a.ART_INT_ID) AS num_likes,
                  (SELECT COUNT(*) FROM upvote WHERE UP_USU_INT_ID = $userId AND UP_ART_INT_ID = a.ART_INT_ID) AS user_liked
@@ -22,10 +22,25 @@ function carregarArtigos($conection, $userId) {
             $status = $artigo['ART_VAR_STATUS'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
+            $idUsuario = $artigo['USU_INT_ID'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
             $numComentarios = $artigo['num_comentarios']; // Número de comentários
             $numLikes = $artigo['num_likes'];
             $userLiked = $artigo['user_liked']; // Verifica se o usuário curtiu
+
+            $queryTokenUser ="SELECT TOK_USU_VAR_TOK FROM tokens_usuario WHERE USU_INT_ID = $idUsuario";
+            $resultTokenUser = mysqli_query($conection, $queryTokenUser);
+
+            if ($resultTokenUser && mysqli_num_rows($resultTokenUser) > 0) {
+                $tokenDataUser = mysqli_fetch_assoc($resultTokenUser);
+                $tokenUser = $tokenDataUser['TOK_USU_VAR_TOK'];
+            } else {
+                $tokenUser = bin2hex(random_bytes(16));
+
+                $queryInsertTokenUser = "INSERT INTO tokens_usuario (TOK_USU_VAR_TOK, USU_INT_ID) VALUES ('$tokenUser', $idUsuario)";
+                mysqli_query($conection, $queryInsertTokenUser);
+            }
+
 
             $queryCheckToken = "SELECT TOK_ART_VAR_TOK FROM tokens_artigo WHERE ART_INT_ID = $idArtigo";
             $resultadoToken = mysqli_query($conection, $queryCheckToken);
@@ -58,13 +73,13 @@ function carregarArtigos($conection, $userId) {
                 </div>
                 <div class='bloco-mid'>
                     <div class='cabecalho'>
-                        <a href='perfil.php'>
+                        <a href='perfil.php?token=$tokenUser'>
                             <div class='foto1 user'>
                                 <img src='../view/img/user.jpg' alt='img teste' class='user-photo'>
                             </div>
                         </a>
                         <div class='profile-artigo'>
-                            <a href='perfil.php'>
+                            <a href='perfil.php?token=$tokenUser'>
                                 <div class='nome'>$nomeUsuario</div>
                             </a>
                             <p>Publicou um artigo</p>
