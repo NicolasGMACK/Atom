@@ -27,19 +27,19 @@ function carregarArtigos($conection, $userId) {
             $numLikes = $artigo['num_likes'];
             $userLiked = $artigo['user_liked']; // Verifica se o usuário curtiu
 
-            $queryCheckToken = "SELECT TOK_VAR_TOK FROM tokens_artigo WHERE ART_INT_ID = $idArtigo";
+            $queryCheckToken = "SELECT TOK_ART_VAR_TOK FROM tokens_artigo WHERE ART_INT_ID = $idArtigo";
             $resultadoToken = mysqli_query($conection, $queryCheckToken);
 
             if ($resultadoToken && mysqli_num_rows($resultadoToken) > 0) {
                 // Token já existe, então apenas reutilize o token existente
                 $tokenData = mysqli_fetch_assoc($resultadoToken);
-                $token = $tokenData['TOK_VAR_TOK'];
+                $token = $tokenData['TOK_ART_VAR_TOK'];
             } else {
                 // Gera um token único para o artigo, pois não existe nenhum ainda
                 $token = bin2hex(random_bytes(16));
 
                 // Insere o token na tabela tokens
-                $queryInsertToken = "INSERT INTO tokens_artigo (TOK_VAR_TOK, ART_INT_ID) VALUES ('$token', $idArtigo)";
+                $queryInsertToken = "INSERT INTO tokens_artigo (TOK_ART_VAR_TOK, ART_INT_ID) VALUES ('$token', $idArtigo)";
                 mysqli_query($conection, $queryInsertToken);
             }
 
