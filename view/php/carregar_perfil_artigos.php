@@ -8,7 +8,7 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
     // Consulta no banco de dados para validar o token
-    $sqlToken = "SELECT ART_INT_ID FROM tokens WHERE TOK_VAR_TOK = ?";
+    $sqlToken = "SELECT ART_INT_ID FROM tokens_artigo WHERE TOK_ART_VAR_TOK = ?";
     $stmtToken = $conection->prepare($sqlToken);
     $stmtToken->bind_param('s', $token);
     $stmtToken->execute();

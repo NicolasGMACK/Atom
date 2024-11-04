@@ -3,14 +3,18 @@ require_once('conection.php'); // Conexão com o banco de dados
 $userId = $_SESSION['id']; // ID do usuário logado
 
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
+
+
+        
 // Função para obter os artigos do banco de dados
-function carregarArtigos($conection, $userId) { 
+function carregarArtigos($conection, $userId, $PerfilId) { 
     $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.USU_INT_ID, a.ART_INT_ID,
                  (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios,
                  (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = a.ART_INT_ID) AS num_likes,
                  (SELECT COUNT(*) FROM upvote WHERE UP_USU_INT_ID = $userId AND UP_ART_INT_ID = a.ART_INT_ID) AS user_liked
           FROM artigo a 
           JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
+          WHERE a.USU_INT_ID = $PerfilId
           ORDER BY a.ART_DAT_POSTAGEM DESC";
 
     $resultado = mysqli_query($conection, $query);
@@ -97,5 +101,5 @@ function carregarArtigos($conection, $userId) {
 }
 
 // Chama a função para exibir os artigos
-carregarArtigos($conection, $userId);
+carregarArtigos($conection, $userId, $PerfilId);
 ?>
