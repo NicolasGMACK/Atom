@@ -33,7 +33,7 @@ require_once('../view/php/protect.php');
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/capeleti.png" alt="">
+                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>
@@ -51,35 +51,10 @@ require_once('../view/php/protect.php');
     </nav>         
         <!-- Capa do perfil -->
          <div class="topo1">            
-            <div class="topo1-bloco">                
-                <div class="cover-photo">
-                    <img src="../view/img/background-img-2.png">
-                </div>
-                
-                <!-- Informações do perfil -->
-                <div class="profile-info">
-                    <div class="profile-picture">
-                        <img src="../view/img/kayky.png" alt="Foto de Perfil">
-                    </div>
-                    <div class="profile-name">
-                        <h1>Kayky Paiva</h1>
-                        <div class="seguintes">
-                            <p><strong>567</strong> seguindo</p>
-                            <p><strong>321</strong> seguidores</p>
-                        </div>
-                    </div>
-                    <div class="profile-actions">
-                        <button class="btn">Seguir</button>
-                        <button class="btn msg">Mensagem</button>
-                    </div>
-                </div>
-
-                <!-- Navegação do perfil -->
-                <div class="profile-navigation">
-                    <div class="opcao marcada">Publicações</div>
-                   <div class="opcao selecionar">Seguidores</div>
-                    <div class="opcao selecionar">Biblioteca</div>           
-                </div>
+            <div class="topo1-bloco"> 
+                               
+               <?php require_once('../view/php/carregar_perfil_usuario.php') ?>
+                  
             </div>
         </div>
         
