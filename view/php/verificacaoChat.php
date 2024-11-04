@@ -25,13 +25,13 @@ if(isset($_GET['token'])){
     if($verifica < 1){
         $sqlInsertChat = "INSERT INTO conversas (USU_INT_ID_1, USU_INT_ID_2) VALUES ($userChat1, $userChat2)";
         $exSqlInsertChat = mysqli_query($conection, $sqlInsertChat);
-        $verificaInsert = mysqli_num_rows($exSqlInsertChat);
-        if($verificaInsert == 1){
+        //$verificaInsert = mysqli_num_rows($exSqlInsertChat);
+        if($exSqlInsertChat == true){
             //echo'chat iniciado com sucesso';
             #header('Location: conversa.php'); 
             return $tokenusu;
         }else{
-            die('erro ao iniciar o chat'. $exSqlInsertChat->$error);
+            die('erro ao iniciar o chat');
         }
     }else{
         #header('Location: conversa.php');
