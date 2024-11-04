@@ -52,7 +52,7 @@ require_once('../view/php/protect.php');
         <!-- Capa do perfil -->
          <div class="topo1">            
             <div class="topo1-bloco"> 
-                               
+
                <?php require_once('../view/php/carregar_perfil_usuario.php') ?>
                   
             </div>
@@ -65,19 +65,13 @@ require_once('../view/php/protect.php');
                 <div class="sobre">
                     <h1>Sobre</h1>
                     <div class="biografia"><br>
-                        
-                    Kayky Brandão de Paiva é um apaixonado
-                    por estudos climáticos e suas implicações
-                    na agricultura. Natural de Xique-Xique,
-                    Bahia, sua pesquisa é voltada para a análise
-                    das transformações ambientais em regiões
-                    vulneráveis e o desenvolvimento de práticas
-                    das mudanças climáticas.</div>
+                    <?php echo $desc; ?>
+                     </div>
                     <br><div class="localizacao">
-                    <p><strong>Localização:</strong> Xique Xique.</p>
+                    <p><strong>Localização:</strong> <?php echo $cidade; ?></p>
                     </div>
                     <br><div class="trabalho">
-                    <p><strong>Trabalho:</strong> Estudante.</p>
+                    <p><strong>Trabalho:</strong> <?php echo $ocupacao; ?></p>
                     </div>
                 </div>
             </div>

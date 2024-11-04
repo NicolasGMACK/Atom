@@ -35,9 +35,9 @@ if (isset($_GET['token'])) {
             $nome = $usuario['USU_VAR_NAME'];
             $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg'; 
             $FotoBanner = !empty($usuario['USU_VAR_IMGBACK']) ? $usuario['USU_VAR_IMGBACK'] : '../view/img/background-default.png'; 
-            $desc = $usuario['USU_VAR_DESC'];
-            $cidade = $usuario['USU_VAR_CIDADE'];
-            $ocupacao = $usuario['USU_VAR_OCUPACAO'];
+            $desc = !empty($usuario['USU_VAR_DESC']) ? $usuario['USU_VAR_DESC'] : 'Sem descrição.';
+            $cidade = !empty($usuario['USU_VAR_CIDADE']) ? $usuario['USU_VAR_CIDADE'] : 'Não especificado.';
+            $ocupacao = !empty($usuario['USU_VAR_OCUPACAO']) ? $usuario['USU_VAR_OCUPACAO'] : 'Não especificado.';
 
             // Echo do HTML
                     echo '<div class="cover-photo">
