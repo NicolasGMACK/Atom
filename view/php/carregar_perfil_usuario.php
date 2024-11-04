@@ -17,14 +17,14 @@ if (isset($_GET['token'])) {
     if ($resultToken->num_rows > 0) {
         // Se o token for válido, pega o ID do usuario
         $usuario = $resultToken->fetch_assoc();
-        $UserId = $usuario['USU_INT_ID'];
+        $PerfilId = $usuario['USU_INT_ID'];
 
         // Busca informações do usuario
         $sqlUsuario = "SELECT USU_VAR_NAME, USU_VAR_IMGPERFIL, USU_VAR_IMGBACK, USU_VAR_DESC, USU_VAR_CIDADE, USU_VAR_OCUPACAO
         FROM usuario
         WHERE USU_INT_ID = ?";
         $stsmtUsuario = $conection->prepare($sqlUsuario);
-        $stsmtUsuario->bind_param('i', $UserId);
+        $stsmtUsuario->bind_param('i', $PerfilId);
         $stsmtUsuario->execute();
         $resultUsuario = $stsmtUsuario->get_result();
 
