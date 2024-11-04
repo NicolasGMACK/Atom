@@ -20,7 +20,7 @@ if (isset($_GET['token'])) {
         $PerfilId = $usuario['USU_INT_ID'];
 
         // Busca informações do usuario
-        $sqlUsuario = "SELECT USU_VAR_NAME, USU_VAR_IMGPERFIL, USU_VAR_IMGBACK, USU_VAR_DESC, USU_VAR_CIDADE, USU_VAR_OCUPACAO
+        $sqlUsuario = "SELECT USU_INT_ID, USU_VAR_NAME, USU_VAR_IMGPERFIL, USU_VAR_IMGBACK, USU_VAR_DESC, USU_VAR_CIDADE, USU_VAR_OCUPACAO
         FROM usuario
         WHERE USU_INT_ID = ?";
         $stsmtUsuario = $conection->prepare($sqlUsuario);
@@ -31,13 +31,16 @@ if (isset($_GET['token'])) {
         if ($resultUsuario->num_rows > 0) {
             // Usuario encontrado
             $usuario = $resultUsuario->fetch_assoc();
-
+            $idUsuario = $usuario['USU_INT_ID'];
             $nome = $usuario['USU_VAR_NAME'];
             $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg'; 
             $FotoBanner = !empty($usuario['USU_VAR_IMGBACK']) ? $usuario['USU_VAR_IMGBACK'] : '../view/img/background-default.png'; 
             $desc = !empty($usuario['USU_VAR_DESC']) ? $usuario['USU_VAR_DESC'] : 'Sem descrição.';
             $cidade = !empty($usuario['USU_VAR_CIDADE']) ? $usuario['USU_VAR_CIDADE'] : 'Não especificado.';
             $ocupacao = !empty($usuario['USU_VAR_OCUPACAO']) ? $usuario['USU_VAR_OCUPACAO'] : 'Não especificado.';
+
+            require_once('ObterOuCriarToken.php');
+            $tokenUser = obterOuCriarToken($conection, 'usuario', $idUsuario);
 
             // Echo do HTML
                     echo '<div class="cover-photo">
@@ -56,7 +59,7 @@ if (isset($_GET['token'])) {
                 </div>
                 <div class="profile-actions">
                     <button class="btn">Seguir</button>
-                    <button class="btn msg">Mensagem</button>
+                    <a href="chat.php?token='. $tokenUser .'"><button class="btn msg">Mensagem</button></a>
                 </div>
             </div>
             <div class="profile-navigation">

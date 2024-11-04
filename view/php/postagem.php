@@ -25,7 +25,7 @@ function inserirArtigo($conection) {
         if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === 0) {
             $arquivoTmp = $_FILES['pdf']['tmp_name'];
             $nomeArquivo = $_FILES['pdf']['name'];
-            $diretorioDestino = $_SERVER['DOCUMENT_ROOT'] . '/pi-UNIAOSINISTRA/Atom/uploads/';
+            $diretorioDestino = $_SERVER['DOCUMENT_ROOT'] . '/Projeto Integrador/Atom/uploads/';
             $caminhoCompleto = $diretorioDestino . basename($nomeArquivo);
 
             // Mover o arquivo para o diretório de uploads
