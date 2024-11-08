@@ -30,7 +30,8 @@ function inserirArtigo($conection) {
             $diretorioBase = dirname(__DIR__, 3); // Sobe três pastas a partir do arquivo atual
             $diretorioDestino = $diretorioBase . '/Atom/uploads/';
 
-            $caminhoCompleto = $diretorioDestino . basename($nomeArquivo);
+            $caminhoCompleto = str_replace('\\', '/', $diretorioDestino . basename($nomeArquivo));
+
 
             // Mover o arquivo para o diretório de uploads
             if (move_uploaded_file($arquivoTmp, $caminhoCompleto)) {
