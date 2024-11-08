@@ -30,7 +30,9 @@ function submitReply(commentId) {
 
     if (textarea.value.trim() !== '') {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/pi-atom/atom/view/php/inserir_comentario.php', true);
+        const pathParts = window.location.pathname.split('/');
+        const basePath = `/${pathParts[1]}/atom/view/php/inserir_comentario.php`;
+        xhr.open('POST', basePath, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         const data = `conteudo=${encodeURIComponent(textarea.value)}&usuario_id=${userId}&artigo_id=${artigoId}&pai_id=${commentId}`;
