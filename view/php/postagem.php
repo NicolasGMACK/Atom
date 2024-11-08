@@ -25,7 +25,11 @@ function inserirArtigo($conection) {
         if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === 0) {
             $arquivoTmp = $_FILES['pdf']['tmp_name'];
             $nomeArquivo = $_FILES['pdf']['name'];
-            $diretorioDestino = $_SERVER['DOCUMENT_ROOT'] . '/pi-UNIAOSINISTRA/Atom/uploads/';
+                        // Obtém o diretório base da aplicação atual dinamicamente
+            // Obtém o caminho dinâmico até a pasta "Atom/uploads"
+            $diretorioBase = dirname(__DIR__, 3); // Sobe três pastas a partir do arquivo atual
+            $diretorioDestino = $diretorioBase . '/Atom/uploads/';
+
             $caminhoCompleto = $diretorioDestino . basename($nomeArquivo);
 
             // Mover o arquivo para o diretório de uploads
