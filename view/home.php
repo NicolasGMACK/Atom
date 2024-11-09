@@ -1,7 +1,9 @@
 <?php
 require_once('../view/php/protect.php');
 include('../view/php/mensagens_postagem.php');
+include('../view/php/criar_token_pessoal.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +36,7 @@ include('../view/php/mensagens_postagem.php');
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                <a href="perfil.php">Visualizar perfil</a>
+                <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
