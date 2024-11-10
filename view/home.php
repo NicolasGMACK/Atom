@@ -9,7 +9,7 @@ include('../view/php/criar_token_pessoal.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -29,7 +29,7 @@ include('../view/php/criar_token_pessoal.php');
             <li class="profile">
             <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
+                    <img id="profileDropdown" src="<?php echo $_SESSION['ftperfil'] ?>" alt="">
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>

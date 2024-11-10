@@ -1,13 +1,6 @@
 <?php
 require_once('../view/php/protect.php');
 
-// Verifica se há mensagem de erro na sessão e exibe
-if (isset($_SESSION['mensagem_erro'])) {
-    echo '<div class="error-message" style="color: red;">' . $_SESSION['mensagem_erro'] . '</div>';
-    unset($_SESSION['mensagem_erro']);  // Limpa a mensagem de erro após exibi-la
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

@@ -106,6 +106,7 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
         $stmt->close();
     
+        
         // Se o caminho do banner existe e não é vazio, tenta deletar o arquivo
         if ($fotoBackAtual && file_exists($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
             if (unlink($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
@@ -164,6 +165,8 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param('sssssss', $nome, $desc, $cidade, $ocupacao, $fotoPerfilPublicPath, $fotoBackPublicPath, $tokenPessoal);
 
         if ($stmt->execute()) {
+            // Atualiza a variável de sessão com o novo nome
+                $_SESSION['name'] = $nome;
             echo "<script>
                     alert('Perfil atualizado com sucesso!');
                     window.location.href = '../perfil_pessoal.php?token=$tokenPessoal';

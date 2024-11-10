@@ -2,7 +2,7 @@
 require_once('conection.php');
 
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
-
+    
 // Verifica se o token foi passado
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
