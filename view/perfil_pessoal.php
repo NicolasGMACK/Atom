@@ -53,7 +53,7 @@ require_once('../view/php/protect.php');
          <div class="topo1">            
             <div class="topo1-bloco"> 
 
-               <?php require_once('../view/php/carregar_perfil_usuario.php') ?>
+               <?php require_once('../view/php/carregar_perfil_usuario_pessoal.php') ?>
                   
             </div>
         </div>

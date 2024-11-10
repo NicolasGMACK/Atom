@@ -1,4 +1,4 @@
-
+<?php
 require_once('conection.php');
 
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
@@ -40,7 +40,7 @@ if (isset($_GET['token'])) {
             $ocupacao = !empty($usuario['USU_VAR_OCUPACAO']) ? $usuario['USU_VAR_OCUPACAO'] : 'Não especificado.';
 
             // Echo do HTML
-                    echo<html> <div class="cover-photo">
+                    echo '<div class="cover-photo">
                 <img src="' . $FotoBanner . '">
             </div>
             <div class="profile-info">
@@ -54,7 +54,16 @@ if (isset($_GET['token'])) {
                         <p><strong>321</strong> seguidores</p>
                     </div>
                 </div>
-                </html>
+                <div class="profile-actions">
+                    <button class="btn">Editar Perfil</button>
+                  
+                </div>
+            </div>
+            <div class="profile-navigation">
+                <div class="opcao marcada">Publicações</div>
+                <div class="opcao selecionar">Seguidores</div>
+                <div class="opcao selecionar">Biblioteca</div>           
+            </div>';
 
         } else {
             echo "Usuário não encontrado.";
@@ -66,4 +75,4 @@ if (isset($_GET['token'])) {
     echo "Parâmetros inválidos.";
     exit();
 }
-
+?>

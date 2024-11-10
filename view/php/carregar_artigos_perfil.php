@@ -96,7 +96,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
             </div>";
         }
     } else {
-        echo "<div class='bloco'><h1 style=' padding: 20px;'>Nenhum artigo encontrado. Seja primeiro a fazer uma publicação.</h1></div>";
+        echo "<div class='bloco'><h1 style=' padding: 20px;'>Este usuário não possui artigos publicados.</h1></div>";
     }
 }
 
