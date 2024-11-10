@@ -1,6 +1,6 @@
 <?php
 require_once('../view/php/protect.php');
-
+require_once('../view/php/verificacao_perfil.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
