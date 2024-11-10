@@ -22,6 +22,7 @@ if(isset($_POST['email']) || isset($_POST['password'])){
                 $_SESSION['id'] = $usuario['USU_INT_ID'];
                 $_SESSION['name'] = $usuario['USU_VAR_NAME'];
                 $_SESSION['email'] = $usuario['USU_VAR_EMAIL'];
+                $_SESSION['ftperfil'] = $usuario['USU_VAR_IMGPERFIL'];
                 $_SESSION['ftfundo'] = $usuario['USU_VAR_IMGBACK'];
     
                 header('Location: home.php');

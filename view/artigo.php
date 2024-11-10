@@ -153,7 +153,7 @@ $userId = $_SESSION['id']; // ID do usuário logado
                         <div class="autor-bloco">
                             <div class="autor-entrar">
                            <div class="autor-foto">
-                            <img src="../view/img/user.jpg" alt="">                            
+                           <?php echo '<img src="'.$autorFoto.'" alt="">  '?>                          
                            </div>
                            <div class="autor-nome"><p><?php echo $autor; ?></p></div>
                         </div>

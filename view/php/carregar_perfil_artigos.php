@@ -51,17 +51,18 @@ if (isset($_GET['token'])) {
  
 
             // Pegar nome do autor com base no USU_INT_ID
-            $sqlAutor = "SELECT USU_VAR_NAME FROM usuario WHERE USU_INT_ID = ?";
+            $sqlAutor = "SELECT USU_VAR_NAME, USU_VAR_IMGPERFIL FROM usuario WHERE USU_INT_ID = ?";
             $stmtAutor = $conection->prepare($sqlAutor);
             $stmtAutor->bind_param('i', $autorId);
             $stmtAutor->execute();
             $resultAutor = $stmtAutor->get_result();
 
             if ($resultAutor->num_rows > 0) {
-                $autor = $resultAutor->fetch_assoc()['USU_VAR_NAME'];
-            } else {
-                $autor = "Autor desconhecido";
-            }
+                $usuario = $resultAutor->fetch_assoc();
+                $autor = $usuario['USU_VAR_NAME'];
+                $autorFoto = $usuario['USU_VAR_IMGPERFIL'];
+                
+            } 
 
             // Aqui você pode exibir as informações do artigo
             echo "<div class='cartao-top'>
