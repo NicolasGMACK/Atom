@@ -167,6 +167,7 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Atualiza a variável de sessão com o novo nome
                 $_SESSION['name'] = $nome;
+                $_SESSION['ftperfil'] = $fotoPerfilPublicPath;
             echo "<script>
                     alert('Perfil atualizado com sucesso!');
                     window.location.href = '../perfil_pessoal.php?token=$tokenPessoal';

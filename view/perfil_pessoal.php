@@ -33,7 +33,10 @@ require_once('../view/php/protect.php');
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
+                <?php   if (empty($_SESSION['ftperfil'])) {
+                    $_SESSION['ftperfil'] = '../view/img/user.jpg';
+                } echo '<img id="profileDropdown" src="' . $_SESSION['ftperfil'] . '" alt="">'; ?>
+
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>

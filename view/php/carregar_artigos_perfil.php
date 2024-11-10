@@ -8,7 +8,8 @@ setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
         
 // Função para obter os artigos do banco de dados
 function carregarArtigos($conection, $userId, $PerfilId) { 
-    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.USU_INT_ID, a.ART_INT_ID,
+    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM,
+     u.USU_VAR_NAME, u.USU_VAR_IMGPERFIL, a.USU_INT_ID, a.ART_INT_ID,
                  (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios,
                  (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = a.ART_INT_ID) AS num_likes,
                  (SELECT COUNT(*) FROM upvote WHERE UP_USU_INT_ID = $userId AND UP_ART_INT_ID = a.ART_INT_ID) AS user_liked
@@ -26,6 +27,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
             $status = $artigo['ART_VAR_STATUS'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
+            $FotoPerfil = $artigo['USU_VAR_IMGPERFIL'];
             $idUsuario = $artigo['USU_INT_ID'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
             $numComentarios = $artigo['num_comentarios']; // Número de comentários
@@ -54,7 +56,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
                     <div class='cabecalho'>
                         <a href='perfil.php?token=$tokenUser'>
                             <div class='foto1 user'>
-                                <img src='../view/img/user.jpg' alt='img teste' class='user-photo'>
+                                <img src='$FotoPerfil' alt='img teste' class='user-photo'>
                             </div>
                         </a>
                         <div class='profile-artigo'>

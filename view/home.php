@@ -29,7 +29,10 @@ include('../view/php/criar_token_pessoal.php');
             <li class="profile">
             <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="<?php echo $_SESSION['ftperfil'] ?>" alt="">
+                <?php   if (empty($_SESSION['ftperfil'])) {
+                    $_SESSION['ftperfil'] = '../view/img/user.jpg';
+                } echo '<img id="profileDropdown" src="' . $_SESSION['ftperfil'] . '" alt="">'; ?>
+
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>
