@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/editperfil.css">
 <!-- Seção do botão Editar Perfil -->
 <div class="profile-actions">
     <button class="btn" onclick="mostrarFormulario()">Editar Perfil</button>
@@ -7,59 +8,58 @@
 $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
 ?>
 
-<div id="modalEditarPerfil" class="modal" style="display: none;">
+<div id="modalEditarPerfil" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="fecharFormulario()">&times;</span>
         <h2>Editar Perfil</h2>
         <form action="../view/php/atualizar_perfil.php" method="POST" enctype="multipart/form-data">
             <!-- Nome -->
             <div class="form-group">
-                <label for="USU_VAR_NAME">Nome:</label>
-                <input type="text" name="USU_VAR_NAME" value="<?php echo htmlspecialchars($nome); ?>" required>
+                <label class="fgl b" for="USU_VAR_NAME">Nome de Usuário:</label>
+                <input style="font-size: 30px; border: none; background-color: #fff; outline: none;" class="nome_usuario" type="text" name="USU_VAR_NAME" value="<?php echo htmlspecialchars($nome); ?>" required>
             </div>
-            
+
             <!-- Foto de Perfil -->
             <div class="form-group">
-                <label for="USU_VAR_IMGPERFIL">Foto de Perfil:</label>
-                
-                <!-- Se já tiver uma foto de perfil, exibe a imagem atual -->
-                <div>
-                    <img src="<?php echo $FotoPerfil; ?>" alt="Foto de Perfil" width="100" height="100">
+                <label class="fgl" for="USU_VAR_IMGPERFIL">Foto de Perfil:</label>
+                <div class="foto-upload">
+                    <img src="<?php echo $FotoPerfil; ?>" alt="Foto de Perfil" width="100" height="100" style="border-radius: 50%;">
+                        <div class="file-input">
+                            <input type="file" name="USU_VAR_IMGPERFIL" accept="image/*">
+                            <label class="fgl" for="USU_VAR_IMGPERFIL">Escolher Foto</label>
+                        </div>
+                        <label class="deletes"><input type="checkbox" name="removerFotoPerfil" value="sim"> Remover foto de perfil</label>                    
                 </div>
-
-                <!-- Campo para enviar uma nova foto -->
-                <input type="file" name="USU_VAR_IMGPERFIL">
-                
-                <!-- Checkbox para remover a foto de perfil -->
-                <label>
-                    <input type="checkbox" name="removerFotoPerfil" value="sim"> Remover foto de perfil
-                </label>
-
             </div>
-            
             <!-- Imagem de Fundo -->
             <div class="form-group">
-                <label for="USU_VAR_IMGBACK">Imagem de Fundo:</label>
-                <input type="file" name="USU_VAR_IMGBACK">
-                <label><input type="checkbox" name="removerFotoBanner" value="sim"> Remover imagem de fundo</label>
-
+                <label class="fgl" for="USU_VAR_IMGBACK">Imagem de Fundo:</label>
+                <div class="foto-upload1">
+                    <img src="<?php echo $FotoBanner; ?>" alt="Foto de Fundo" width="100%" height="100">
+                    <div class="agrupar">
+                        <div class="file-input">
+                            <input type="file" name="USU_VAR_IMGBACK" accept="image/*">
+                            <label class="fgl" for="USU_VAR_IMGBACK">Escolher Imagem</label>
+                        </div>
+                        <label class="deletes"><input type="checkbox" name="removerFotoBanner" value="sim"> Remover imagem de fundo</label>
+                    </div>
+                </div>
             </div>
-            
+
             <!-- Descrição -->
             <div class="form-group">
-                <label for="USU_VAR_DESC">Descrição:</label>
+                <label class="fgl" for="USU_VAR_DESC">Descrição:</label>
                 <textarea name="USU_VAR_DESC" maxlength="250"><?php echo htmlspecialchars($desc); ?></textarea>
             </div>
-            
+
             <!-- Cidade -->
             <div class="form-group">
-                <label for="USU_VAR_CIDADE">Cidade:</label>
+                <label class="fgl" for="USU_VAR_CIDADE">Cidade:</label>
                 <input type="text" name="USU_VAR_CIDADE" value="<?php echo htmlspecialchars($cidade); ?>">
             </div>
-            
+
             <!-- Ocupação -->
             <div class="form-group">
-                <label for="USU_VAR_OCUPACAO">Ocupação:</label>
+                <label class="fgl" for="USU_VAR_OCUPACAO">Ocupação:</label>
                 <input type="text" name="USU_VAR_OCUPACAO" value="<?php echo htmlspecialchars($ocupacao); ?>">
             </div>
 
@@ -71,63 +71,9 @@ $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFI
     </div>
 </div>
 
+
 <!-- Estilos CSS para o Modal -->
-<style>
-    .modal {
-        display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-    }
-    .modal-content {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        width: 500px;
-        max-width: 90%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    .close {
-        font-size: 24px;
-        float: right;
-        cursor: pointer;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    .form-group label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .form-group input, .form-group textarea {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-    .form-group textarea {
-        resize: vertical;
-        height: 100px;
-    }
-    .form-group button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .form-group button:hover {
-        background-color: #45a049;
-    }
-</style>
+
 
 <script>
     // Função para abrir o modal
