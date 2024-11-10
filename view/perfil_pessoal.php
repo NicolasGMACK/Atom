@@ -1,6 +1,13 @@
 <?php
 require_once('../view/php/protect.php');
 
+// Verifica se há mensagem de erro na sessão e exibe
+if (isset($_SESSION['mensagem_erro'])) {
+    echo '<div class="error-message" style="color: red;">' . $_SESSION['mensagem_erro'] . '</div>';
+    unset($_SESSION['mensagem_erro']);  // Limpa a mensagem de erro após exibi-la
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -65,8 +72,8 @@ require_once('../view/php/protect.php');
                 <div class="sobre">
                     <h1>Sobre</h1>
                     <div class="biografia"><br>
-                    <?php echo $desc; ?>
-                     </div>
+                    <p><?php echo $desc; ?>
+                     </p></div>
                     <br><div class="localizacao">
                     <p><strong>Localização:</strong> <?php echo $cidade; ?></p>
                     </div>

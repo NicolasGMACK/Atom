@@ -1,4 +1,4 @@
-<?php
+<?php   
 require_once('conection.php');
 
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
@@ -41,7 +41,7 @@ if (isset($_GET['token'])) {
 
             // Echo do HTML
                     echo '<div class="cover-photo">
-                <img src="' . $FotoBanner . '">
+                <img src="' . $FotoBanner . '" alt="Foto de Capa">
             </div>
             <div class="profile-info">
                 <div class="profile-picture">
@@ -54,10 +54,9 @@ if (isset($_GET['token'])) {
                         <p><strong>321</strong> seguidores</p>
                     </div>
                 </div>
-                <div class="profile-actions">
-                    <button class="btn">Editar Perfil</button>
-                  
-                </div>
+                <div class="profile-actions">';                   
+                        include_once('formEditarPerfil.php');
+               echo '</div>
             </div>
             <div class="profile-navigation">
                 <div class="opcao marcada">Publicações</div>
