@@ -8,7 +8,7 @@
 $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
 ?>
 
-<div id="modalEditarPerfil" class="modal">
+<div id="modalEditarPerfil" class="modal"style="display: none;">
     <div class="modal-content">
         <h2>Editar Perfil</h2>
         <form action="../view/php/atualizar_perfil.php" method="POST" enctype="multipart/form-data">
@@ -18,32 +18,44 @@ $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFI
                 <input style="font-size: 30px; border: none; background-color: #fff; outline: none;" class="nome_usuario" type="text" name="USU_VAR_NAME" value="<?php echo htmlspecialchars($nome); ?>" required>
             </div>
 
-            <!-- Foto de Perfil -->
+            <!-- Foto de Perfil --> 
             <div class="form-group">
-                <label class="fgl" for="USU_VAR_IMGPERFIL">Foto de Perfil:</label>
-                <div class="foto-upload">
-                    <img src="<?php echo $FotoPerfil; ?>" alt="Foto de Perfil" width="100" height="100" style="border-radius: 50%;">
-                        <div class="file-input">
-                            <input type="file" name="USU_VAR_IMGPERFIL" accept="image/*">
-                            <label class="fgl" for="USU_VAR_IMGPERFIL">Escolher Foto</label>
-                        </div>
-                        <label class="deletes"><input type="checkbox" name="removerFotoPerfil" value="sim"> Remover foto de perfil</label>                    
-                </div>
+    <label class="fgl" for="USU_VAR_IMGPERFIL">Foto de Perfil Atual:</label>
+    <div class="foto-upload">
+        <!-- Imagem de perfil -->
+        <img id="fotoPerfilAtual" src="<?php echo $FotoPerfil; ?>" alt="Foto de Perfil" width="100" height="100" style="border-radius: 50%;">
+        
+        <div class="file-input">
+            <input type="file" name="USU_VAR_IMGPERFIL" accept="image/*" onchange="previewProfileImage(event)">
+            <label class="fgl" for="USU_VAR_IMGPERFIL">Mudar Foto</label>
+        </div>
+
+        <label class="deletes">
+            <input type="checkbox" name="removerFotoPerfil" value="sim" onchange="removerFotoPerfil1()"> Remover foto de perfil
+        </label>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="fgl" for="USU_VAR_IMGBACK">Imagem de Fundo Atual:</label>
+    <div class="foto-upload1">
+        <!-- Imagem de fundo -->
+        <img id="fotoBannerAtual" src="<?php echo $FotoBanner; ?>" alt="Foto de Fundo" width="100%" height="100">
+        
+        <div class="agrupar">
+            <div class="file-input">
+                <input type="file" name="USU_VAR_IMGBACK" accept="image/*" onchange="previewBackgroundImage(event)">
+                <label class="fgl" for="USU_VAR_IMGBACK">Mudar Imagem</label>
             </div>
-            <!-- Imagem de Fundo -->
-            <div class="form-group">
-                <label class="fgl" for="USU_VAR_IMGBACK">Imagem de Fundo:</label>
-                <div class="foto-upload1">
-                    <img src="<?php echo $FotoBanner; ?>" alt="Foto de Fundo" width="100%" height="100">
-                    <div class="agrupar">
-                        <div class="file-input">
-                            <input type="file" name="USU_VAR_IMGBACK" accept="image/*">
-                            <label class="fgl" for="USU_VAR_IMGBACK">Escolher Imagem</label>
-                        </div>
-                        <label class="deletes"><input type="checkbox" name="removerFotoBanner" value="sim"> Remover imagem de fundo</label>
-                    </div>
-                </div>
-            </div>
+
+            <label class="deletes">
+                <input type="checkbox" name="removerFotoBanner" value="sim" onchange="removerFotoBackground()"> Remover imagem de fundo
+            </label>
+        </div>
+    </div>
+</div>
+
+
 
             <!-- Descrição -->
             <div class="form-group">
@@ -93,4 +105,58 @@ $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFI
             modal.style.display = "none";
         }
     }
+    function previewProfileImage(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        var imgElement = document.getElementById('fotoPerfilAtual');
+        imgElement.src = e.target.result; // Exibe a imagem carregada
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+function previewBackgroundImage(event) {
+    var input = event.target;
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var imgElement = document.getElementById('fotoBannerAtual');
+            imgElement.src = e.target.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function removerFotoPerfil1() {
+    var checkbox = document.querySelector('input[name="removerFotoPerfil"]');
+    var imgElement = document.getElementById('fotoPerfilAtual');
+
+    // Usando imagem padrão de "sem foto"
+    if (checkbox.checked) {
+        imgElement.src = '../view/img/user.jpg'; // Imagem padrão de "sem foto"
+    } else {
+        // Se não estiver marcada, mantém a imagem atual ou substitui por outra
+        imgElement.src = '<?php echo $FotoPerfil; ?>'; // A imagem atual
+    }
+}
+
+function removerFotoBackground() {
+    var checkbox = document.querySelector('input[name="removerFotoBanner"]');
+    var imgElement = document.getElementById('fotoBannerAtual');
+
+    // Usando imagem padrão de "sem foto"
+    if (checkbox.checked) {
+        imgElement.src = '../view/img/user.jpg'; // Substitua pelo caminho correto
+    } else {
+        imgElement.src = '<?php echo $FotoBanner; ?>'; // A imagem atual
+    }
+}
+
 </script>
