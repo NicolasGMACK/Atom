@@ -65,10 +65,10 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtUpdate->close();
         
         echo "Caminho da foto de perfil removido do banco de dados.<br>";
-    }
-    
-    
- elseif (!empty($_FILES['USU_VAR_IMGPERFIL']['name']) && $_FILES['USU_VAR_IMGPERFIL']['error'] == 0) {
+
+        // Atualiza a variável de sessão para refletir a remoção da foto
+        $_SESSION['ftperfil'] = NULL; // Agora, a variável de sessão reflete que a foto foi removida
+    } elseif (!empty($_FILES['USU_VAR_IMGPERFIL']['name']) && $_FILES['USU_VAR_IMGPERFIL']['error'] == 0) {
         $fotoPerfil = $_FILES['USU_VAR_IMGPERFIL'];
         $fotoPerfilName = uniqid() . '_' . basename($fotoPerfil['name']);
         $fotoPerfilPath = $uploadDir . $fotoPerfilName;
@@ -91,6 +91,9 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         // Caminho público para o banco de dados
         $fotoPerfilPublicPath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $fotoPerfilPath);
         echo "Caminho público da foto de perfil: $fotoPerfilPublicPath <br>";
+
+        // Atualiza a variável de sessão com o novo caminho da foto de perfil
+        $_SESSION['ftperfil'] = $fotoPerfilPublicPath;
     }
 
     // Processa a imagem de fundo (se não for removida)
@@ -106,7 +109,6 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
         $stmt->close();
     
-        
         // Se o caminho do banner existe e não é vazio, tenta deletar o arquivo
         if ($fotoBackAtual && file_exists($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
             if (unlink($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
@@ -127,10 +129,10 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtUpdate->close();
         
         echo "Caminho da imagem de fundo removido do banco de dados.<br>";
-    }
-    
 
-     elseif (!empty($_FILES['USU_VAR_IMGBACK']['name']) && $_FILES['USU_VAR_IMGBACK']['error'] == 0) {
+        // Atualiza a variável de sessão para refletir a remoção do banner
+        $_SESSION['ftbackground'] = NULL; // Agora, a variável de sessão reflete que o banner foi removido
+    } elseif (!empty($_FILES['USU_VAR_IMGBACK']['name']) && $_FILES['USU_VAR_IMGBACK']['error'] == 0) {
         $fotoBack = $_FILES['USU_VAR_IMGBACK'];
         $fotoBackName = uniqid() . '_' . basename($fotoBack['name']);
         $fotoBackPath = $uploadDir . $fotoBackName;
@@ -149,6 +151,9 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
 
         $fotoBackPublicPath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $fotoBackPath);
         echo "Caminho público do banner: $fotoBackPublicPath <br>";
+
+        // Atualiza a variável de sessão com o novo caminho do banner
+        $_SESSION['ftbackground'] = $fotoBackPublicPath;
     }
 
     // Se não houve erro, continua com o update no banco
@@ -166,8 +171,7 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Atualiza a variável de sessão com o novo nome
-                $_SESSION['name'] = $nome;
-                $_SESSION['ftperfil'] = $fotoPerfilPublicPath;
+            $_SESSION['name'] = $nome;
             echo "<script>
                     alert('Perfil atualizado com sucesso!');
                     window.location.href = '../perfil_pessoal.php?token=$tokenPessoal';
