@@ -81,7 +81,7 @@ require_once('../view/php/verificacao_perfil.php');
         </div>
         <div class="lado-direito1">
             <div class="lista1">
-                <?php include ('php/carregar_artigos_perfil.php') ?>                
+                <?php include ('php/carregar_artigos_perfil.php') ?><script src="js/upvote.js"></script>                
             </div>
         </div>
     </div>
