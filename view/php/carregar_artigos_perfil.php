@@ -83,15 +83,10 @@ function carregarArtigos($conection, $userId, $PerfilId) {
                             <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$tokenArtigo#comments';\">
                                 <i class='fa-regular fa-comment'></i>$numComentarios
                             </button>                              
-                            <button class='botoes' id='Salvar'>Salvar</button>
-                        </div>
-                        <div class='notification' id='notification'>
-                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
-                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
-                        </div>
-                        <script src='../view/js/salvar.js'></script>
+                            <button class='botoes Salvar'>Salvar</button>
+                        </div>                                                
                         <div class='ape'>
-                            <button id='openCompartilhar' class='botoes'>Compartilhar</button>
+                            <button class='openCompartilhar botoes'>Compartilhar</button>
                         </div>
                     </div>
                 </div>

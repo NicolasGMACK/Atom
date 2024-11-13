@@ -79,15 +79,16 @@ require_once('../view/php/verificacao_perfil.php');
                 </div>
             </div>
         </div>
+        <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>  
         <div class="lado-direito1">
             <div class="lista1">
                 <?php include ('php/carregar_artigos_perfil.php') ?>
                 <script src="js/upvote.js"></script>
                 <script src='../view/js/salvar.js'></script>  
-                <div class='notification' id='notification'>
-                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
-                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
-                        </div>             
+                           
             </div>
         </div>
     </div>
@@ -95,8 +96,44 @@ require_once('../view/php/verificacao_perfil.php');
     
 
 <div class="tela espaco">
-
+<div class="compartilhar" id="compartilhar" style="display: none">
+    <div class="compartilhar-conteudo">
+        <h1>Compartilhe a publicação com quem você conhece</h1>
+        <br>
+        <div class="linha-compartilhar">
+            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
+        </div>
+        <br>
+        <ul class="lista-sugestao">
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Vitor Capeleti</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Abhinav Pandey</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Sanket Nandan</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Prasanta K. Panigrahi</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Jose ANGEL Alvarez Garcia</span>
+            </li>
+        </ul>
+        <div class="compartilhar-footer">
+            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
+            <button class="compartilhar-btn">Compartilhar</button>
+        </div>
+    </div>
+</div>  
 </div>
 
             </body>
+            <script src="../view/js/showCompartilhar.js""></script>
 </html>
