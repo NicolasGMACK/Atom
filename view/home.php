@@ -135,6 +135,8 @@ include('../view/php/criar_token_pessoal.php');
                     <input type="file" id="file-upload" class="none">
                 </div>
             </div> <!-- Fecha a primeira div.bloco -->
+<!-- Popup Compartihar-->
+
 
             <!-- Segunda div bloco -->
             <?php
@@ -152,7 +154,42 @@ include('../view/php/criar_token_pessoal.php');
     </div> <!-- Fecha a div.lado-direito -->
 </div> <!-- Fecha a div.tela -->
             
-                
+<div class="compartilhar" id="compartilhar" style="display: none">
+    <div class="compartilhar-conteudo">
+        <h1>Compartilhe a publicação com quem você conhece</h1>
+        <br>
+        <div class="linha-compartilhar">
+            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
+        </div>
+        <br>
+        <ul class="lista-sugestao">
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Vitor Capeleti</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Abhinav Pandey</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Sanket Nandan</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Prasanta K. Panigrahi</span>
+            </li>
+            <li class="user-linha">
+                <img src="../view/img/user.jpg" alt="Profile">
+                <span>Jose ANGEL Alvarez Garcia</span>
+            </li>
+        </ul>
+        <div class="compartilhar-footer">
+            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
+            <button class="compartilhar-btn">Compartilhar</button>
+        </div>
+    </div>
+</div>   
     
 
 <!-- formulario Artigo-->
@@ -193,45 +230,8 @@ include('../view/php/criar_token_pessoal.php');
 
 <script src="../view/js/showFormulario.js"></script>
 
-<!-- Popup Compartihar-->
 
-<div class="compartilhar" id="compartilhar">
-    <div class="compartilhar-conteudo">
-        <h1>Compartilhe a publicação com quem você conhece</h1>
-        <br>
-        <div class="linha-compartilhar">
-            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
-        </div>
-        <br>
-        <ul class="lista-sugestao">
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Vitor Capeleti</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Abhinav Pandey</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Sanket Nandan</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Prasanta K. Panigrahi</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Jose ANGEL Alvarez Garcia</span>
-            </li>
-        </ul>
-        <div class="compartilhar-footer">
-            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
-            <button class="compartilhar-btn">Compartilhar</button>
-        </div>
-    </div>
-</div>
-<script src="../view/js/showCompartilhar.js"></script>
+
 
     </div>
 </div>
@@ -247,4 +247,5 @@ include('../view/php/criar_token_pessoal.php');
         }
     </script>    
 </body>
+<script src="../view/js/showCompartilhar.js"></script>
 </html>

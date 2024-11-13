@@ -85,10 +85,10 @@ function carregarArtigos($conection, $userId) {
                             <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$tokenArtigo#comments';\">
                                 <i class='fa-regular fa-comment'></i>$numComentarios
                             </button>                              
-                            <button class='botoes Salvar' id='Salvar'>Salvar</button>
+                            <button class='botoes Salvar'>Salvar</button>
                         </div>                                                
                         <div class='ape'>
-                            <button id='openCompartilhar' class='botoes'>Compartilhar</button>
+                            <button class='openCompartilhar botoes'>Compartilhar</button>
                         </div>
                     </div>
                 </div>

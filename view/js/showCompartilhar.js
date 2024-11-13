@@ -1,16 +1,28 @@
-// Abrir o pop-up
-document.getElementById('openCompartilhar').addEventListener('click', function() {
-    document.getElementById('compartilhar').style.display = 'flex';
+// Seleciona todos os botões com a classe 'openCompartilhar'
+const shareButtons = document.querySelectorAll('.openCompartilhar');
+const compartilharPopup = document.getElementById('compartilhar');
+const closeButton = document.getElementById('fecharCompartilhar');
+
+// Adiciona o evento de clique a cada botão para abrir o pop-up
+shareButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // Verifica se o elemento de popup existe
+        if (compartilharPopup) {
+            compartilharPopup.style.display = 'flex'; // Exibe o popup de compartilhamento
+        }
+    });
 });
 
-// Fechar o pop-up
-document.getElementById('fecharCompartilhar').addEventListener('click', function() {
-    document.getElementById('compartilhar').style.display = 'none';
-});
+// Adiciona o evento para fechar o pop-up ao clicar no botão de fechar
+if (closeButton) {
+    closeButton.addEventListener('click', function() {
+        compartilharPopup.style.display = 'none'; // Oculta o popup de compartilhamento
+    });
+}
 
-// Fechar ao clicar fora do formulário
+// Adiciona o evento para fechar o pop-up ao clicar fora dele
 window.addEventListener('click', function(event) {
-    if (event.target == document.getElementById('compartilhar')) {
-        document.getElementById('compartilhar').style.display = 'none';
+    if (event.target === compartilharPopup) {
+        compartilharPopup.style.display = 'none'; // Oculta o popup de compartilhamento
     }
 });

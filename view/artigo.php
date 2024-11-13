@@ -90,7 +90,7 @@ $userId = $_SESSION['id']; // ID do usuário logado
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                         </div>
                         <script src='../view/js/salvar.js'></script>
-                        <button id='openCompartilhar' class='botoes'>Compartilhar</button>
+                        <button class='botoes openCompartilhar'>Compartilhar</button>
                         <button class='baixar' onclick="window.location.href='../view/php/baixar_artigo.php?token=<?php echo $token; ?>'">
                             <i class='fa-regular fa-circle-down'></i><p>Download</p>
                         </button>
@@ -167,7 +167,7 @@ $userId = $_SESSION['id']; // ID do usuário logado
         </div>
         </div>
           <!-- Popup Compartihar-->
-<div class="compartilhar" id="compartilhar">
+<div class="compartilhar" id="compartilhar" style="display: none;">
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
         <br>

@@ -639,7 +639,6 @@ color: #d10000;
 }
 /* Tela de fundo do modal */
 .compartilhar {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -648,6 +647,7 @@ color: #d10000;
     background-color: rgba(0, 0, 0, 0.7); 
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 
 /* Conteúdo do modal */

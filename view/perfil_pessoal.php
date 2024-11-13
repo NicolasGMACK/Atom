@@ -81,7 +81,13 @@ require_once('../view/php/protect.php');
         </div>
         <div class="lado-direito1">
             <div class="lista1">
-                <?php include ('php/carregar_artigos_perfil.php') ?><script src="js/upvote.js"></script>                
+                <?php include ('php/carregar_artigos_perfil.php') ?>
+                <script src="js/upvote.js"></script>
+                <script src='../view/js/salvar.js'></script>
+                <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>                
             </div>
         </div>
     </div>
