@@ -2,6 +2,7 @@
 require_once('../view/php/protect.php');
 include('../view/php/mensagens_postagem.php');
 include('../view/php/criar_token_pessoal.php');
+include('../view/php/compartilhar_artigos.php');
 ?>
 
 <!DOCTYPE html>
@@ -135,7 +136,6 @@ include('../view/php/criar_token_pessoal.php');
                     <input type="file" id="file-upload" class="none">
                 </div>
             </div> <!-- Fecha a primeira div.bloco -->
-<!-- Popup Compartihar-->
 
 
             <!-- Segunda div bloco -->
@@ -154,6 +154,8 @@ include('../view/php/criar_token_pessoal.php');
     </div> <!-- Fecha a div.lado-direito -->
 </div> <!-- Fecha a div.tela -->
             
+
+<!-- Popup Compartihar-->
 <div class="compartilhar" id="compartilhar" style="display: none">
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
@@ -162,34 +164,36 @@ include('../view/php/criar_token_pessoal.php');
             <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
         </div>
         <br>
-        <ul class="lista-sugestao">
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Vitor Capeleti</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Abhinav Pandey</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Sanket Nandan</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Prasanta K. Panigrahi</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Jose ANGEL Alvarez Garcia</span>
-            </li>
-        </ul>
+        
+        <!-- Verifica se há usuários para exibir -->
+        <?php if (count($usuariosConversa) > 0): ?>
+            <ul class="lista-sugestao">
+                <?php foreach ($usuariosConversa as $usuario): ?>
+                    <li class="user-linha">
+                        <?php
+                        // Verifica se a imagem do usuário está definida e não é nula
+                        $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+                        ?>
+                        <img src="<?= $imagemPerfil ?>" alt="Profile">
+                        <span><?= $usuario['USU_VAR_NAME'] ?></span>
+                    </li>
+                <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="lista-sugestao">
+                        <h3>Você não interagiu com nenhum usuário ainda.</h3>
+                    </div>
+                <?php endif; ?>
+            </ul>
+        
+        
         <div class="compartilhar-footer">
             <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
             <button class="compartilhar-btn">Compartilhar</button>
         </div>
     </div>
-</div>   
+</div>
+
+  
     
 
 <!-- formulario Artigo-->

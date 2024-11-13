@@ -701,6 +701,13 @@ color: #d10000;
         border: 1px solid #ccc;
         border-radius: 4px;    
 }
+.lista-sugestao h3{
+    padding: 20px 20px 60px 20px;
+    color: #000000;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+}
 .user-linha {
     padding: 10px;
     display: flex;
