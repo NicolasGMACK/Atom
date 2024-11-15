@@ -2,7 +2,7 @@
 require_once('../view/php/protect.php');
 $userId = $_SESSION['id']; // ID do usuário logado
 
-include('../view/php/compartilhar_artigos.php');
+include('../view/php/listar_compartilhar.php');
 ?>
 
 <!DOCTYPE html>

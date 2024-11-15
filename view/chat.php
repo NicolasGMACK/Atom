@@ -147,39 +147,49 @@ require_once('../view/php/verificacaoChat.php');
         </div>
     </header>
 
-<div class="mensagens">
-
+    <div class="mensagens">
     <?php 
     require_once('../view/php/enviarMensagem.php');
-    #enviarMensagemUsuario($conection)
 
     // Adicionando filtro de CONV_INT_ID para mostrar apenas mensagens da conversa atual
-    $sqlPesquisaChat = "SELECT u.USU_VAR_NAME, m.CONV_INT_ID, m.USU_INT_ID, m.MSG_VAR_CONTEUDO, m.MSG_DAT_ENVIO
-    FROM usuario u
-    JOIN mensagens m ON u.USU_INT_ID = m.USU_INT_ID
-    WHERE m.CONV_INT_ID = $conversaId
-    ORDER BY m.MSG_DAT_ENVIO ASC";
+    $sqlPesquisaChat = "SELECT u.USU_VAR_NAME, m.CONV_INT_ID, m.USU_INT_ID, m.MSG_VAR_CONTEUDO, 
+                               m.MSG_TIPO, m.MSG_ARTIGO_TOKEN, m.MSG_DAT_ENVIO
+                        FROM usuario u
+                        JOIN mensagens m ON u.USU_INT_ID = m.USU_INT_ID
+                        WHERE m.CONV_INT_ID = $conversaId
+                        ORDER BY m.MSG_DAT_ENVIO ASC";
     $sqlPesquisaChatExecute = mysqli_query($conection, $sqlPesquisaChat);
 
     while ($conversa = mysqli_fetch_assoc($sqlPesquisaChatExecute)) {
-            echo '
+        $conteudo = $conversa['MSG_VAR_CONTEUDO'];
+        $tipoMensagem = $conversa['MSG_TIPO'];
+        $tokenArtigo = $conversa['MSG_ARTIGO_TOKEN'];
+
+        // Verificar o tipo da mensagem
+        if ($tipoMensagem === 'artigo' && !empty($tokenArtigo)) {
+            // Mensagem é um compartilhamento de artigo
+            $conteudo = 'Confira este artigo: <a href="artigo.php?token=' . $tokenArtigo . '" target="_blank">Clique aqui para ver o artigo</a>';
+        }
+
+        // Exibir a mensagem
+        echo '
             <div class="message other">
                 <p class="user-name">' . $conversa['USU_VAR_NAME'] . '</p>
-                <p>' . $conversa['MSG_VAR_CONTEUDO'] . '</p>
+                <p>' . $conteudo . '</p>
                 <span class="timestamp">' . $conversa['MSG_DAT_ENVIO'] . '</span>
             </div>';
     }
     ?>
     <div>
-    <form action="" method="post" class="message-bar">
-        <input type="hidden" name="idChat" value="<?php echo $conversaId; ?>" id="">
-        <input type="hidden" name="idUser" value="<?php echo $_SESSION['id']; ?>" id="">
-        <input type="text" name="mensagem" id="">
-        <input type="submit" name="Enviar" value="Enviar">
-    </form>
+        <form action="" method="post" class="message-bar">
+            <input type="hidden" name="idChat" value="<?php echo $conversaId; ?>" id="">
+            <input type="hidden" name="idUser" value="<?php echo $_SESSION['id']; ?>" id="">
+            <input type="text" name="mensagem" id="">
+            <input type="submit" name="Enviar" value="Enviar">
+        </form>
     </div>
+</div>
 
-</div>    
 
 </body>
 </html>

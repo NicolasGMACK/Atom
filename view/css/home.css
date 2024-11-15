@@ -718,6 +718,10 @@ color: #d10000;
 .user-linha:hover{
     background-color: #ccc;
 }
+
+.user-linha.selected{
+    background-color: #ccc;
+}
 .user-linha:last-child {
     border-bottom: none;
 }

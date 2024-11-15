@@ -88,7 +88,7 @@ function carregarArtigos($conection, $userId) {
                             <button class='botoes Salvar'>Salvar</button>
                         </div>                                                
                         <div class='ape'>
-                            <button class='openCompartilhar botoes'>Compartilhar</button>
+                            <button class='openCompartilhar botoes' data-token-artigo='$tokenArtigo'>Compartilhar</button>
                         </div>
                     </div>
                 </div>

@@ -4,9 +4,10 @@ require_once('conection.php'); // Conexão com o banco de dados
 require_once('protect.php'); //
 // Função para carregar usuários com quem o usuário tem conversa
 function carregarUsuariosConversa($conection, $userId) {
-    // Consulta para buscar usuários com quem o usuário tem conversa
+    // Consulta para buscar usuários com quem o usuário tem conversa e incluir CONV_INT_ID
     $query = "
         SELECT DISTINCT 
+            c.CONV_INT_ID,  -- Inclua o ID da conversa
             u.USU_INT_ID, 
             u.USU_VAR_NAME, 
             u.USU_VAR_IMGPERFIL 
@@ -22,12 +23,11 @@ function carregarUsuariosConversa($conection, $userId) {
     if ($resultado && mysqli_num_rows($resultado) > 0) {
         $usuarios = [];
         while ($usuario = mysqli_fetch_assoc($resultado)) {
-            // Salva as informações do usuário em um array
             $usuarios[] = $usuario;
         }
-        return $usuarios; // Retorna a lista de usuários
+        return $usuarios;
     } else {
-        return []; // Retorna um array vazio caso não haja conversa
+        return []; 
     }
 }
 

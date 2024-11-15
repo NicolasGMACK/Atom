@@ -2,7 +2,7 @@
 require_once('../view/php/protect.php');
 include('../view/php/mensagens_postagem.php');
 include('../view/php/criar_token_pessoal.php');
-include('../view/php/compartilhar_artigos.php');
+include('../view/php/listar_compartilhar.php');
 ?>
 
 <!DOCTYPE html>
@@ -160,40 +160,40 @@ include('../view/php/compartilhar_artigos.php');
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
         <br>
-    <!--    <div class="linha-compartilhar">
-           <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
-        </div>-->
-        <br>
-        
+
         <!-- Verifica se há usuários para exibir -->
         <?php if (count($usuariosConversa) > 0): ?>
             <ul class="lista-sugestao">
                 <?php foreach ($usuariosConversa as $usuario): ?>
-                    <li class="user-linha">
-                        <?php
-                        // Verifica se a imagem do usuário está definida e não é nula
-                        $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
-                        ?>
+                    <?php
+                    $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+                    $convId = $usuario['CONV_INT_ID']; // Pegando o ID da conversa
+                    $userName = $usuario['USU_VAR_NAME'];
+                    $userIdConversa = $usuario['USU_INT_ID'];
+                    ?>
+                    <li class="user-linha" data-conv-id="<?= $convId ?>" data-user-id="<?= $userIdConversa ?>">
                         <img src="<?= $imagemPerfil ?>" alt="Profile">
-                        <span><?= $usuario['USU_VAR_NAME'] ?></span>
+                        <span><?= $userName ?></span>
                     </li>
                 <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="lista-sugestao">
-                        <h3>Você não interagiu com nenhum usuário ainda.</h3>
-                    </div>
-                <?php endif; ?>
             </ul>
-        
-        
+        <?php else: ?>
+            <div class="lista-sugestao">
+                <h3>Você não interagiu com nenhum usuário ainda.</h3>
+            </div>
+        <?php endif; ?>
+
+        <!-- Input oculto para armazenar o token do artigo -->
+        <input type="hidden" id="tokenArtigoInput" />
+
         <div class="compartilhar-footer">
             <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
-            <button class="compartilhar-btn">Compartilhar</button>
+            <button class="compartilhar-btn" onclick="compartilharArtigo()">Compartilhar</button>
         </div>
     </div>
 </div>
 
-  
+
     
 
 <!-- formulario Artigo-->
@@ -252,4 +252,5 @@ include('../view/php/compartilhar_artigos.php');
     </script>    
 </body>
 <script src="../view/js/showCompartilhar.js"></script>
+<script src="../view/js/compartilharArtigo.js"></script>  
 </html>
