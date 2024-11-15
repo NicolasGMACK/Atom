@@ -2,6 +2,7 @@
 require_once('../view/php/protect.php');
 $userId = $_SESSION['id']; // ID do usuário logado
 
+include('../view/php/criar_token_pessoal.php');
 include('../view/php/listar_compartilhar.php');
 ?>
 
@@ -43,7 +44,7 @@ include('../view/php/listar_compartilhar.php');
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="perfil.php">Visualizar perfil</a>
+                <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     

@@ -1,6 +1,7 @@
 <?php
 require_once('../view/php/protect.php');
 require_once('../view/php/verificacao_perfil.php');
+include('../view/php/criar_token_pessoal.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -43,7 +44,7 @@ require_once('../view/php/verificacao_perfil.php');
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="#">Visualizar perfil</a>
+                <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
