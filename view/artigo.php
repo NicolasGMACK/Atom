@@ -155,10 +155,11 @@ include('../view/php/listar_compartilhar.php');
                     <div class="autor-follow">
                         <div class="autor-bloco">
                             <div class="autor-entrar">
-                           <div class="autor-foto">
-                           <?php echo '<img src="'.$autorFoto.'" alt="">  '?>                          
-                           </div>
-                           <div class="autor-nome"><p><?php echo $autor; ?></p></div>
+                              <a href="perfil.php?token=<?php echo $tokenUser; ?>"><div class="autor-foto">
+                                <?php echo '<img src='.$autorFoto.'>';?>                          
+                                </div>
+                                <div class="autor-nome"><p><?php echo $autor; ?></p></div>
+                              </a>
                         </div>
                            <div class="follow"><p>Seguir</p></div>
                         </div>                        

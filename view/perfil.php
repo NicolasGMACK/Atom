@@ -100,7 +100,7 @@ include('../view/php/listar_compartilhar.php');
 <div class="compartilhar" id="compartilhar" style="display: none">
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
-        <b
+        <br>
 
         <!-- Verifica se há usuários para exibir -->
         <?php if (count($usuariosConversa) > 0): ?>

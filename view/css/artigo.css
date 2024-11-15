@@ -193,6 +193,12 @@ html {
 .autor-entrar{
     display: flex;
 }
+.autor-entrar a{
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-self: center;
+}
 .autor-entrar:hover {
     cursor: pointer;
     text-decoration: underline;

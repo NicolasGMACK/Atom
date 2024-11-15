@@ -54,6 +54,8 @@ if (isset($_GET['token'])) {
  
 
             $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
+            $tokenUser = obterOuCriarToken($conection, 'usuario', $autorId);
+            
             // Pegar nome do autor com base no USU_INT_ID
             $sqlAutor = "SELECT USU_VAR_NAME, USU_VAR_IMGPERFIL FROM usuario WHERE USU_INT_ID = ?";
             $stmtAutor = $conection->prepare($sqlAutor);
