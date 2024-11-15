@@ -27,7 +27,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
             $status = $artigo['ART_VAR_STATUS'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
-            $FotoPerfil = $artigo['USU_VAR_IMGPERFIL'];
+            $FotoPerfil = !empty($artigo['USU_VAR_IMGPERFIL']) ? $artigo['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg'; 
             $idUsuario = $artigo['USU_INT_ID'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
             $numComentarios = $artigo['num_comentarios']; // Número de comentários
@@ -46,6 +46,8 @@ function carregarArtigos($conection, $userId, $PerfilId) {
             $likeButtonClass = $userLiked > 0 ? 'liked' : ''; // Adiciona classe liked se o usuário curtiu
             $likeButtonText = $userLiked > 0 ? "$numLikes" : "Relevante"; // Texto "Relevante" ou o número de likes
 
+            
+
             // HTML para exibir o artigo
             echo "
             <div class='bloco'>
@@ -56,7 +58,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
                     <div class='cabecalho'>
                         <a href='perfil.php?token=$tokenUser'>
                             <div class='foto1 user'>
-                                <img src='$FotoPerfil' alt='img teste' class='user-photo'>
+                                <img src='$FotoPerfil' alt='img usuario' class='user-photo'>
                             </div>
                         </a>
                         <div class='profile-artigo'>

@@ -60,8 +60,7 @@ if (isset($_GET['token'])) {
             if ($resultAutor->num_rows > 0) {
                 $usuario = $resultAutor->fetch_assoc();
                 $autor = $usuario['USU_VAR_NAME'];
-                $autorFoto = $usuario['USU_VAR_IMGPERFIL'];
-                
+                $autorFoto = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';     
             } 
 
             // Aqui você pode exibir as informações do artigo
