@@ -92,7 +92,7 @@ include('../view/php/listar_compartilhar.php');
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                         </div>
                         <script src='../view/js/salvar.js'></script>
-                        <button class='botoes openCompartilhar'>Compartilhar</button>
+                        <button class='botoes openCompartilhar' data-token-artigo='<?= $tokenArtigo ?>'>Compartilhar</button>
                         <button class='baixar' onclick="window.location.href='../view/php/baixar_artigo.php?token=<?php echo $token; ?>'">
                             <i class='fa-regular fa-circle-down'></i><p>Download</p>
                         </button>
@@ -169,41 +169,46 @@ include('../view/php/listar_compartilhar.php');
         </div>
         </div>
          <!-- Popup Compartihar-->
-<div class="compartilhar" id="compartilhar" style="display: none">
+         <div class="compartilhar" id="compartilhar" style="display: none">
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
         <br>
-    <!--    <div class="linha-compartilhar">
-           <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
-        </div>-->
-        <br>
-        
+
         <!-- Verifica se há usuários para exibir -->
         <?php if (count($usuariosConversa) > 0): ?>
             <ul class="lista-sugestao">
                 <?php foreach ($usuariosConversa as $usuario): ?>
-                    <li class="user-linha">
-                        <?php
-                        // Verifica se a imagem do usuário está definida e não é nula
-                        $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
-                        ?>
+                    <?php
+                    $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+                    $convId = $usuario['CONV_INT_ID']; // Pegando o ID da conversa
+                    $userName = $usuario['USU_VAR_NAME'];
+                    $userIdConversa = $usuario['USU_INT_ID'];
+                    ?>
+                    <li class="user-linha" data-conv-id="<?= $convId ?>" data-user-id="<?= $userIdConversa ?>">
                         <img src="<?= $imagemPerfil ?>" alt="Profile">
-                        <span><?= $usuario['USU_VAR_NAME'] ?></span>
+                        <span><?= $userName ?></span>
                     </li>
                 <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="lista-sugestao">
-                        <h3>Você não interagiu com nenhum usuário ainda.</h3>
-                    </div>
-                <?php endif; ?>
             </ul>
-        
-        
+        <?php else: ?>
+            <div class="lista-sugestao">
+                <h3>Você não interagiu com nenhum usuário ainda.</h3>
+            </div>
+        <?php endif; ?>
+
+        <!-- Input oculto para armazenar o token do artigo -->
+        <input type="hidden" id="tokenArtigoInput" />
+
         <div class="compartilhar-footer">
             <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
-            <button class="compartilhar-btn">Compartilhar</button>
+            <button class="compartilhar-btn" onclick="compartilharArtigo()">Compartilhar</button>
         </div>
     </div>
 </div>
-<script src="../view/js/showCompartilhar.js"></script>
     </div>
+</body>
+<script src="../view/js/showCompartilhar.js"></script>
+<script src="../view/js/compartilharArtigo.js"></script> 
+    
+
+</html>
