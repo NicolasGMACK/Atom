@@ -160,9 +160,9 @@ include('../view/php/compartilhar_artigos.php');
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
         <br>
-        <div class="linha-compartilhar">
-            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
-        </div>
+    <!--    <div class="linha-compartilhar">
+           <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
+        </div>-->
         <br>
         
         <!-- Verifica se há usuários para exibir -->
