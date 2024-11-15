@@ -86,11 +86,12 @@ include('../view/php/listar_compartilhar.php');
                         </button>
                     </div>
                     <div class='ape'>
-                        <button class='botoes' id='Salvar'>Salvar</button>
                         <div class='notification' id='notification'>
                             <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                         </div>
+                        <button class='botoes Salvar'>Salvar</button>
+                        
                         <script src='../view/js/salvar.js'></script>
                         <button class='botoes openCompartilhar' data-token-artigo='<?= $tokenArtigo ?>'>Compartilhar</button>
                         <button class='baixar' onclick="window.location.href='../view/php/baixar_artigo.php?token=<?php echo $token; ?>'">
