@@ -69,6 +69,14 @@ require_once('../view/php/verificacaoChat.php');
             align-self: flex-start;
             margin-bottom: 60px;
         }
+        .message.other a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .message.other a:hover{
+            text-decoration: underline;
+        }
 
         /* Nome do usuário em negrito */
         .message .user-name {
@@ -150,7 +158,6 @@ require_once('../view/php/verificacaoChat.php');
     <div class="mensagens">
     <?php 
     require_once('../view/php/enviarMensagem.php');
-
     // Adicionando filtro de CONV_INT_ID para mostrar apenas mensagens da conversa atual
     $sqlPesquisaChat = "SELECT u.USU_VAR_NAME, m.CONV_INT_ID, m.USU_INT_ID, m.MSG_VAR_CONTEUDO, 
                                m.MSG_TIPO, m.MSG_ARTIGO_TOKEN, m.MSG_DAT_ENVIO
@@ -166,10 +173,50 @@ require_once('../view/php/verificacaoChat.php');
         $tokenArtigo = $conversa['MSG_ARTIGO_TOKEN'];
 
         // Verificar o tipo da mensagem
-        if ($tipoMensagem === 'artigo' && !empty($tokenArtigo)) {
-            // Mensagem é um compartilhamento de artigo
-            $conteudo = 'Confira este artigo: <a href="artigo.php?token=' . $tokenArtigo . '" target="_blank">Clique aqui para ver o artigo</a>';
-        }
+        
+        // **Ajuste da mensagem se for um compartilhamento de artigo**
+        if ($tipoMensagem === 'artigo' && $tokenArtigo) {
+            // Buscar o id do artigo com base no token na tabela 'tokens_artigo'
+            $queryToken = "SELECT ART_INT_ID FROM tokens_artigo WHERE TOK_ART_VAR_TOK = ?";
+            $stmtToken = $conection->prepare($queryToken);
+        
+            if ($stmtToken) {
+                // Vincula o parâmetro do tokenArtigo como string
+                $stmtToken->bind_param("s", $tokenArtigo);
+                $stmtToken->execute();
+                $stmtToken->bind_result($artigoId);
+                $stmtToken->fetch();
+                $stmtToken->close();
+        
+                // Se o artigo foi encontrado com o token
+                if ($artigoId) {
+                    // Buscar o título do artigo com base no id do artigo
+                    $queryTitulo = "SELECT ART_VAR_TITULO FROM artigo WHERE ART_INT_ID = ?";
+                    $stmtTitulo = $conection->prepare($queryTitulo);
+        
+                    if ($stmtTitulo) {
+                        // Vincula o parâmetro do id do artigo
+                        $stmtTitulo->bind_param("i", $artigoId);
+                        $stmtTitulo->execute();
+                        $stmtTitulo->bind_result($tituloArtigo);
+                        $stmtTitulo->fetch();
+                        $stmtTitulo->close();
+        
+                        // Se o título foi encontrado, substitua na mensagem
+                        if ($tituloArtigo) {
+                            $conteudo = 'Confira este artigo: <a href="artigo.php?token=' . htmlspecialchars($tokenArtigo, ENT_QUOTES, 'UTF-8') . '" target="_blank">' . htmlspecialchars($tituloArtigo, ENT_QUOTES, 'UTF-8') . '</a>';
+                        } else {
+                            // Se o título não for encontrado, mensagem padrão
+                            $conteudo = 'Confira este artigo: <a href="artigo.php?token=' . $tokenArtigo . '" target="_blank">Clique aqui para ver o artigo</a>';
+    
+                        }
+                    } 
+                } 
+                }
+            } 
+        
+        
+
 
         // Exibir a mensagem
         echo '
