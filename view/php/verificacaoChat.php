@@ -11,11 +11,11 @@ if(isset($_GET['token'])){
     //$userChat2test = $resultToken->fetch_assoc();
     //var_dump($userChat2test);
     if ($resultToken->num_rows > 0) {
-    
+
     $userChat1 = $_SESSION['id'];
     $userChat2test = $resultToken->fetch_assoc();
     $userChat2 = $userChat2test['USU_INT_ID'];
-    
+
     $sqlChat = "SELECT CONV_INT_ID FROM conversas WHERE USU_INT_ID_1 = $userChat1 AND USU_INT_ID_2 = $userChat2 OR
     USU_INT_ID_1 = $userChat2 AND USU_INT_ID_2 = $userChat1";
     $exSqlChat = mysqli_query($conection, $sqlChat);

@@ -1,7 +1,7 @@
 <?php
 require_once('conection.php');
 require_once('protect.php');
-    
+
         if(isset($_POST['Enviar'])){
             $idChat = $_POST['idChat'];
             $idUser = $_POST['idUser'];
@@ -31,5 +31,5 @@ require_once('protect.php');
                 echo"<script>window.alert('Erro ao enviar mensagem')</script>";
             }
         }
-    
+
 ?>

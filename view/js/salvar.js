@@ -1,28 +1,30 @@
-const saveButton = document.getElementById('Salvar');
-const notification = document.getElementById('notification');
-const notificationTitle = document.getElementById('notificationTitle');
-const notificationText = document.getElementById('notificationText');
+(function() {
+    const saveButtons = document.querySelectorAll('.Salvar');
+    const notification = document.getElementById('notification');
+    const notificationTitle = document.getElementById('notificationTitle');
+    const notificationText = document.getElementById('notificationText');
 
-saveButton.addEventListener('click', function() {
-    if (saveButton.classList.contains('saved')) {
-        saveButton.textContent = 'Salvar';
-        saveButton.classList.remove('saved');
-    } else {
-        saveButton.textContent = 'Em biblioteca';
-        saveButton.classList.add('saved');
+    saveButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (button.classList.contains('saved')) {
+                button.textContent = 'Salvar';
+                button.classList.remove('saved');
+            } else {
+                button.textContent = 'Em biblioteca';
+                button.classList.add('saved');
 
-        // Mostra a notificação
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.classList.add('show'); // Aparece com transição de opacidade
-        }, 10); // Atraso pequeno para garantir que o estilo é aplicado
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
 
-        // Esconde a notificação após 3 segundos
-        setTimeout(function() {
-            notification.classList.remove('show'); // Inicia o fade out
-            setTimeout(function() {
-                notification.style.display = 'none'; // Esconde completamente
-            }, 500); // Aguarda a transição de 0.5s para finalizar
-        }, 3000);
-    }
-});
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                    setTimeout(function() {
+                        notification.style.display = 'none';
+                    }, 500);
+                }, 3000);
+            }
+        });
+    });
+})();

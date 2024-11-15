@@ -1,5 +1,7 @@
 <?php
 require_once('conection.php'); // Arquivo com a conexão ao banco de dados
+require_once('protect.php'); // Verifica se o usuário está autenticado
+require_once('ObterOuCriarToken.php');
 
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 
@@ -20,7 +22,7 @@ if (isset($_GET['token'])) {
         $artigoId = $artigo['ART_INT_ID'];
 
         // Busca as informações do artigo
-        $sqlArtigo = "SELECT ART_VAR_TITULO, USU_INT_ID, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_DESCRICAO, ART_DAT_POSTAGEM,
+        $sqlArtigo = "SELECT ART_INT_ID, ART_VAR_TITULO, USU_INT_ID, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_DESCRICAO, ART_DAT_POSTAGEM,
         (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = ?) AS num_comentarios,
         (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = ?) AS num_likes
     FROM artigo 
@@ -36,6 +38,7 @@ if (isset($_GET['token'])) {
             $artigo = $resultArtigo->fetch_assoc();
 
             // Variáveis com os dados do artigo
+            $idArtigo = $artigo['ART_INT_ID'];
             $titulo = $artigo['ART_VAR_TITULO'];
             $autorId = $artigo['USU_INT_ID']; // ID do autor
             $categoria = $artigo['ART_VAR_CATEGORIA'];
@@ -50,18 +53,21 @@ if (isset($_GET['token'])) {
             $numComentarios = $artigo['num_comentarios'];
  
 
+            $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
+            $tokenUser = obterOuCriarToken($conection, 'usuario', $autorId);
+            
             // Pegar nome do autor com base no USU_INT_ID
-            $sqlAutor = "SELECT USU_VAR_NAME FROM usuario WHERE USU_INT_ID = ?";
+            $sqlAutor = "SELECT USU_VAR_NAME, USU_VAR_IMGPERFIL FROM usuario WHERE USU_INT_ID = ?";
             $stmtAutor = $conection->prepare($sqlAutor);
             $stmtAutor->bind_param('i', $autorId);
             $stmtAutor->execute();
             $resultAutor = $stmtAutor->get_result();
 
             if ($resultAutor->num_rows > 0) {
-                $autor = $resultAutor->fetch_assoc()['USU_VAR_NAME'];
-            } else {
-                $autor = "Autor desconhecido";
-            }
+                $usuario = $resultAutor->fetch_assoc();
+                $autor = $usuario['USU_VAR_NAME'];
+                $autorFoto = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';     
+            } 
 
             // Aqui você pode exibir as informações do artigo
             echo "<div class='cartao-top'>

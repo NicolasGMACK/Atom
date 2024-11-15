@@ -2,6 +2,8 @@
 require_once('../view/php/protect.php');
 $userId = $_SESSION['id']; // ID do usuário logado
 
+include('../view/php/criar_token_pessoal.php');
+include('../view/php/listar_compartilhar.php');
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +35,16 @@ $userId = $_SESSION['id']; // ID do usuário logado
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
+                <?php   if (empty($_SESSION['ftperfil'])) {
+                    $_SESSION['ftperfil'] = '../view/img/user.jpg';
+                } echo '<img id="profileDropdown" src="' . $_SESSION['ftperfil'] . '" alt="">'; ?>
                 </div>
                 <?php echo $_SESSION['name'] ?>
             </div>
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="perfil.php">Visualizar perfil</a>
+                <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
@@ -82,13 +86,14 @@ $userId = $_SESSION['id']; // ID do usuário logado
                         </button>
                     </div>
                     <div class='ape'>
-                        <button class='botoes' id='Salvar'>Salvar</button>
                         <div class='notification' id='notification'>
                             <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                         </div>
+                        <button class='botoes Salvar'>Salvar</button>
+                        
                         <script src='../view/js/salvar.js'></script>
-                        <button id='openCompartilhar' class='botoes'>Compartilhar</button>
+                        <button class='botoes openCompartilhar' data-token-artigo='<?= $tokenArtigo ?>'>Compartilhar</button>
                         <button class='baixar' onclick="window.location.href='../view/php/baixar_artigo.php?token=<?php echo $token; ?>'">
                             <i class='fa-regular fa-circle-down'></i><p>Download</p>
                         </button>
@@ -150,10 +155,11 @@ $userId = $_SESSION['id']; // ID do usuário logado
                     <div class="autor-follow">
                         <div class="autor-bloco">
                             <div class="autor-entrar">
-                           <div class="autor-foto">
-                            <img src="../view/img/user.jpg" alt="">                            
-                           </div>
-                           <div class="autor-nome"><p><?php echo $autor; ?></p></div>
+                              <a href="perfil.php?token=<?php echo $tokenUser; ?>"><div class="autor-foto">
+                                <?php echo '<img src='.$autorFoto.'>';?>                          
+                                </div>
+                                <div class="autor-nome"><p><?php echo $autor; ?></p></div>
+                              </a>
                         </div>
                            <div class="follow"><p>Seguir</p></div>
                         </div>                        
@@ -164,42 +170,47 @@ $userId = $_SESSION['id']; // ID do usuário logado
             </div>
         </div>
         </div>
-          <!-- Popup Compartihar-->
-<div class="compartilhar" id="compartilhar">
+         <!-- Popup Compartihar-->
+         <div class="compartilhar" id="compartilhar" style="display: none">
     <div class="compartilhar-conteudo">
         <h1>Compartilhe a publicação com quem você conhece</h1>
         <br>
-        <div class="linha-compartilhar">
-            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
-        </div>
-        <br>
-        <ul class="lista-sugestao">
-            <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
-                <span>Vitor Capeleti</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
-                <span>Abhinav Pandey</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
-                <span>Sanket Nandan</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
-                <span>Prasanta K. Panigrahi</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/capeleti.png" alt="Profile">
-                <span>Jose ANGEL Alvarez Garcia</span>
-            </li>
-        </ul>
+
+        <!-- Verifica se há usuários para exibir -->
+        <?php if (count($usuariosConversa) > 0): ?>
+            <ul class="lista-sugestao">
+                <?php foreach ($usuariosConversa as $usuario): ?>
+                    <?php
+                    $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+                    $convId = $usuario['CONV_INT_ID']; // Pegando o ID da conversa
+                    $userName = $usuario['USU_VAR_NAME'];
+                    $userIdConversa = $usuario['USU_INT_ID'];
+                    ?>
+                    <li class="user-linha" data-conv-id="<?= $convId ?>" data-user-id="<?= $userIdConversa ?>">
+                        <img src="<?= $imagemPerfil ?>" alt="Profile">
+                        <span><?= $userName ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <div class="lista-sugestao">
+                <h3>Você não interagiu com nenhum usuário ainda.</h3>
+            </div>
+        <?php endif; ?>
+
+        <!-- Input oculto para armazenar o token do artigo -->
+        <input type="hidden" id="tokenArtigoInput" />
+
         <div class="compartilhar-footer">
             <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
-            <button class="compartilhar-btn">Compartilhar</button>
+            <button class="compartilhar-btn" onclick="compartilharArtigo()">Compartilhar</button>
         </div>
     </div>
 </div>
-<script src="../view/js/showCompartilhar.js"></script>
     </div>
+</body>
+<script src="../view/js/showCompartilhar.js"></script>
+<script src="../view/js/compartilharArtigo.js"></script> 
+    
+
+</html>

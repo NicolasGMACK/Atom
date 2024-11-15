@@ -1,6 +1,8 @@
 <?php
 require_once('../view/php/protect.php');
-
+require_once('../view/php/verificacao_perfil.php');
+include('../view/php/criar_token_pessoal.php');
+include('../view/php/listar_compartilhar.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -33,14 +35,17 @@ require_once('../view/php/protect.php');
             <li class="profile">
                 <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
+                <?php   if (empty($_SESSION['ftperfil'])) {
+                    $_SESSION['ftperfil'] = '../view/img/user.jpg';
+                } echo '<img id="profileDropdown" src="' . $_SESSION['ftperfil'] . '" alt="">'; ?>
+
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                    <a href="#">Visualizar perfil</a>
+                <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
@@ -58,7 +63,7 @@ require_once('../view/php/protect.php');
             </div>
         </div>
         
-<div class="tela espaco" id="publicacoes" style="display: non">
+<div class="tela espaco" id="publicacoes"">
     <div class="tela-coluna">
         <div class="lado-esquerdo1">
             <div class="bloco">
@@ -76,18 +81,59 @@ require_once('../view/php/protect.php');
                 </div>
             </div>
         </div>
+        <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>  
         <div class="lado-direito1">
             <div class="lista1">
-                <?php include ('php/carregar_artigos_perfil.php') ?>                
+                <?php include ('php/carregar_artigos_perfil.php') ?>
+
+                <script src="js/upvote.js"></script>
+                <script src='../view/js/salvar.js'></script>  
+                           
             </div>
         </div>
     </div>
 </div>
-    
+<!-- Popup Compartihar-->
+<div class="compartilhar" id="compartilhar" style="display: none">
+    <div class="compartilhar-conteudo">
+        <h1>Compartilhe a publicação com quem você conhece</h1>
+        <br>
 
-<div class="tela espaco">
+        <!-- Verifica se há usuários para exibir -->
+        <?php if (count($usuariosConversa) > 0): ?>
+            <ul class="lista-sugestao">
+                <?php foreach ($usuariosConversa as $usuario): ?>
+                    <?php
+                    $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+                    $convId = $usuario['CONV_INT_ID']; // Pegando o ID da conversa
+                    $userName = $usuario['USU_VAR_NAME'];
+                    $userIdConversa = $usuario['USU_INT_ID'];
+                    ?>
+                    <li class="user-linha" data-conv-id="<?= $convId ?>" data-user-id="<?= $userIdConversa ?>">
+                        <img src="<?= $imagemPerfil ?>" alt="Profile">
+                        <span><?= $userName ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <div class="lista-sugestao">
+                <h3>Você não interagiu com nenhum usuário ainda.</h3>
+            </div>
+        <?php endif; ?>
 
+        <!-- Input oculto para armazenar o token do artigo -->
+        <input type="hidden" id="tokenArtigoInput" />
+
+        <div class="compartilhar-footer">
+            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
+            <button class="compartilhar-btn" onclick="compartilharArtigo()">Compartilhar</button>
+        </div>
+    </div>
 </div>
-
             </body>
+    <script src="../view/js/showCompartilhar.js"></script>
+    <script src="../view/js/compartilharArtigo.js"></script> 
 </html>

@@ -20,7 +20,7 @@ if (isset($_GET['token'])) {
         $PerfilId = $usuario['USU_INT_ID'];
 
         // Busca informações do usuario
-        $sqlUsuario = "SELECT USU_INT_ID, USU_VAR_NAME, USU_VAR_IMGPERFIL, USU_VAR_IMGBACK, USU_VAR_DESC, USU_VAR_CIDADE, USU_VAR_OCUPACAO
+       $sqlUsuario = "SELECT USU_INT_ID, USU_VAR_NAME, USU_VAR_IMGPERFIL, USU_VAR_IMGBACK, USU_VAR_DESC, USU_VAR_CIDADE, USU_VAR_OCUPACAO
         FROM usuario
         WHERE USU_INT_ID = ?";
         $stsmtUsuario = $conection->prepare($sqlUsuario);

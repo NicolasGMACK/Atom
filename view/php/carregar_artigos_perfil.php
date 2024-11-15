@@ -8,7 +8,8 @@ setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
         
 // Função para obter os artigos do banco de dados
 function carregarArtigos($conection, $userId, $PerfilId) { 
-    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, u.USU_VAR_NAME, a.USU_INT_ID, a.ART_INT_ID,
+    $query = "SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM,
+     u.USU_VAR_NAME, u.USU_VAR_IMGPERFIL, a.USU_INT_ID, a.ART_INT_ID,
                  (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios,
                  (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = a.ART_INT_ID) AS num_likes,
                  (SELECT COUNT(*) FROM upvote WHERE UP_USU_INT_ID = $userId AND UP_ART_INT_ID = a.ART_INT_ID) AS user_liked
@@ -26,6 +27,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
             $status = $artigo['ART_VAR_STATUS'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
             $nomeUsuario = $artigo['USU_VAR_NAME'];
+            $FotoPerfil = !empty($artigo['USU_VAR_IMGPERFIL']) ? $artigo['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg'; 
             $idUsuario = $artigo['USU_INT_ID'];
             $idArtigo = $artigo['ART_INT_ID']; // ID do artigo
             $numComentarios = $artigo['num_comentarios']; // Número de comentários
@@ -44,6 +46,8 @@ function carregarArtigos($conection, $userId, $PerfilId) {
             $likeButtonClass = $userLiked > 0 ? 'liked' : ''; // Adiciona classe liked se o usuário curtiu
             $likeButtonText = $userLiked > 0 ? "$numLikes" : "Relevante"; // Texto "Relevante" ou o número de likes
 
+            
+
             // HTML para exibir o artigo
             echo "
             <div class='bloco'>
@@ -54,7 +58,7 @@ function carregarArtigos($conection, $userId, $PerfilId) {
                     <div class='cabecalho'>
                         <a href='perfil.php?token=$tokenUser'>
                             <div class='foto1 user'>
-                                <img src='../view/img/user.jpg' alt='img teste' class='user-photo'>
+                                <img src='$FotoPerfil' alt='img usuario' class='user-photo'>
                             </div>
                         </a>
                         <div class='profile-artigo'>
@@ -81,22 +85,17 @@ function carregarArtigos($conection, $userId, $PerfilId) {
                             <button id='goToComments' class='comentarios' onclick=\"window.location.href='artigo.php?token=$tokenArtigo#comments';\">
                                 <i class='fa-regular fa-comment'></i>$numComentarios
                             </button>                              
-                            <button class='botoes' id='Salvar'>Salvar</button>
-                        </div>
-                        <div class='notification' id='notification'>
-                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
-                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
-                        </div>
-                        <script src='../view/js/salvar.js'></script>
+                            <button class='botoes Salvar'>Salvar</button>
+                        </div>                                                
                         <div class='ape'>
-                            <button id='openCompartilhar' class='botoes'>Compartilhar</button>
+                            <button class='openCompartilhar botoes' data-token-artigo='$tokenArtigo'>Compartilhar</button>
                         </div>
                     </div>
                 </div>
             </div>";
         }
     } else {
-        echo "<div class='bloco'><h1 style=' padding: 20px;'>Nenhum artigo encontrado. Seja primeiro a fazer uma publicação.</h1></div>";
+        echo "<div class='bloco'><h1 style=' padding: 20px;'>Este usuário não possui artigos publicados.</h1></div>";
     }
 }
 

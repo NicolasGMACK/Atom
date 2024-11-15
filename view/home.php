@@ -1,13 +1,16 @@
 <?php
 require_once('../view/php/protect.php');
 include('../view/php/mensagens_postagem.php');
+include('../view/php/criar_token_pessoal.php');
+include('../view/php/listar_compartilhar.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -27,14 +30,17 @@ include('../view/php/mensagens_postagem.php');
             <li class="profile">
             <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
-                    <img id="profileDropdown" src="../view/img/user.jpg" alt="">
+                <?php   if (empty($_SESSION['ftperfil'])) {
+                    $_SESSION['ftperfil'] = '../view/img/user.jpg';
+                } echo '<img id="profileDropdown" src="' . $_SESSION['ftperfil'] . '" alt="">'; ?>
+
                 </div>
                <?php echo $_SESSION['name'] ?>
             </div>
             </li>
                
                 <div id="dropdownMenu" class="dropdown-content">
-                <a href="perfil.php">Visualizar perfil</a>
+                <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
                     <a href="../view/php/logout.php">Sair</a>
                     
@@ -131,18 +137,63 @@ include('../view/php/mensagens_postagem.php');
                 </div>
             </div> <!-- Fecha a primeira div.bloco -->
 
+
             <!-- Segunda div bloco -->
             <?php
 // Incluir o arquivo que carrega os artigos
-            include ('php/carregar_artigos.php');
+            include ('php/carregar_artigos.php');            
             ?>
+            <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>
+<script src='../view/js/salvar.js'></script>            
 <script src="js/upvote.js"></script>
 
         </div> <!-- Fecha a div.lista -->
     </div> <!-- Fecha a div.lado-direito -->
 </div> <!-- Fecha a div.tela -->
             
-                
+
+<!-- Popup Compartihar-->
+<div class="compartilhar" id="compartilhar" style="display: none">
+    <div class="compartilhar-conteudo">
+        <h1>Compartilhe a publicação com quem você conhece</h1>
+        <br>
+
+        <!-- Verifica se há usuários para exibir -->
+        <?php if (count($usuariosConversa) > 0): ?>
+            <ul class="lista-sugestao">
+                <?php foreach ($usuariosConversa as $usuario): ?>
+                    <?php
+                    $imagemPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+                    $convId = $usuario['CONV_INT_ID']; // Pegando o ID da conversa
+                    $userName = $usuario['USU_VAR_NAME'];
+                    $userIdConversa = $usuario['USU_INT_ID'];
+                    ?>
+                    <li class="user-linha" data-conv-id="<?= $convId ?>" data-user-id="<?= $userIdConversa ?>">
+                        <img src="<?= $imagemPerfil ?>" alt="Profile">
+                        <span><?= $userName ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <div class="lista-sugestao">
+                <h3>Você não interagiu com nenhum usuário ainda.</h3>
+            </div>
+        <?php endif; ?>
+
+        <!-- Input oculto para armazenar o token do artigo -->
+        <input type="hidden" id="tokenArtigoInput" />
+
+        <div class="compartilhar-footer">
+            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
+            <button class="compartilhar-btn" onclick="compartilharArtigo()">Compartilhar</button>
+        </div>
+    </div>
+</div>
+
+
     
 
 <!-- formulario Artigo-->
@@ -183,45 +234,8 @@ include('../view/php/mensagens_postagem.php');
 
 <script src="../view/js/showFormulario.js"></script>
 
-<!-- Popup Compartihar-->
 
-<div class="compartilhar" id="compartilhar">
-    <div class="compartilhar-conteudo">
-        <h1>Compartilhe a publicação com quem você conhece</h1>
-        <br>
-        <div class="linha-compartilhar">
-            <input class="pesquisa-compartilhar" type="text" placeholder="Pessoas com quem você quer compartilhar...">
-        </div>
-        <br>
-        <ul class="lista-sugestao">
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Vitor Capeleti</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Abhinav Pandey</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Sanket Nandan</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Prasanta K. Panigrahi</span>
-            </li>
-            <li class="user-linha">
-                <img src="../view/img/user.jpg" alt="Profile">
-                <span>Jose ANGEL Alvarez Garcia</span>
-            </li>
-        </ul>
-        <div class="compartilhar-footer">
-            <button id="fecharCompartilhar" class="cancelar-btn">Cancelar</button>
-            <button class="compartilhar-btn">Compartilhar</button>
-        </div>
-    </div>
-</div>
-<script src="../view/js/showCompartilhar.js"></script>
+
 
     </div>
 </div>
@@ -237,4 +251,6 @@ include('../view/php/mensagens_postagem.php');
         }
     </script>    
 </body>
+<script src="../view/js/showCompartilhar.js"></script>
+<script src="../view/js/compartilharArtigo.js"></script>  
 </html>
