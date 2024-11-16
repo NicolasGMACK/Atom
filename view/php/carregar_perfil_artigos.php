@@ -3,6 +3,8 @@ require_once('conection.php'); // Arquivo com a conexão ao banco de dados
 require_once('protect.php'); // Verifica se o usuário está autenticado
 require_once('ObterOuCriarToken.php');
 
+$userId = $_SESSION['id']; // ID do usuário logado
+
 setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
 
 // Verifica se o token foi passado
@@ -22,38 +24,44 @@ if (isset($_GET['token'])) {
         $artigoId = $artigo['ART_INT_ID'];
 
         // Busca as informações do artigo
-        $sqlArtigo = "SELECT ART_INT_ID, ART_VAR_TITULO, USU_INT_ID, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_DESCRICAO, ART_DAT_POSTAGEM,
+        $sqlArtigo = "SELECT a.ART_INT_ID, a.ART_VAR_TITULO, a.USU_INT_ID, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_VAR_DESCRICAO, a.ART_DAT_POSTAGEM,
         (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = ?) AS num_comentarios,
-        (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = ?) AS num_likes
-        FROM artigo 
-        WHERE ART_INT_ID = ?";
-        
-        $stmtArtigo = $conection->prepare($sqlArtigo);
-        $stmtArtigo->bind_param('iii', $artigoId, $artigoId, $artigoId);
-        $stmtArtigo->execute();
-        $resultArtigo = $stmtArtigo->get_result();
-
-        if ($resultArtigo->num_rows > 0) {
-            // O artigo foi encontrado
-            $artigo = $resultArtigo->fetch_assoc();
-
-            // Variáveis com os dados do artigo
-            $idArtigo = $artigo['ART_INT_ID'];
-            $titulo = $artigo['ART_VAR_TITULO'];
-            $autorId = $artigo['USU_INT_ID']; // ID do autor
-            $categoria = $artigo['ART_VAR_CATEGORIA'];
-            $status = $artigo['ART_VAR_STATUS'];
-            $descricao = $artigo['ART_VAR_DESCRICAO'];
-            $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
-
-            $dataFormatada = strftime('%d de %B, %Y.', strtotime($dataPostagem)); 
-            $dataFormatada = ucfirst($dataFormatada);
-
-            $numLikes = $artigo['num_likes'];
-            $numComentarios = $artigo['num_comentarios'];
-
-            $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
-            $tokenUser = obterOuCriarToken($conection, 'usuario', $autorId);
+        (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = ?) AS num_likes,
+        (SELECT COUNT(*) FROM salvar WHERE USU_INT_ID = ? AND ART_INT_ID = a.ART_INT_ID) AS user_saved
+    FROM artigo a 
+    WHERE ART_INT_ID = ?";
+    
+    $stmtArtigo = $conection->prepare($sqlArtigo);
+    $stmtArtigo->bind_param('iiii', $artigoId, $artigoId, $userId, $artigoId);
+    $stmtArtigo->execute();
+    $resultArtigo = $stmtArtigo->get_result();
+    
+    if ($resultArtigo->num_rows > 0) {
+        // O artigo foi encontrado
+        $artigo = $resultArtigo->fetch_assoc();
+    
+        // Variáveis com os dados do artigo
+        $idArtigo = $artigo['ART_INT_ID'];
+        $titulo = $artigo['ART_VAR_TITULO'];
+        $autorId = $artigo['USU_INT_ID']; // ID do autor
+        $categoria = $artigo['ART_VAR_CATEGORIA'];
+        $status = $artigo['ART_VAR_STATUS'];
+        $descricao = $artigo['ART_VAR_DESCRICAO'];
+        $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
+        $userSaved = $artigo['user_saved']; // Verifica se o usuário salvou o artigo
+    
+        $dataFormatada = strftime('%d de %B, %Y.', strtotime($dataPostagem)); 
+        $dataFormatada = ucfirst($dataFormatada);
+    
+        $numLikes = $artigo['num_likes'];
+        $numComentarios = $artigo['num_comentarios'];
+    
+        $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
+        $tokenUser = obterOuCriarToken($conection, 'usuario', $autorId);
+    
+        // Definindo o texto e a classe do botão
+        $saveButtonText = $userSaved > 0 ? 'Em biblioteca' : 'Salvar';
+        $saveButtonClass = $userSaved > 0 ? 'saved' : '';
             
             // Pegar nome do autor com base no USU_INT_ID
             $sqlAutor = "SELECT USU_VAR_NAME, USU_VAR_IMGPERFIL FROM usuario WHERE USU_INT_ID = ?";
@@ -94,7 +102,7 @@ if (isset($_GET['token'])) {
                     <div class='linha-autor'>
                         <div class='autor'>$autor.</div>
                     </div>
-                    <div class='data-postagem'>Postado em $dataFormatada</div>
+                    <div class='data-postagem'>Postado em $dataFormatada</div>                    
                 </div>";
         } else {
             echo "Artigo não encontrado.";
