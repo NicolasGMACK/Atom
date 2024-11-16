@@ -115,12 +115,10 @@ include('../view/php/listar_compartilhar.php');
         <div class="lado-direito1">
             <div class="lista1">
                 <?php include ('php/carregar_artigos_salvos.php') ?>
-                <script src="js/upvote.js"></script>
                 <div class='notification' id='notification'>
                     <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
                     <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                 </div>
-                <script src='../view/js/salvar.js'></script>
             </div>
         </div>
     </div>
