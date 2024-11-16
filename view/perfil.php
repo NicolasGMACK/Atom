@@ -63,7 +63,7 @@ include('../view/php/listar_compartilhar.php');
             </div>
         </div>
         
-<div class="tela espaco" id="publicacoes"">
+<div class="tela espaco" id="publicacoes" style="display: none;">
     <div class="tela-coluna">
         <div class="lado-esquerdo1">
             <div class="bloco">
@@ -88,14 +88,37 @@ include('../view/php/listar_compartilhar.php');
         <div class="lado-direito1">
             <div class="lista1">
                 <?php include ('php/carregar_artigos_perfil.php') ?>
-
-                <script src="js/upvote.js"></script>
-                <script src='../view/js/salvar.js'></script>  
-                           
             </div>
         </div>
     </div>
 </div>
+<div class="tela espaco" id="publicacoes">
+    <div class="tela-coluna">
+        <div class="lado-esquerdo1">
+            <div class="bloco">
+                <div class="sobre">
+                    <h1>Lista salva</h1>                    
+                    <br><div class="localizacao">
+                    <p><strong>Artigos salvos:</strong>   4</p>
+                    </div>
+                    <br><div class="trabalho">
+                    <p><strong>Autores:</strong>   1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>  
+        <div class="lado-direito1">
+            <div class="lista1">
+                <?php include ('php/carregar_artigos_salvos.php') ?> 
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 <!-- Popup Compartihar-->
 <div class="compartilhar" id="compartilhar" style="display: none">
     <div class="compartilhar-conteudo">
@@ -133,7 +156,11 @@ include('../view/php/listar_compartilhar.php');
         </div>
     </div>
 </div>
-            </body>
+            
     <script src="../view/js/showCompartilhar.js"></script>
-    <script src="../view/js/compartilharArtigo.js"></script> 
+    <script src="../view/js/compartilharArtigo.js"></script>     
+    <script src="js/upvote.js"></script>
+    <script src='../view/js/salvar.js'></script>  
+                           
+            
 </html>

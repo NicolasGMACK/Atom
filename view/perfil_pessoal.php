@@ -62,7 +62,7 @@ include('../view/php/listar_compartilhar.php');
             </div>
         </div>
         
-<div class="tela espaco" id="publicacoes" style="display: non">
+<div class="tela espaco" id="publicacoes" style="display: none">
     <div class="tela-coluna">
         <div class="lado-esquerdo1">
             <div class="bloco">
@@ -83,6 +83,35 @@ include('../view/php/listar_compartilhar.php');
         <div class="lado-direito1">
             <div class="lista1">
                 <?php include ('php/carregar_artigos_perfil.php') ?>
+                <script src="js/upvote.js"></script><div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>
+                <script src='../view/js/salvar.js'></script>
+                                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tela espaco" id="publicacoes" style="display: non">
+    <div class="tela-coluna">
+    <div class="lado-esquerdo1">
+            <div class="bloco">
+                <?php require_once('php/mostrar_dados_artigos_salvos.php') ?>
+                <div class="sobre">
+                    <h1>Lista salva</h1>                    
+                    <br><div class="localizacao">
+                    <p><strong>Artigos salvos:</strong> <?= $numArtigosSalvos ?>.</p>
+                    </div>
+                    <br><div class="trabalho">
+                    <p><strong>Autores:</strong> <?= $numAutoresDistintos ?>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lado-direito1">
+            <div class="lista1">
+                <?php include ('php/carregar_artigos_salvos.php') ?>
                 <script src="js/upvote.js"></script><div class='notification' id='notification'>
                             <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>

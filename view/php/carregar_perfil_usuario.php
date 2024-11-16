@@ -63,8 +63,7 @@ if (isset($_GET['token'])) {
                 </div>
             </div>
             <div class="profile-navigation">
-                <div class="opcao marcada">Publicações</div>
-                <div class="opcao selecionar">Seguidores</div>
+                <div class="opcao marcada">Publicações</div>                
                 <div class="opcao selecionar">Biblioteca</div>           
             </div>';
 
