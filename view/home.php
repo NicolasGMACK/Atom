@@ -147,8 +147,6 @@ include('../view/php/listar_compartilhar.php');
                             <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                         </div>
-<script src='../view/js/salvar.js'></script>            
-<script src="js/upvote.js"></script>
 
         </div> <!-- Fecha a div.lista -->
     </div> <!-- Fecha a div.lado-direito -->
@@ -252,5 +250,7 @@ include('../view/php/listar_compartilhar.php');
     </script>    
 </body>
 <script src="../view/js/showCompartilhar.js"></script>
-<script src="../view/js/compartilharArtigo.js"></script>  
+<script src="../view/js/compartilharArtigo.js"></script>
+<script src='../view/js/salvar.js'></script>            
+<script src="js/upvote.js"></script>  
 </html>
