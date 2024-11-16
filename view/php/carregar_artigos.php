@@ -101,7 +101,7 @@ function carregarArtigos($conection, $userId) {
             </div>
         </div>
     </div>";
-;
+
         }
     } else {
         echo "<div class='bloco'><h1 style='padding: 20px;'>Nenhum artigo encontrado. Seja o primeiro a fazer uma publicação.</h1></div>";
