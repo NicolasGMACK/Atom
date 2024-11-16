@@ -81,7 +81,7 @@ function compartilharArtigo() {
 
 // Função para enviar a mensagem via fetch
 function enviarMensagem(conversaId, usuarioId, mensagem, tipo, tokenArtigo) {
-    console.log('Enviando mensagem:', conversaId, usuarioId, mensagem, tipo, tokenArtigo); // Verifique os valores aqui
+    console.log('Enviando mensagem:', conversaId, usuarioId, mensagem, tipo, tokenArtigo); 
     fetch('php/enviar_artigo.php', {
         method: 'POST',
         headers: {
@@ -89,12 +89,18 @@ function enviarMensagem(conversaId, usuarioId, mensagem, tipo, tokenArtigo) {
         },
         body: `conversaId=${conversaId}&usuarioId=${usuarioId}&mensagem=${encodeURIComponent(mensagem)}&tipo=${tipo}&tokenArtigo=${tokenArtigo}`
     })
-    .then(response => response.json())
+    .then(response => response.text())  // Alterar para `.text()` para depurar a resposta
     .then(data => {
-        if (data.success) {
-            alert('Artigo compartilhado com sucesso!');
-        } else {
-            alert('Erro ao compartilhar o artigo.');
+        console.log('Resposta do servidor:', data);  // Ver resposta completa do servidor
+        try {
+            const jsonData = JSON.parse(data);  // Converter manualmente para JSON
+            if (jsonData.success) {
+                alert('Artigo compartilhado com sucesso!');
+            } else {
+                alert('Erro ao compartilhar o artigo.');
+            }
+        } catch (e) {
+            console.error('Erro ao fazer parse do JSON:', e);
         }
     })
     .catch(error => {
@@ -102,3 +108,4 @@ function enviarMensagem(conversaId, usuarioId, mensagem, tipo, tokenArtigo) {
         alert('Houve um erro ao tentar compartilhar o artigo. Tente novamente.');
     });
 }
+
