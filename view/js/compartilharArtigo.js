@@ -38,74 +38,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Evento de clique nas linhas dos usuários
-    const usuariosLinhas = document.querySelectorAll('.user-linha');
-    usuariosLinhas.forEach(user => {
-        user.addEventListener('click', function() {
-            // Remove a classe 'selected' de todas as linhas
-            usuariosLinhas.forEach(u => u.classList.remove('selected'));
-
-            // Adiciona a classe 'selected' à linha clicada
+    // Evento de clique nas linhas dos usuários
+const usuariosLinhas = document.querySelectorAll('.user-linha');
+usuariosLinhas.forEach(user => {
+    user.addEventListener('click', function() {
+        // Verifica se a linha já possui a classe 'selected'
+        if (this.classList.contains('selected')) {
+            // Se sim, remove a classe 'selected'
+            this.classList.remove('selected');
+        } else {
+            // Se não, adiciona a classe 'selected'
             this.classList.add('selected');
-        });
+        }
     });
 });
 
+});
+
 // Função para compartilhar o artigo com o usuário selecionado
+// Função para compartilhar o artigo com os usuários selecionados
+// Função para compartilhar o artigo com os usuários selecionados
+// Função para compartilhar o artigo com os usuários selecionados
 function compartilharArtigo() {
-    // Pega o token do artigo do input
     const tokenArtigo = document.getElementById('tokenArtigoInput').value;
+    const selectedUsers = document.querySelectorAll('.user-linha.selected');
 
-    // Pega o usuário selecionado
-    const selectedUser = document.querySelector('.user-linha.selected');
+    if (tokenArtigo && selectedUsers.length > 0) {
+        const totalCompartilhamentos = selectedUsers.length;
+        let sucessoCount = 0; 
+        let erroCount = 0;
 
-    // Se o token do artigo e o usuário selecionado existirem
-    if (tokenArtigo && selectedUser) {
-        const usuarioId = selectedUser.getAttribute('data-user-id');
-        const conversaId = selectedUser.getAttribute('data-conv-id');
+        selectedUsers.forEach(selectedUser => {
+            const usuarioId = selectedUser.getAttribute('data-user-id');
+            const conversaId = selectedUser.getAttribute('data-conv-id');
+            const tipoMensagem = 'artigo';
+            const mensagem = `Confira este artigo!`;
 
-        // Define o tipo de mensagem como 'artigo'
-        const tipoMensagem = 'artigo';
+            // Chama a função para enviar a mensagem
+            enviarMensagem(conversaId, usuarioId, mensagem, tipoMensagem, tokenArtigo)
+                .then((sucesso) => {
+                    if (sucesso) {
+                        sucessoCount++;
+                    } else {
+                        erroCount++;
+                    }
 
-        // Mensagem padrão para o compartilhamento de artigo
-        const mensagem = `Confira este artigo!`;
+                    // Verifica se todos os compartilhamentos foram processados
+                    if (sucessoCount + erroCount === totalCompartilhamentos) {
+                        if (sucessoCount === 1) {
+                            alert('Artigo compartilhado com sucesso!');
+                        } else if (sucessoCount > 1) {
+                            alert('Artigos compartilhados com sucesso!');
+                        }
 
-        // Chama a função para enviar a mensagem
-        enviarMensagem(conversaId, usuarioId, mensagem, tipoMensagem, tokenArtigo);
+                        if (erroCount > 0) {
+                            alert(`${erroCount} compartilhamento(s) falhou(aram).`);
+                        }
+                    }
+                });
+        });
 
-        // Fecha o popup após enviar
+        // Fecha o popup após iniciar o processo de envio
         document.getElementById('compartilhar').style.display = 'none';
     } else {
-        console.error("Token do artigo ou usuário não selecionado.");
+        console.error("Token do artigo ou nenhum usuário selecionado.");
     }
 }
 
+
+
+
+// Função para enviar a mensagem via fetch
 // Função para enviar a mensagem via fetch
 function enviarMensagem(conversaId, usuarioId, mensagem, tipo, tokenArtigo) {
-    console.log('Enviando mensagem:', conversaId, usuarioId, mensagem, tipo, tokenArtigo); 
-    fetch('php/enviar_artigo.php', {
+    return fetch('php/enviar_artigo.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `conversaId=${conversaId}&usuarioId=${usuarioId}&mensagem=${encodeURIComponent(mensagem)}&tipo=${tipo}&tokenArtigo=${tokenArtigo}`
     })
-    .then(response => response.text())  // Alterar para `.text()` para depurar a resposta
+    .then(response => response.text())  // Recebe a resposta como texto
     .then(data => {
-        console.log('Resposta do servidor:', data);  // Ver resposta completa do servidor
+        console.log('Resposta do servidor:', data); 
         try {
-            const jsonData = JSON.parse(data);  // Converter manualmente para JSON
-            if (jsonData.success) {
-                alert('Artigo compartilhado com sucesso!');
-            } else {
-                alert('Erro ao compartilhar o artigo.');
-            }
+            const jsonData = JSON.parse(data);  
+            return jsonData.success;
         } catch (e) {
             console.error('Erro ao fazer parse do JSON:', e);
+            return false;
         }
     })
     .catch(error => {
         console.error('Erro ao compartilhar o artigo:', error);
-        alert('Houve um erro ao tentar compartilhar o artigo. Tente novamente.');
+        return false;
     });
 }
+
 

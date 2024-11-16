@@ -716,7 +716,7 @@ color: #d10000;
     cursor: pointer;
 }
 .user-linha:hover{
-    background-color: #ccc;
+    background-color: #e6e6e6;
 }
 
 .user-linha.selected{
