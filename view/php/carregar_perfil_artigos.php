@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once('conection.php'); // Arquivo com a conexão ao banco de dados
 require_once('protect.php'); // Verifica se o usuário está autenticado
 require_once('ObterOuCriarToken.php');
@@ -25,9 +25,9 @@ if (isset($_GET['token'])) {
         $sqlArtigo = "SELECT ART_INT_ID, ART_VAR_TITULO, USU_INT_ID, ART_VAR_CATEGORIA, ART_VAR_STATUS, ART_VAR_DESCRICAO, ART_DAT_POSTAGEM,
         (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = ?) AS num_comentarios,
         (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = ?) AS num_likes
-    FROM artigo 
-    WHERE ART_INT_ID = ?
-";
+        FROM artigo 
+        WHERE ART_INT_ID = ?";
+        
         $stmtArtigo = $conection->prepare($sqlArtigo);
         $stmtArtigo->bind_param('iii', $artigoId, $artigoId, $artigoId);
         $stmtArtigo->execute();
@@ -46,12 +46,11 @@ if (isset($_GET['token'])) {
             $descricao = $artigo['ART_VAR_DESCRICAO'];
             $dataPostagem = $artigo['ART_DAT_POSTAGEM'];
 
-            $dataFormatada = strftime('%d de %B, %Y.', strtotime($dataPostagem)); // Exemplo: "26 deoutubro 2024"
-            $dataFormatada = ucfirst($dataFormatada); // Coloca a primeira letra do mês em maiúscula
+            $dataFormatada = strftime('%d de %B, %Y.', strtotime($dataPostagem)); 
+            $dataFormatada = ucfirst($dataFormatada);
 
             $numLikes = $artigo['num_likes'];
             $numComentarios = $artigo['num_comentarios'];
- 
 
             $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
             $tokenUser = obterOuCriarToken($conection, 'usuario', $autorId);
@@ -67,19 +66,35 @@ if (isset($_GET['token'])) {
                 $usuario = $resultAutor->fetch_assoc();
                 $autor = $usuario['USU_VAR_NAME'];
                 $autorFoto = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';     
-            } 
+            }
 
-            // Aqui você pode exibir as informações do artigo
+            // Verificar se o usuário logado é o autor do artigo                        
+            $usuarioLogadoId = (int)$_SESSION['id']; // Converter para inteiro
+            $mostrarBotaoExcluir = ($usuarioLogadoId == (int)$autorId); // Comparação de valor
+
+
             echo "<div class='cartao-top'>
-                    <div class='status'>$status</div>
-                    <div class='tema'>$categoria</div>
+                    <div class='cartao_top_l'>
+                        <div class='status'>$status</div>
+                        <div class='tema'>$categoria</div>
+                    </div>
+                    <div class='cartao_top_r'>";
+            
+            // Exibir o botão de exclusão se o usuário logado for o autor
+            if ($mostrarBotaoExcluir) {
+                echo "<div class='excluir_artigo'>
+                        <button onclick='excluirArtigo($idArtigo)'><i class='fa-solid fa-trash'></i></button>
+                      </div>";
+            }
+            
+            echo "</div>
                 </div>
                 <div class='artigo-conteudo'>
-                <h1>$titulo</h1>
-                <div class='linha-autor'>
-                    <div class='autor'>$autor.</div>
-                </div>
-                <div class='data-postagem'>Postado em $dataFormatada</div>
+                    <h1>$titulo</h1>
+                    <div class='linha-autor'>
+                        <div class='autor'>$autor.</div>
+                    </div>
+                    <div class='data-postagem'>Postado em $dataFormatada</div>
                 </div>";
         } else {
             echo "Artigo não encontrado.";

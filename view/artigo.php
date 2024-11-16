@@ -210,7 +210,8 @@ include('../view/php/listar_compartilhar.php');
     </div>
 </body>
 <script src="../view/js/showCompartilhar.js"></script>
-<script src="../view/js/compartilharArtigo.js"></script> 
+<script src="../view/js/compartilharArtigo.js"></script>
+<script src="../view/js/excluirArtigo.js"></script>
     
 
 </html>

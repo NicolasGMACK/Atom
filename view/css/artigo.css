@@ -39,6 +39,19 @@ html {
     display: inline-flex;
     margin-bottom: 20px;
     width: 100%;
+    justify-content: space-between;
+}
+.cartao_top_l{
+    display: flex;
+    width: auto;
+}
+
+.cartao_top_r button{
+    color: red;
+    background-color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 .status{
     padding: 5px;
