@@ -93,9 +93,7 @@ function carregarArtigos($conection, $userId) {
                     </button>
                     
                     <!-- Botão de Salvar com Input Hidden -->
-                    <button class='botoes Salvar $saveButtonClass' data-artigo-id='$idArtigo'>$saveButtonText</button>
-                    <input type='hidden' class='user-id' value='$userId'>
-                    <input type='hidden' class='article-id' value='$idArtigo'>
+                    <button class='botoes Salvar $saveButtonClass' data-artigo-id='$idArtigo'>$saveButtonText</button>                   
                 </div>                                                 
                 <div class='ape'>
                     <button class='openCompartilhar botoes' data-token-artigo='$tokenArtigo'>Compartilhar</button>

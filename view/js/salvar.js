@@ -45,23 +45,24 @@
                 if (action === 'salvar') {
                     button.textContent = 'Em biblioteca';
                     button.classList.add('saved');
+                    // Exibe a notificação de sucesso somente se o artigo foi salvo
+                    if (!isSaved) {
+                        notification.style.display = 'block';
+                        setTimeout(() => {
+                            notification.classList.add('show');
+                        }, 10);
+
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                            setTimeout(() => {
+                                notification.style.display = 'none';
+                            }, 500);
+                        }, 3000);
+                    }
                 } else {
                     button.textContent = 'Salvar';
                     button.classList.remove('saved');
                 }
-
-                // Exibe a notificação de sucesso
-                notification.style.display = 'block';
-                setTimeout(() => {
-                    notification.classList.add('show');
-                }, 10);
-
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                    setTimeout(() => {
-                        notification.style.display = 'none';
-                    }, 500);
-                }, 3000);
             } else {
                 alert(data.error || 'Erro ao processar o artigo');
             }
