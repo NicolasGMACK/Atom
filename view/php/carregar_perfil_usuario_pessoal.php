@@ -59,9 +59,8 @@ if (isset($_GET['token'])) {
                echo '</div>
             </div>
             <div class="profile-navigation">
-                <div class="opcao marcada">Publicações</div>
-                <div class="opcao selecionar">Seguidores</div>
-                <div class="opcao selecionar">Biblioteca</div>           
+                <div class="opcao marcada" id="publicacoesBtn">Publicações</div>
+                <div class="opcao selecionar" id="bibliotecaBtn">Biblioteca</div>           
             </div>';
 
         } else {

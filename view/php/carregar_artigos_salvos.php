@@ -10,27 +10,22 @@
     // Função para obter os artigos salvos pelo usuário do perfil
     function carregarArtigosSalvos($conection, $userId, $PerfilId) { 
         // Usando prepared statements para segurança
-        $query = "
-            SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, 
+        $query = "            SELECT a.ART_VAR_TITULO, a.ART_VAR_DESCRICAO, a.ART_VAR_CATEGORIA, a.ART_VAR_STATUS, a.ART_DAT_POSTAGEM, 
                 u.USU_VAR_NAME, u.USU_VAR_IMGPERFIL, a.USU_INT_ID, a.ART_INT_ID,
                 (SELECT COUNT(*) FROM comentario WHERE ART_INT_ID = a.ART_INT_ID) AS num_comentarios,
                 (SELECT COUNT(*) FROM upvote WHERE UP_ART_INT_ID = a.ART_INT_ID) AS num_likes,
                 (SELECT COUNT(*) FROM upvote WHERE UP_USU_INT_ID = ? AND UP_ART_INT_ID = a.ART_INT_ID) AS user_liked,
-                (SELECT COUNT(*) FROM salvar WHERE USU_INT_ID = ? AND ART_INT_ID = a.ART_INT_ID) AS user_saved,
-                -- Contagem do número de artigos salvos
-                (SELECT COUNT(DISTINCT ART_INT_ID) FROM salvar WHERE USU_INT_ID = ?) AS num_artigos_salvos,
-                -- Contagem de autores distintos dos artigos salvos
-                (SELECT COUNT(DISTINCT a.USU_INT_ID) FROM salvar s JOIN artigo a ON s.ART_INT_ID = a.ART_INT_ID WHERE s.USU_INT_ID = ?) AS num_autores_distintos
+                (SELECT COUNT(*) FROM salvar WHERE USU_INT_ID = ? AND ART_INT_ID = a.ART_INT_ID) AS user_saved                
             FROM artigo a 
             JOIN usuario u ON a.USU_INT_ID = u.USU_INT_ID
             JOIN salvar s ON a.ART_INT_ID = s.ART_INT_ID
             WHERE s.USU_INT_ID = ?
-            ORDER BY a.ART_DAT_POSTAGEM DESC
+            ORDER BY s.SALVAR_DAT_CRIACAO DESC
         ";
 
         // Prepara a consulta SQL
         $stmt = $conection->prepare($query);
-        $stmt->bind_param('iiiii', $userId, $PerfilId, $PerfilId, $PerfilId, $PerfilId);
+        $stmt->bind_param('iii', $userId, $userId, $PerfilId);
         $stmt->execute();
         $resultado = $stmt->get_result();
         
@@ -48,16 +43,14 @@
                 $numLikes = $artigo['num_likes'];
                 $userLiked = $artigo['user_liked']; 
                 $userSaved = $artigo['user_saved']; 
-                $numArtigosSalvos = $artigo['num_artigos_salvos']; // Total de artigos salvos pelo usuário
-                $numAutoresDistintos = $artigo['num_autores_distintos']; // Número de autores distintos
-
+                
                 // Gerando os tokens
                 $tokenUser = obterOuCriarToken($conection, 'usuario', $idUsuario);
                 $tokenArtigo = obterOuCriarToken($conection, 'artigo', $idArtigo);
 
                 // Caminho da imagem de perfil do usuário
                 $fotoPerfil = empty($artigo['USU_VAR_IMGPERFIL']) ? '../view/img/user.jpg' : $artigo['USU_VAR_IMGPERFIL'];
-                    
+
                 // Formatação da data
                 $dataFormatada = strftime('%B %Y', strtotime($dataPostagem));
                 $dataFormatada = ucfirst($dataFormatada);

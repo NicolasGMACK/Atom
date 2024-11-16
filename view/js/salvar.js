@@ -77,7 +77,7 @@
             const artigoId = button.getAttribute('data-artigo-id');
             salvarArtigo(button, artigoId);
         });
-    });
+    });  
 
     // Verifica os artigos salvos ao carregar a página
     verificarArtigosSalvos();

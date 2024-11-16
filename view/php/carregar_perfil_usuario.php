@@ -62,9 +62,9 @@ if (isset($_GET['token'])) {
                     <a href="chat.php?token='. $tokenUser .'"><button class="btn msg">Mensagem</button></a>
                 </div>
             </div>
-            <div class="profile-navigation">
-                <div class="opcao marcada">Publicações</div>                
-                <div class="opcao selecionar">Biblioteca</div>           
+             <div class="profile-navigation">
+                <div class="opcao marcada" id="publicacoesBtn">Publicações</div>
+                <div class="opcao selecionar" id="bibliotecaBtn">Biblioteca</div>           
             </div>';
 
         } else {
