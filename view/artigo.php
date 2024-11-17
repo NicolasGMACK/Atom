@@ -90,9 +90,9 @@ include('../view/php/listar_compartilhar.php');
                             <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
                             <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
                         </div>
-                        <button class='botoes Salvar'>Salvar</button>
+                       <?php echo "<button class='botoes Salvar $saveButtonClass' data-artigo-id='$idArtigo'>$saveButtonText</button>"; ?>
                         
-                        <script src='../view/js/salvar.js'></script>
+                       
                         <button class='botoes openCompartilhar' data-token-artigo='<?= $tokenArtigo ?>'>Compartilhar</button>
                         <button class='baixar' onclick="window.location.href='../view/php/baixar_artigo.php?token=<?php echo $token; ?>'">
                             <i class='fa-regular fa-circle-down'></i><p>Download</p>
@@ -212,6 +212,7 @@ include('../view/php/listar_compartilhar.php');
 <script src="../view/js/showCompartilhar.js"></script>
 <script src="../view/js/compartilharArtigo.js"></script>
 <script src="../view/js/excluirArtigo.js"></script>
+<script src='../view/js/salvar.js'></script>
     
 
 </html>
