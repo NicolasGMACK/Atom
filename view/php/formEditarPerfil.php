@@ -3,10 +3,10 @@
 <div class="profile-actions">
     <button class="btn" onclick="mostrarFormulario()">Editar Perfil</button>
 </div>
-<?php
+<!-- <?php
 // A variável $FotoPerfil deverá conter o caminho da foto de perfil existente ou um valor padrão
-$FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
-?>
+//$FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg';
+ ?> -->
 
 <div id="modalEditarPerfil" class="modal"style="display: none;">
     <div class="modal-content">

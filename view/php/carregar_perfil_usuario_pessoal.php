@@ -33,8 +33,14 @@ if (isset($_GET['token'])) {
             $usuario = $resultUsuario->fetch_assoc();
 
             $nome = $usuario['USU_VAR_NAME'];
-            $FotoPerfil = !empty($usuario['USU_VAR_IMGPERFIL']) ? $usuario['USU_VAR_IMGPERFIL'] : '../view/img/user.jpg'; 
-            $FotoBanner = !empty($usuario['USU_VAR_IMGBACK']) ? $usuario['USU_VAR_IMGBACK'] : '../view/img/background-default.png'; 
+            // Verifica se o caminho da foto de perfil existe no banco de dados e se o arquivo existe no servidor
+            $FotoPerfil = (!empty($usuario['USU_VAR_IMGPERFIL']) && file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $usuario['USU_VAR_IMGPERFIL'])) 
+            ? $usuario['USU_VAR_IMGPERFIL'] 
+            : '../view/img/user.jpg';
+            // Verifica se o caminho da imagem de fundo existe no banco de dados e se o arquivo existe no servidor
+            $FotoBanner = (!empty($usuario['USU_VAR_IMGBACK']) && file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $usuario['USU_VAR_IMGBACK'])) 
+            ? $usuario['USU_VAR_IMGBACK'] 
+            : '../view/img/background-default.png';
             $desc = !empty($usuario['USU_VAR_DESC']) ? $usuario['USU_VAR_DESC'] : 'Sem descrição.';
             $cidade = !empty($usuario['USU_VAR_CIDADE']) ? $usuario['USU_VAR_CIDADE'] : 'Não especificado.';
             $ocupacao = !empty($usuario['USU_VAR_OCUPACAO']) ? $usuario['USU_VAR_OCUPACAO'] : 'Não especificado.';
