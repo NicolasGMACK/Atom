@@ -1,7 +1,8 @@
 <?php
 require_once('conection.php'); // Conexão com o banco de dados
-
 require_once('protect.php'); //
+
+$userId = $_SESSION['id'];
 // Função para carregar usuários com quem o usuário tem conversa
 function carregarUsuariosConversa($conection, $userId) {
     // Consulta para buscar usuários com quem o usuário tem conversa e incluir CONV_INT_ID

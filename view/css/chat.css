@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.sidebar h1 {
+  margin-bottom: 10px;
+}
+
+.search-bar {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.user-list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.user-list p {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-list a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.timestamp {
+  font-size: 0.75em;
+  color: #555;
+  margin-left: 10px; /* Espaçamento entre o texto da mensagem e o horário */
+  display: flex;
+  align-items: end;
+}
+
+.user {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user:hover {
+  background-color: #f0f0f0;
+}
+
+.chat {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.no_chat {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no_chat h1 {
+  width: 40%;
+  text-align: center;
+  word-break: normal;
+}
+
+.chat-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.chat-content {
+  flex-grow: 1;
+  background-color: #e4e6eb;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin: 10px 0;
+  max-width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column; /* Mantém texto e timestamp empilhados */
+  text-align: left;
+  justify-content: space-between; /* Alinha texto e horário */
+  align-items: flex-start; /* Padrão para mensagens "other" */
+}
+
+.message.user {
+  background-color: #d1e7dd;
+  align-self: flex-end; /* Alinha mensagens do usuário à direita */
+}
+
+.message.other {
+  background-color: #ffffff;
+  align-self: flex-start; /* Alinha mensagens de outros usuários à esquerda */
+}
+
+.message .timestamp {
+  font-size: 0.75em;
+  color: #555;
+  margin-top: 5px; /* Espaçamento entre texto e horário */
+  align-self: flex-end; /* Mantém o horário alinhado ao lado certo */
+}
+
+.chat-input {
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input form {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.chat-input button {
+  padding: 8px 12px;
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #005bb5;
+}
+.date-separator {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 0.85em;
+  color: #555;
+  background-color: #e4e6eb;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
