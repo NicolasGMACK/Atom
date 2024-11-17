@@ -42,7 +42,7 @@ function submitReply(commentId) {
                 try {
                     const response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
-                        alert('Comentário enviado!');  // Exibe a mensagem de sucesso
+                       // alert('Comentário enviado!');  // Exibe a mensagem de sucesso
                         textarea.value = '';  // Limpa o campo de texto
                         location.reload();  // Atualiza a página
                     } else {

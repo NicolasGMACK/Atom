@@ -17,24 +17,18 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
     $fotoBackPath = null;
 
     // Diretório completo para upload de imagens (caminho físico)
-    $uploadDir = __DIR__ . '/../../uploads/perfis/'; // Caminho relativo para garantir que seja criado dentro de Atom
-    $uploadDir = str_replace('\\', '/', $uploadDir); // Ajusta barras invertidas para barras normais
+    $uploadDir = __DIR__ . '/../../uploads/perfis/';
+    $uploadDir = str_replace('\\', '/', $uploadDir);
 
     // Verifica se o diretório existe e cria se não existir
     if (!is_dir($uploadDir)) {
-        if (mkdir($uploadDir, 0777, true)) {
-            echo "Diretório $uploadDir criado com sucesso.<br>";
-        } else {
-            echo "Erro ao criar o diretório $uploadDir.<br>";
+        if (!mkdir($uploadDir, 0777, true)) {
             $erro = "O diretório de upload não existe e não pode ser criado.";
         }
-    } else {
-        echo "Diretório $uploadDir já existe e tem permissão de escrita.<br>";
     }
 
     // Processa a imagem de perfil (se não for removida)
     if (isset($_POST['removerFotoPerfil']) && $_POST['removerFotoPerfil'] == 'sim') {
-        // Busca o caminho da foto atual no banco antes de excluir
         $sql = "SELECT USU_VAR_IMGPERFIL FROM usuario u
                 JOIN tokens_usuario t ON u.USU_INT_ID = t.USU_INT_ID
                 WHERE t.TOK_USU_VAR_TOK = ?";
@@ -44,17 +38,13 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_result($fotoAtual);
         $stmt->fetch();
         $stmt->close();
-    
-        // Se o caminho da foto existe e não é um caminho vazio, tenta deletar o arquivo
+
         if ($fotoAtual && file_exists($_SERVER['DOCUMENT_ROOT'] . $fotoAtual)) {
-            if (unlink($_SERVER['DOCUMENT_ROOT'] . $fotoAtual)) {
-                echo "Arquivo de foto de perfil removido do servidor.<br>";
-            } else {
-                echo "Erro ao tentar remover o arquivo de foto de perfil do servidor.<br>";
+            if (!unlink($_SERVER['DOCUMENT_ROOT'] . $fotoAtual)) {
+                $erro = "Erro ao tentar remover o arquivo de foto de perfil do servidor.";
             }
         }
-    
-        // Atualiza o banco de dados com NULL para foto de perfil
+
         $sqlUpdate = "UPDATE usuario u
                       JOIN tokens_usuario t ON u.USU_INT_ID = t.USU_INT_ID
                       SET u.USU_VAR_IMGPERFIL = NULL
@@ -63,42 +53,26 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtUpdate->bind_param('s', $tokenPessoal);
         $stmtUpdate->execute();
         $stmtUpdate->close();
-        
-        echo "Caminho da foto de perfil removido do banco de dados.<br>";
 
-        // Atualiza a variável de sessão para refletir a remoção da foto
-        $_SESSION['ftperfil'] = NULL; // Agora, a variável de sessão reflete que a foto foi removida
+        $_SESSION['ftperfil'] = NULL;
     } elseif (!empty($_FILES['USU_VAR_IMGPERFIL']['name']) && $_FILES['USU_VAR_IMGPERFIL']['error'] == 0) {
         $fotoPerfil = $_FILES['USU_VAR_IMGPERFIL'];
         $fotoPerfilName = uniqid() . '_' . basename($fotoPerfil['name']);
         $fotoPerfilPath = $uploadDir . $fotoPerfilName;
 
-        // Caminho do arquivo temporário
-        echo "Caminho do arquivo temporário de upload: " . $fotoPerfil['tmp_name'] . "<br>";
-
-        // Tenta mover o arquivo usando move_uploaded_file
-        if (move_uploaded_file($fotoPerfil['tmp_name'], $fotoPerfilPath)) {
-            echo "Foto de perfil movida com sucesso. <br>";
-        } else {
+        if (!move_uploaded_file($fotoPerfil['tmp_name'], $fotoPerfilPath)) {
             $erro = "Erro ao mover o arquivo de foto de perfil. Código de erro: " . $_FILES['USU_VAR_IMGPERFIL']['error'];
-            echo "Erro: $erro <br>";
         }
 
-        // Caminho absoluto do arquivo no servidor
-        $fotoPerfilPath = realpath($fotoPerfilPath);  // Obtém o caminho completo do arquivo
-        $fotoPerfilPath = str_replace('\\', '/', $fotoPerfilPath);  // Corrige o caminho
-
-        // Caminho público para o banco de dados
+        $fotoPerfilPath = realpath($fotoPerfilPath);
+        $fotoPerfilPath = str_replace('\\', '/', $fotoPerfilPath);
         $fotoPerfilPublicPath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $fotoPerfilPath);
-        echo "Caminho público da foto de perfil: $fotoPerfilPublicPath <br>";
 
-        // Atualiza a variável de sessão com o novo caminho da foto de perfil
         $_SESSION['ftperfil'] = $fotoPerfilPublicPath;
     }
 
     // Processa a imagem de fundo (se não for removida)
     if (isset($_POST['removerFotoBanner']) && $_POST['removerFotoBanner'] == 'sim') {
-        // Busca o caminho da foto de fundo atual no banco antes de excluir
         $sql = "SELECT USU_VAR_IMGBACK FROM usuario u
                 JOIN tokens_usuario t ON u.USU_INT_ID = t.USU_INT_ID
                 WHERE t.TOK_USU_VAR_TOK = ?";
@@ -108,17 +82,13 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_result($fotoBackAtual);
         $stmt->fetch();
         $stmt->close();
-    
-        // Se o caminho do banner existe e não é vazio, tenta deletar o arquivo
+
         if ($fotoBackAtual && file_exists($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
-            if (unlink($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
-                echo "Arquivo de banner removido do servidor.<br>";
-            } else {
-                echo "Erro ao tentar remover o arquivo de banner do servidor.<br>";
+            if (!unlink($_SERVER['DOCUMENT_ROOT'] . $fotoBackAtual)) {
+                $erro = "Erro ao tentar remover o arquivo de banner do servidor.";
             }
         }
-    
-        // Atualiza o banco de dados com NULL para foto de fundo
+
         $sqlUpdate = "UPDATE usuario u
                       JOIN tokens_usuario t ON u.USU_INT_ID = t.USU_INT_ID
                       SET u.USU_VAR_IMGBACK = NULL
@@ -127,64 +97,46 @@ if ($tokenPessoal && $_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtUpdate->bind_param('s', $tokenPessoal);
         $stmtUpdate->execute();
         $stmtUpdate->close();
-        
-        echo "Caminho da imagem de fundo removido do banco de dados.<br>";
 
-        // Atualiza a variável de sessão para refletir a remoção do banner
-        $_SESSION['ftbackground'] = NULL; // Agora, a variável de sessão reflete que o banner foi removido
+        $_SESSION['ftbackground'] = NULL;
     } elseif (!empty($_FILES['USU_VAR_IMGBACK']['name']) && $_FILES['USU_VAR_IMGBACK']['error'] == 0) {
         $fotoBack = $_FILES['USU_VAR_IMGBACK'];
         $fotoBackName = uniqid() . '_' . basename($fotoBack['name']);
         $fotoBackPath = $uploadDir . $fotoBackName;
 
-        echo "Caminho do arquivo temporário de upload de banner: " . $fotoBack['tmp_name'] . "<br>";
-
-        if (move_uploaded_file($fotoBack['tmp_name'], $fotoBackPath)) {
-            echo "Banner movido com sucesso. <br>";
-        } else {
+        if (!move_uploaded_file($fotoBack['tmp_name'], $fotoBackPath)) {
             $erro = "Erro ao mover o arquivo de banner. Código de erro: " . $_FILES['USU_VAR_IMGBACK']['error'];
-            echo "Erro: $erro <br>";
         }
 
-        $fotoBackPath = realpath($fotoBackPath);  // Caminho completo do arquivo
-        $fotoBackPath = str_replace('\\', '/', $fotoBackPath);  // Corrige o caminho
-
+        $fotoBackPath = realpath($fotoBackPath);
+        $fotoBackPath = str_replace('\\', '/', $fotoBackPath);
         $fotoBackPublicPath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $fotoBackPath);
-        echo "Caminho público do banner: $fotoBackPublicPath <br>";
 
-        // Atualiza a variável de sessão com o novo caminho do banner
         $_SESSION['ftbackground'] = $fotoBackPublicPath;
     }
 
-    // Se não houve erro, continua com o update no banco
+    // Atualiza o banco de dados se não houve erro
     if (empty($erro)) {
-        // Atualiza os dados no banco
         $sql = "UPDATE usuario u
                 JOIN tokens_usuario t ON u.USU_INT_ID = t.USU_INT_ID
                 SET u.USU_VAR_NAME = ?, u.USU_VAR_DESC = ?, u.USU_VAR_CIDADE = ?, u.USU_VAR_OCUPACAO = ?, 
                     u.USU_VAR_IMGPERFIL = COALESCE(?, u.USU_VAR_IMGPERFIL), 
                     u.USU_VAR_IMGBACK = COALESCE(?, u.USU_VAR_IMGBACK)
                 WHERE t.TOK_USU_VAR_TOK = ?";
-        
+
         $stmt = $conection->prepare($sql);
         $stmt->bind_param('sssssss', $nome, $desc, $cidade, $ocupacao, $fotoPerfilPublicPath, $fotoBackPublicPath, $tokenPessoal);
 
         if ($stmt->execute()) {
-            // Atualiza a variável de sessão com o novo nome
             $_SESSION['name'] = $nome;
-            echo "<script>
-                    alert('Perfil atualizado com sucesso!');
-                    window.location.href = '../perfil_pessoal.php?token=$tokenPessoal';
-                  </script>";
+            echo "<script>window.location.href = '../perfil_pessoal.php?token=$tokenPessoal';</script>";
             exit();
         } else {
             $erro = "Erro ao atualizar o perfil.";
-            echo "Erro: $erro <br>";
         }
     }
 } else {
     $erro = "Acesso inválido.";
-    echo "Erro: $erro <br>";
 }
 
 // Exibe a mensagem de erro como um alert, caso haja erro
