@@ -57,9 +57,9 @@ if (isset($_GET['token'])) {
                    //     <p><strong>321</strong> seguidores</p>
                  echo '   </div>
                </div>
-                <div class="profile-actions">
-                    <button class="btn">Seguir</button>
-                    <a href="chat.php?token='. $tokenUser .'"><button class="btn msg">Mensagem</button></a>
+                <div class="profile-actions">';
+                 //   <button class="btn">Seguir</button>
+                 echo   '<a href="chat.php?token='. $tokenUser .'"><button class="btn msg">Mensagem</button></a>
                 </div>
             </div>
              <div class="profile-navigation">
