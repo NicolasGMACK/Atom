@@ -21,19 +21,18 @@ include('../view/php/listar_compartilhar.php');
 <body>
     <nav>
         <ul class="sidebar">
-            <li><a href="home.php"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
-            <li><a href="">Blog</a></li>
-            <li><a href="">Products</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Forum</a></li>
-            <li><a href="">Login</a></li>
+            <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li><a class="topic" href="../view/about.html">Sobre</a></li>
+            <li><a class="topic" href="../view/project.html">Projeto</a></li>
+            <li><a class="topic" href="../view/chat.php"><i class="fa-solid fa-comments"></i></a></li>            
         </ul>
-        <ul>
+        <ul>            
             <li><a class="atom" href="home.php">Atom<img src="../view/img/logo3.png" alt=""></a></li>
+            <li><a class="topic" href="../view/chat.php"><i class="fa-solid fa-comments"></i></a></li>
             <li class="hideOnMobile"><a class="topic" href="../view/about.html">Sobre</a></li>
-            <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>
+            <li class="hideOnMobile"><a class="topic" href="../view/project.html">Projeto</a></li>                  
             <li class="profile">
-                <div id="profileDropdown" class="topic usuario">
+            <div id="profileDropdown" class="topic usuario">
                 <div  id="profileDropdown" class="foto user-space">
                 <?php   if (empty($_SESSION['ftperfil'])) {
                     $_SESSION['ftperfil'] = '../view/img/user.jpg';
@@ -43,10 +42,7 @@ include('../view/php/listar_compartilhar.php');
                <?php echo $_SESSION['name'] ?>
             </div>
             </li>
-            <div class='notification' id='notification'>
-                    <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
-                    <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
-                </div>
+               
                 <div id="dropdownMenu" class="dropdown-content">
                 <a href="perfil_pessoal.php?token=<?php echo $tokenPessoal; ?>">Visualizar perfil</a>
                     <a href="#">Configurações</a>
@@ -56,7 +52,7 @@ include('../view/php/listar_compartilhar.php');
                 <script src="js/perfilDropdown.js"></script>
             <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
         </ul>
-    </nav>         
+    </nav>          
         <!-- Capa do perfil -->
          <div class="topo1">            
             <div class="topo1-bloco"> 
