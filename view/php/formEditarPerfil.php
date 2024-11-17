@@ -153,7 +153,7 @@ function removerFotoBackground() {
 
     // Usando imagem padrão de "sem foto"
     if (checkbox.checked) {
-        imgElement.src = '../view/img/user.jpg'; // Substitua pelo caminho correto
+        imgElement.src = '../view/img/background-default.png'; // Substitua pelo caminho correto
     } else {
         imgElement.src = '<?php echo $FotoBanner; ?>'; // A imagem atual
     }
