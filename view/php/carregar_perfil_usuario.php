@@ -52,11 +52,11 @@ if (isset($_GET['token'])) {
                 </div>
                 <div class="profile-name">
                     <h1>' . $nome . '</h1>
-                    <div class="seguintes">
-                        <p><strong>567</strong> seguindo</p>
-                        <p><strong>321</strong> seguidores</p>
-                    </div>
-                </div>
+                   <div class="seguintes">';
+                   //     <p><strong>567</strong> seguindo</p>
+                   //     <p><strong>321</strong> seguidores</p>
+                 echo '   </div>
+               </div>
                 <div class="profile-actions">
                     <button class="btn">Seguir</button>
                     <a href="chat.php?token='. $tokenUser .'"><button class="btn msg">Mensagem</button></a>

@@ -49,10 +49,10 @@ if (isset($_GET['token'])) {
                 </div>
                 <div class="profile-name">
                     <h1>' . $nome . '</h1>
-                    <div class="seguintes">
-                        <p><strong>567</strong> seguindo</p>
-                        <p><strong>321</strong> seguidores</p>
-                    </div>
+                    <div class="seguintes">';
+                     //   <p><strong>567</strong> seguindo</p>
+                    //    <p><strong>321</strong> seguidores</p>
+                   echo '</div>
                 </div>
                 <div class="profile-actions">';                   
                         include_once('formEditarPerfil.php');
