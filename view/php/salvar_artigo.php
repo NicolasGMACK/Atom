@@ -26,7 +26,7 @@ if (isset($_POST['artigo_id']) && isset($_POST['action'])) {
 
             if ($stmtInserir->execute()) {
                 echo json_encode(['success' => true, 'message' => 'Artigo salvo com sucesso']);
-            } else {
+            }  else {
                 echo json_encode(['success' => false, 'error' => 'Erro ao salvar o artigo']);
             }
         }
