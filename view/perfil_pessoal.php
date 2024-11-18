@@ -51,7 +51,12 @@ include('../view/php/listar_compartilhar.php');
                 <script src="js/perfilDropdown.js"></script>
             <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
         </ul>
-    </nav>          
+    </nav>
+    <!-- Bloco de notificação -->
+    <div class='notification' id='notification'>
+                            <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
+                            <p id='notificationText'>Você pode encontrar o arquivo no seu perfil.</p>
+                        </div>
         <!-- Capa do perfil -->
          <div class="topo1">            
             <div class="topo1-bloco"> 
