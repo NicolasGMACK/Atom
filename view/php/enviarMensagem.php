@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($mensagem)) {
             // Prepara a consulta para inserir a mensagem
             $sqlEnvio = "INSERT INTO mensagens (CONV_INT_ID, USU_INT_ID, MSG_VAR_CONTEUDO, MSG_ARTIGO_TOKEN) 
-                         VALUES (?, ?, ?, ?)";  // A coluna MSG_ARTIGO_TOKEN é opcional, dependendo de como você está tratando os artigos
+                         VALUES (?, ?, ?, ?)";
             $stmt = $conection->prepare($sqlEnvio);
 
             if ($stmt) {
@@ -23,21 +23,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Executa a consulta e verifica se foi bem-sucedida
                 if ($stmt->execute()) {
-                    echo "Mensagem enviada com sucesso!";
+                    // Retorna o ID da mensagem recém-criada
+                    $lastMessageId = $stmt->insert_id;
+                    echo json_encode([
+                        'status' => 'success',
+                        'message' => 'Mensagem enviada com sucesso!',
+                        'lastMessageId' => $lastMessageId,
+                    ]);
                 } else {
-                    echo "Erro ao enviar mensagem: " . htmlspecialchars($stmt->error);
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Erro ao enviar mensagem: ' . htmlspecialchars($stmt->error),
+                    ]);
                 }
                 $stmt->close();
             } else {
-                echo "Erro ao preparar a consulta: " . htmlspecialchars($conection->error);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Erro ao preparar a consulta: ' . htmlspecialchars($conection->error),
+                ]);
             }
         } else {
-            echo "Mensagem não pode estar vazia.";
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Mensagem não pode estar vazia.',
+            ]);
         }
     } else {
-        echo "Erro: ID da conversa, mensagem ou token não enviados.";
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'ID da conversa, mensagem ou token não enviados.',
+        ]);
     }
 } else {
-    echo "Requisição inválida.";
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Requisição inválida.',
+    ]);
 }
 ?>
