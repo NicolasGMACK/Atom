@@ -5,11 +5,16 @@ function obterOuCriarToken($conection, $tipo, $id) {
         $tabela = 'tokens_usuario';
         $colunaId = 'USU_INT_ID';
         $colunaToken = 'TOK_USU_VAR_TOK';
+
     } elseif ($tipo === 'artigo') {
         $tabela = 'tokens_artigo';
         $colunaId = 'ART_INT_ID';
         $colunaToken = 'TOK_ART_VAR_TOK';
-    } else {
+    } elseif ($tipo === 'conversa') {
+        $tabela = 'tokens_conversa';
+        $colunaId = 'CONV_INT_ID';
+        $colunaToken = 'TOK_CON_VAR_TOK';
+        } else {
         throw new Exception("Tipo de token inválido.");
     }
 

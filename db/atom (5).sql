@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2024 at 01:29 PM
+-- Generation Time: Nov 18, 2024 at 01:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,10 +43,11 @@ CREATE TABLE `artigo` (
 --
 
 INSERT INTO `artigo` (`ART_INT_ID`, `ART_VAR_TITULO`, `ART_VAR_DESCRICAO`, `ART_VAR_CATEGORIA`, `ART_VAR_STATUS`, `ART_VAR_ARQUIVO`, `USU_INT_ID`, `ART_DAT_POSTAGEM`) VALUES
-(24, 'CAPELETI\'S TEORY BITCH', 'ele tem ideias.', 'Ciências', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/sara.pdf', 21, '2024-11-16 11:22:10'),
 (25, 'ATOMICOS GUYS', 'kkk', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/Aula 21 -  Desenvolvimento de Indicadores e Definição de Metas -v1.pdf', 22, '2024-11-16 12:31:32'),
 (29, 'Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.', 'www', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/Aula 04 - Revisao MVC e Criando Servlet Pratica (1).pdf', 20, '2024-11-16 14:35:39'),
-(30, 'ANIVERSARIO DA SARA', 'www', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/documentos.pdf', 22, '2024-11-16 17:03:23');
+(30, 'ANIVERSARIO DA SARA', 'www', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/documentos.pdf', 22, '2024-11-16 17:03:23'),
+(35, 'jjjjjjjjjj', 'jjjjjjjjjjjjjjjjjj', 'Ciências', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/sara (1).pdf', 23, '2024-11-17 17:36:10'),
+(36, 'CAPELETI HAS THEORIES', 'o cara tem', 'Ciências', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/Aula 8 - Logica proposicional (1).pdf', 21, '2024-11-17 21:34:43');
 
 -- --------------------------------------------------------
 
@@ -62,18 +63,6 @@ CREATE TABLE `comentario` (
   `COM_DAT_POSTAGEM` datetime DEFAULT current_timestamp(),
   `COM_INT_COM_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `comentario`
---
-
-INSERT INTO `comentario` (`COM_INT_ID`, `COM_VAR_CONTEUDO`, `USU_INT_ID`, `ART_INT_ID`, `COM_DAT_POSTAGEM`, `COM_INT_COM_ID`) VALUES
-(26, 'Boa vitinho foi bem foi bem', 20, 24, '2024-11-16 11:23:21', NULL),
-(27, 'aeeee', 20, 24, '2024-11-16 11:36:09', NULL),
-(28, 'ae nada maluCAO', 20, 24, '2024-11-16 11:36:17', 26),
-(29, 'aeee nada nicolas, rlx', 21, 24, '2024-11-16 11:36:46', 27),
-(30, 'eu realmente tenho.', 21, 24, '2024-11-16 11:36:57', NULL),
-(31, 'simm', 21, 24, '2024-11-16 11:37:12', 26);
 
 -- --------------------------------------------------------
 
@@ -92,9 +81,11 @@ CREATE TABLE `conversas` (
 --
 
 INSERT INTO `conversas` (`CONV_INT_ID`, `USU_INT_ID_1`, `USU_INT_ID_2`) VALUES
-(25, 21, 20),
-(26, 20, 22),
-(27, 23, 22);
+(30, 22, 20),
+(31, 22, 21),
+(32, 21, 20),
+(33, 23, 22),
+(34, 23, 21);
 
 -- --------------------------------------------------------
 
@@ -117,38 +108,12 @@ CREATE TABLE `mensagens` (
 --
 
 INSERT INTO `mensagens` (`MSG_INT_ID`, `CONV_INT_ID`, `USU_INT_ID`, `MSG_VAR_CONTEUDO`, `MSG_DAT_ENVIO`, `MSG_TIPO`, `MSG_ARTIGO_TOKEN`) VALUES
-(4, 25, 21, 'Bom dia cara', '2024-11-16 11:22:39', 'texto', NULL),
-(5, 25, 21, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 11:22:47', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(6, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:11:21', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(7, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:35:04', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(8, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=92271ce1d5ee16583c603033113f1ed5\" target=\"_blank\">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>', '2024-11-16 12:35:47', 'artigo', '92271ce1d5ee16583c603033113f1ed5'),
-(9, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=92271ce1d5ee16583c603033113f1ed5\" target=\"_blank\">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>', '2024-11-16 12:36:07', 'artigo', '92271ce1d5ee16583c603033113f1ed5'),
-(10, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:36:20', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(11, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:43:14', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(12, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:43:26', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(13, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:45:22', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(14, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:45:22', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(15, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:45:44', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(16, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:45:44', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(17, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:48:19', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(18, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=9d385bb7911ca5df3c479c4c4f0db984\" target=\"_blank\">ATOMICOS GUYS</a>', '2024-11-16 12:48:19', 'artigo', '9d385bb7911ca5df3c479c4c4f0db984'),
-(19, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=92271ce1d5ee16583c603033113f1ed5\" target=\"_blank\">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>', '2024-11-16 12:48:28', 'artigo', '92271ce1d5ee16583c603033113f1ed5'),
-(20, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=92271ce1d5ee16583c603033113f1ed5\" target=\"_blank\">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>', '2024-11-16 12:48:29', 'artigo', '92271ce1d5ee16583c603033113f1ed5'),
-(21, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:48:41', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(22, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:48:41', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(23, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:48:59', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(24, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=92271ce1d5ee16583c603033113f1ed5\" target=\"_blank\">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>', '2024-11-16 12:56:31', 'artigo', '92271ce1d5ee16583c603033113f1ed5'),
-(25, 25, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:56:34', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(26, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-16 12:56:34', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce'),
-(27, 26, 22, 'Confira este artigo: <a href=\"artigo.php?token=365b5ea3a3b463aa8b44d21c4cc2ae52\" target=\"_blank\">Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.</a>', '2024-11-16 16:24:05', 'artigo', '365b5ea3a3b463aa8b44d21c4cc2ae52'),
-(28, 26, 22, 'Confira este artigo: <a href=\"artigo.php?token=9c979a37a6a1cadc3c0fa8f5e4488d0a\" target=\"_blank\">ANIVERSARIO DA SARA</a>', '2024-11-16 17:04:01', 'artigo', '9c979a37a6a1cadc3c0fa8f5e4488d0a'),
-(29, 26, 22, 'Confira este artigo: <a href=\"artigo.php?token=9c979a37a6a1cadc3c0fa8f5e4488d0a\" target=\"_blank\">ANIVERSARIO DA SARA</a>', '2024-11-16 17:18:38', 'artigo', '9c979a37a6a1cadc3c0fa8f5e4488d0a'),
-(30, 26, 20, 'Confira este artigo: <a href=\"artigo.php?token=9c979a37a6a1cadc3c0fa8f5e4488d0a\" target=\"_blank\">ANIVERSARIO DA SARA</a>', '2024-11-16 17:55:28', 'artigo', '9c979a37a6a1cadc3c0fa8f5e4488d0a'),
-(31, 27, 23, 'AAAAAAAAAAAA', '2024-11-17 08:42:08', 'texto', NULL),
-(32, 27, 23, 'Confira este artigo: <a href=\"artigo.php?token=73e706dacdb1f82ae905488933e3b37d\" target=\"_blank\">gffffffffffffff</a>', '2024-11-17 08:42:13', 'artigo', '73e706dacdb1f82ae905488933e3b37d'),
-(33, 27, 23, 'BORA BILL', '2024-11-17 08:42:30', 'texto', NULL),
-(34, 27, 23, 'eae', '2024-11-17 08:42:34', 'texto', NULL),
-(35, 27, 23, 'Confira este artigo: <a href=\"artigo.php?token=f960b76ae7f043b4b26f587c3ba5edce\" target=\"_blank\">CAPELETI&#039;S TEORY BITCH</a>', '2024-11-17 08:59:55', 'artigo', 'f960b76ae7f043b4b26f587c3ba5edce');
+(90, 32, 20, 'eae', '2024-11-17 17:57:22', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
+(91, 32, 20, 'bobo', '2024-11-17 17:57:26', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
+(92, 32, 21, 'bobo é voce canalha', '2024-11-17 17:57:54', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
+(93, 32, 21, 'Confira este artigo: <a href=\"artigo.php?token=fd663acb8ceb7f3128543ead887f9880\" target=\"_blank\">jjjjjjjjjj</a>', '2024-11-17 17:57:59', 'artigo', 'fd663acb8ceb7f3128543ead887f9880'),
+(94, 32, 21, '<a href=\"faz o l\">eae</a>', '2024-11-17 17:58:06', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
+(95, 30, 20, 'bom dia Kayky Paiva', '2024-11-17 21:32:11', 'texto', '1aa7cc1a4f44d7a039b56488fb182452');
 
 -- --------------------------------------------------------
 
@@ -169,11 +134,13 @@ CREATE TABLE `salvar` (
 
 INSERT INTO `salvar` (`SALVAR_INT_ID`, `USU_INT_ID`, `ART_INT_ID`, `SALVAR_DAT_CRIACAO`) VALUES
 (89, 22, 25, '2024-11-16 20:30:34'),
-(98, 20, 29, '2024-11-16 20:45:02'),
 (209, 23, 30, '2024-11-17 11:59:16'),
 (210, 23, 29, '2024-11-17 11:59:18'),
 (211, 23, 25, '2024-11-17 11:59:19'),
-(212, 23, 24, '2024-11-17 11:59:21');
+(213, 20, 29, '2024-11-18 00:31:23'),
+(214, 20, 35, '2024-11-18 00:31:26'),
+(215, 20, 30, '2024-11-18 00:31:27'),
+(216, 20, 25, '2024-11-18 00:31:28');
 
 -- --------------------------------------------------------
 
@@ -192,10 +159,34 @@ CREATE TABLE `tokens_artigo` (
 --
 
 INSERT INTO `tokens_artigo` (`TOK_ART_INT_ID`, `ART_INT_ID`, `TOK_ART_VAR_TOK`) VALUES
-(28, 24, 'f960b76ae7f043b4b26f587c3ba5edce'),
-(29, 25, '9d385bb7911ca5df3c479c4c4f0db984'),
-(33, 29, '365b5ea3a3b463aa8b44d21c4cc2ae52'),
-(34, 30, '9c979a37a6a1cadc3c0fa8f5e4488d0a');
+(62, 30, 'a0def0e31e2737846470d4742282486e'),
+(63, 29, 'a724a708ab8e263b7875f6a30bb375eb'),
+(64, 25, '7f266c59f54659cb0694d962ec8fbf8f'),
+(67, 35, 'fd663acb8ceb7f3128543ead887f9880'),
+(68, 36, 'b6f651c5c30639f5fbfa60c20d05ee65');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tokens_conversa`
+--
+
+CREATE TABLE `tokens_conversa` (
+  `TOK_CON_INT_ID` int(11) NOT NULL,
+  `CONV_INT_ID` int(11) NOT NULL,
+  `TOK_CON_VAR_TOK` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tokens_conversa`
+--
+
+INSERT INTO `tokens_conversa` (`TOK_CON_INT_ID`, `CONV_INT_ID`, `TOK_CON_VAR_TOK`) VALUES
+(6, 30, '1aa7cc1a4f44d7a039b56488fb182452'),
+(7, 31, '88b96db45e6746aea78a9b1bfa0b0bbc'),
+(8, 32, 'd7d1b024a0908861b1f1ee8c82addcca'),
+(9, 33, '879f3346e2e937a7d36e65f387fa4671'),
+(10, 34, '6f160d8bf12838d38adaea5aa6128e34');
 
 -- --------------------------------------------------------
 
@@ -214,7 +205,6 @@ CREATE TABLE `tokens_usuario` (
 --
 
 INSERT INTO `tokens_usuario` (`TOK_USU_INT_ID`, `USU_INT_ID`, `TOK_USU_VAR_TOK`) VALUES
-(20, 19, '70bb676e303ecf5a9fe416cb794a6bfb'),
 (21, 20, 'e97a8a024b37db81a45a65738709b63f'),
 (22, 21, 'b2b5c0dbe70b0b48f777ab2c2622fb5c'),
 (23, 22, '10f30d689b97cbe5f0a5b40fdebee2bd'),
@@ -238,8 +228,9 @@ CREATE TABLE `upvote` (
 --
 
 INSERT INTO `upvote` (`UP_INT_ID`, `UP_USU_INT_ID`, `UP_ART_INT_ID`, `UP_DAT_DATA`) VALUES
-(43, 20, 24, '2024-11-16 12:11:23'),
-(48, 22, 30, '2024-11-16 17:30:56');
+(48, 22, 30, '2024-11-16 17:30:56'),
+(63, 21, 35, '2024-11-17 21:34:53'),
+(64, 21, 30, '2024-11-17 21:34:55');
 
 -- --------------------------------------------------------
 
@@ -266,7 +257,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`USU_INT_ID`, `USU_VAR_NAME`, `USU_VAR_EMAIL`, `USU_VAR_PASSWORD`, `USU_VAR_IMGPERFIL`, `USU_VAR_IMGBACK`, `USU_VAR_DESC`, `USU_VAR_CIDADE`, `USU_VAR_OCUPACAO`) VALUES
 (20, 'MRFREEZE', 'nicolasgmack@gmail.com', '$2y$10$AhhXQ1DerspAN4Rf9aSvt.If.h1/L86/C7l/3YkPFY6PvZoDgyjsS', '/pi-atom/Atom/uploads/perfis/6738a9d9602e8_67350516bb689_6731f5d747b77_mrfreeze-corpo-removebg-preview.png', '/pi-atom/Atom/uploads/perfis/6738a9d96056b_67350516bb318_6731f630a924a_mrfreeze-inteiro-preto.png', 'the freezer mister', 'gelo', 'gelado'),
 (21, 'Vitor Capeleti', 'v@gmail.com', '$2y$10$nvfLGJdwwjHs8PVaA.036eUi34wq.cFImXPb2wg2Wl7lpzhTwbZ6y', '/pi-atom/Atom/uploads/perfis/6738aa6e1c175_67314d609936a_capeleti.png', '/pi-atom/Atom/uploads/perfis/6738aa6e1c4a2_6731524473ec4_fundo-login.png', 'the vitor capeleti, diferente dos demais. GOAT!', 'cidado', 'ele tem'),
-(22, 'Kayky Paiva', 'k@gmail.com', '$2y$10$GPxJJTGEe0RCCVG7YGBK6ONI7QOJcSgdM2XVgMusacVmpItCE8Pqy', '/pi-atom/Atom/uploads/perfis/6738fd534cd64_task.png', NULL, 'Sem descrição.', 'Não especificado.', 'Não especificado.'),
+(22, 'Kayky Paiva', 'k@gmail.com', '$2y$10$GPxJJTGEe0RCCVG7YGBK6ONI7QOJcSgdM2XVgMusacVmpItCE8Pqy', '/pi-atom/Atom/uploads/perfis/673a8b4f67425_kayky.png', '/pi-atom/Atom/uploads/perfis/673a8b4f6764a_background-4.png', 'Sem descrição.', 'Não especificado.', 'Não especificado.'),
 (23, 'Tirano', 't@gmail.com', '$2y$10$cELom.ZbciiN6ILJo5WjAOyqkSOzuLpq/mEP5irmXGI3i346HHRoy', NULL, NULL, 'Sem descrição.', 'Não especificado.', 'Não especificado.');
 
 --
@@ -319,14 +310,21 @@ ALTER TABLE `salvar`
 --
 ALTER TABLE `tokens_artigo`
   ADD PRIMARY KEY (`TOK_ART_INT_ID`),
-  ADD UNIQUE KEY `TOK_ART_VAR_TOK` (`TOK_ART_VAR_TOK`),
   ADD KEY `artigo_id` (`ART_INT_ID`);
+
+--
+-- Indexes for table `tokens_conversa`
+--
+ALTER TABLE `tokens_conversa`
+  ADD PRIMARY KEY (`TOK_CON_INT_ID`),
+  ADD KEY `CONV_INT_ID` (`CONV_INT_ID`);
 
 --
 -- Indexes for table `tokens_usuario`
 --
 ALTER TABLE `tokens_usuario`
-  ADD PRIMARY KEY (`TOK_USU_INT_ID`);
+  ADD PRIMARY KEY (`TOK_USU_INT_ID`),
+  ADD KEY `tokens_usuario_ibfk_1` (`USU_INT_ID`);
 
 --
 -- Indexes for table `upvote`
@@ -350,7 +348,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `artigo`
 --
 ALTER TABLE `artigo`
-  MODIFY `ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `comentario`
@@ -362,25 +360,31 @@ ALTER TABLE `comentario`
 -- AUTO_INCREMENT for table `conversas`
 --
 ALTER TABLE `conversas`
-  MODIFY `CONV_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `CONV_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `MSG_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `MSG_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `salvar`
 --
 ALTER TABLE `salvar`
-  MODIFY `SALVAR_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `SALVAR_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT for table `tokens_artigo`
 --
 ALTER TABLE `tokens_artigo`
-  MODIFY `TOK_ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `TOK_ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `tokens_conversa`
+--
+ALTER TABLE `tokens_conversa`
+  MODIFY `TOK_CON_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tokens_usuario`
@@ -392,7 +396,7 @@ ALTER TABLE `tokens_usuario`
 -- AUTO_INCREMENT for table `upvote`
 --
 ALTER TABLE `upvote`
-  MODIFY `UP_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `UP_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -437,6 +441,18 @@ ALTER TABLE `salvar`
 --
 ALTER TABLE `tokens_artigo`
   ADD CONSTRAINT `tokens_artigo_ibfk_1` FOREIGN KEY (`ART_INT_ID`) REFERENCES `artigo` (`ART_INT_ID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tokens_conversa`
+--
+ALTER TABLE `tokens_conversa`
+  ADD CONSTRAINT `tokens_conversa_ibfk_1` FOREIGN KEY (`CONV_INT_ID`) REFERENCES `conversas` (`CONV_INT_ID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tokens_usuario`
+--
+ALTER TABLE `tokens_usuario`
+  ADD CONSTRAINT `tokens_usuario_ibfk_1` FOREIGN KEY (`USU_INT_ID`) REFERENCES `usuario` (`USU_INT_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `upvote`
