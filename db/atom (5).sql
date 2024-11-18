@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2024 at 10:02 PM
+-- Generation Time: Nov 18, 2024 at 01:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -46,7 +46,8 @@ INSERT INTO `artigo` (`ART_INT_ID`, `ART_VAR_TITULO`, `ART_VAR_DESCRICAO`, `ART_
 (25, 'ATOMICOS GUYS', 'kkk', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/Aula 21 -  Desenvolvimento de Indicadores e Definição de Metas -v1.pdf', 22, '2024-11-16 12:31:32'),
 (29, 'Mudanças Climáticas e Impactos na Agricultura: Um Estudo de Caso em Xique Xique, Bahia.', 'www', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/Aula 04 - Revisao MVC e Criando Servlet Pratica (1).pdf', 20, '2024-11-16 14:35:39'),
 (30, 'ANIVERSARIO DA SARA', 'www', 'História', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/documentos.pdf', 22, '2024-11-16 17:03:23'),
-(35, 'jjjjjjjjjj', 'jjjjjjjjjjjjjjjjjj', 'Ciências', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/sara (1).pdf', 23, '2024-11-17 17:36:10');
+(35, 'jjjjjjjjjj', 'jjjjjjjjjjjjjjjjjj', 'Ciências', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/sara (1).pdf', 23, '2024-11-17 17:36:10'),
+(36, 'CAPELETI HAS THEORIES', 'o cara tem', 'Ciências', 'Em andamento', 'C:/xampp/htdocs/pi-atom/Atom/uploads/Aula 8 - Logica proposicional (1).pdf', 21, '2024-11-17 21:34:43');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,8 @@ INSERT INTO `mensagens` (`MSG_INT_ID`, `CONV_INT_ID`, `USU_INT_ID`, `MSG_VAR_CON
 (91, 32, 20, 'bobo', '2024-11-17 17:57:26', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
 (92, 32, 21, 'bobo é voce canalha', '2024-11-17 17:57:54', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
 (93, 32, 21, 'Confira este artigo: <a href=\"artigo.php?token=fd663acb8ceb7f3128543ead887f9880\" target=\"_blank\">jjjjjjjjjj</a>', '2024-11-17 17:57:59', 'artigo', 'fd663acb8ceb7f3128543ead887f9880'),
-(94, 32, 21, '<a href=\"faz o l\">eae</a>', '2024-11-17 17:58:06', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca');
+(94, 32, 21, '<a href=\"faz o l\">eae</a>', '2024-11-17 17:58:06', 'texto', 'd7d1b024a0908861b1f1ee8c82addcca'),
+(95, 30, 20, 'bom dia Kayky Paiva', '2024-11-17 21:32:11', 'texto', '1aa7cc1a4f44d7a039b56488fb182452');
 
 -- --------------------------------------------------------
 
@@ -132,10 +134,13 @@ CREATE TABLE `salvar` (
 
 INSERT INTO `salvar` (`SALVAR_INT_ID`, `USU_INT_ID`, `ART_INT_ID`, `SALVAR_DAT_CRIACAO`) VALUES
 (89, 22, 25, '2024-11-16 20:30:34'),
-(98, 20, 29, '2024-11-16 20:45:02'),
 (209, 23, 30, '2024-11-17 11:59:16'),
 (210, 23, 29, '2024-11-17 11:59:18'),
-(211, 23, 25, '2024-11-17 11:59:19');
+(211, 23, 25, '2024-11-17 11:59:19'),
+(213, 20, 29, '2024-11-18 00:31:23'),
+(214, 20, 35, '2024-11-18 00:31:26'),
+(215, 20, 30, '2024-11-18 00:31:27'),
+(216, 20, 25, '2024-11-18 00:31:28');
 
 -- --------------------------------------------------------
 
@@ -157,7 +162,8 @@ INSERT INTO `tokens_artigo` (`TOK_ART_INT_ID`, `ART_INT_ID`, `TOK_ART_VAR_TOK`) 
 (62, 30, 'a0def0e31e2737846470d4742282486e'),
 (63, 29, 'a724a708ab8e263b7875f6a30bb375eb'),
 (64, 25, '7f266c59f54659cb0694d962ec8fbf8f'),
-(67, 35, 'fd663acb8ceb7f3128543ead887f9880');
+(67, 35, 'fd663acb8ceb7f3128543ead887f9880'),
+(68, 36, 'b6f651c5c30639f5fbfa60c20d05ee65');
 
 -- --------------------------------------------------------
 
@@ -222,7 +228,9 @@ CREATE TABLE `upvote` (
 --
 
 INSERT INTO `upvote` (`UP_INT_ID`, `UP_USU_INT_ID`, `UP_ART_INT_ID`, `UP_DAT_DATA`) VALUES
-(48, 22, 30, '2024-11-16 17:30:56');
+(48, 22, 30, '2024-11-16 17:30:56'),
+(63, 21, 35, '2024-11-17 21:34:53'),
+(64, 21, 30, '2024-11-17 21:34:55');
 
 -- --------------------------------------------------------
 
@@ -249,7 +257,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`USU_INT_ID`, `USU_VAR_NAME`, `USU_VAR_EMAIL`, `USU_VAR_PASSWORD`, `USU_VAR_IMGPERFIL`, `USU_VAR_IMGBACK`, `USU_VAR_DESC`, `USU_VAR_CIDADE`, `USU_VAR_OCUPACAO`) VALUES
 (20, 'MRFREEZE', 'nicolasgmack@gmail.com', '$2y$10$AhhXQ1DerspAN4Rf9aSvt.If.h1/L86/C7l/3YkPFY6PvZoDgyjsS', '/pi-atom/Atom/uploads/perfis/6738a9d9602e8_67350516bb689_6731f5d747b77_mrfreeze-corpo-removebg-preview.png', '/pi-atom/Atom/uploads/perfis/6738a9d96056b_67350516bb318_6731f630a924a_mrfreeze-inteiro-preto.png', 'the freezer mister', 'gelo', 'gelado'),
 (21, 'Vitor Capeleti', 'v@gmail.com', '$2y$10$nvfLGJdwwjHs8PVaA.036eUi34wq.cFImXPb2wg2Wl7lpzhTwbZ6y', '/pi-atom/Atom/uploads/perfis/6738aa6e1c175_67314d609936a_capeleti.png', '/pi-atom/Atom/uploads/perfis/6738aa6e1c4a2_6731524473ec4_fundo-login.png', 'the vitor capeleti, diferente dos demais. GOAT!', 'cidado', 'ele tem'),
-(22, 'Kayky Paiva', 'k@gmail.com', '$2y$10$GPxJJTGEe0RCCVG7YGBK6ONI7QOJcSgdM2XVgMusacVmpItCE8Pqy', '/pi-atom/Atom/uploads/perfis/6738fd534cd64_task.png', NULL, 'Sem descrição.', 'Não especificado.', 'Não especificado.'),
+(22, 'Kayky Paiva', 'k@gmail.com', '$2y$10$GPxJJTGEe0RCCVG7YGBK6ONI7QOJcSgdM2XVgMusacVmpItCE8Pqy', '/pi-atom/Atom/uploads/perfis/673a8b4f67425_kayky.png', '/pi-atom/Atom/uploads/perfis/673a8b4f6764a_background-4.png', 'Sem descrição.', 'Não especificado.', 'Não especificado.'),
 (23, 'Tirano', 't@gmail.com', '$2y$10$cELom.ZbciiN6ILJo5WjAOyqkSOzuLpq/mEP5irmXGI3i346HHRoy', NULL, NULL, 'Sem descrição.', 'Não especificado.', 'Não especificado.');
 
 --
@@ -340,7 +348,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `artigo`
 --
 ALTER TABLE `artigo`
-  MODIFY `ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `comentario`
@@ -358,19 +366,19 @@ ALTER TABLE `conversas`
 -- AUTO_INCREMENT for table `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `MSG_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `MSG_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `salvar`
 --
 ALTER TABLE `salvar`
-  MODIFY `SALVAR_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `SALVAR_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT for table `tokens_artigo`
 --
 ALTER TABLE `tokens_artigo`
-  MODIFY `TOK_ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `TOK_ART_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `tokens_conversa`
@@ -388,7 +396,7 @@ ALTER TABLE `tokens_usuario`
 -- AUTO_INCREMENT for table `upvote`
 --
 ALTER TABLE `upvote`
-  MODIFY `UP_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `UP_INT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `usuario`
