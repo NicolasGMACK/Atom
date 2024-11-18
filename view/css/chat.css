@@ -245,6 +245,14 @@ nav li:first-child{
   height: 40px;
   border-radius: 50%;
 }
+.conjunto{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
 
 .chat-content {
   flex-grow: 1;

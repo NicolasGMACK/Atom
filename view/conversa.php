@@ -81,7 +81,7 @@ require_once('../view/php/funcao_mensagem.php'); // Inclui a função de exibir 
 
             // Busca o ID da conversa e identifica o outro usuário
             $sqlConversa = "
-                SELECT c.CONV_INT_ID, 
+                SELECT c.CONV_INT_ID, u.USU_INT_ID, 
                     u.USU_VAR_NAME AS NOME_USUARIO, 
                     u.USU_VAR_IMGPERFIL AS IMAGEM_USUARIO
                 FROM conversas c
@@ -103,10 +103,13 @@ require_once('../view/php/funcao_mensagem.php'); // Inclui a função de exibir 
                 $ConvId = $conversa['CONV_INT_ID'];
                 $nome = htmlspecialchars($conversa['NOME_USUARIO']);
                 $foto = !empty($conversa['IMAGEM_USUARIO']) ? $conversa['IMAGEM_USUARIO'] : '../view/img/user.jpg';
+                $idUsuario = $conversa['USU_INT_ID'];
+
+                $tokenUsuario = $tokenUsuario = obterOuCriarToken($conection, 'usuario', $idUsuario);
 
                 // Consulta as mensagens da conversa
                 $sqlMensagens = "
-                    SELECT u.USU_VAR_NAME, 
+                    SELECT u.USU_VAR_NAME, u.USU_INT_ID,
                         u.USU_VAR_IMGPERFIL, 
                         m.MSG_VAR_CONTEUDO, 
                         m.MSG_TIPO, 
@@ -124,12 +127,14 @@ require_once('../view/php/funcao_mensagem.php'); // Inclui a função de exibir 
             }
         }
         ?>
-
+            
         <div class="chat">
             <?php if (isset($ConvId)): ?>
                 <div class="chat-header">
-                    <img src="<?= htmlspecialchars($foto); ?>" alt="<?= htmlspecialchars($nome); ?>">
-                    <span><?= htmlspecialchars($nome); ?></span>
+                    <a href="perfil.php?token=<?=$tokenUsuario?>" class="conjunto">
+                        <img src="<?= htmlspecialchars($foto); ?>" alt="<?= htmlspecialchars($nome); ?>">
+                        <span><?= htmlspecialchars($nome); ?></span>
+                    </a>
                 </div>
                 <div class="chat-content">
             <?php if ($resultMensagens->num_rows > 0): ?>
