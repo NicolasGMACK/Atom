@@ -162,9 +162,9 @@ nav li:first-child{
     background-color: #fff;   
     border: 1px solid #ddd; /* Borda do card */
     width: 95%; /* Largura do card */
-   display: flex;
-   flex-direction: column;
-   margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
   
 }
 .bloco-top{
@@ -309,7 +309,7 @@ nav li:first-child{
     cursor: pointer;
     padding: 5px;
     border-radius: 20px;  
-   
+   transition: 1.05s;
 }
 .publicar:hover{
     background-color: #6631cf;
@@ -338,6 +338,37 @@ nav li:first-child{
     background-color: #8c52ff;
     fill: #fff;
 }
+/*BOTÃO DE BUSCA*/
+.buscaButton{
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    border: #8c52ff 1px solid;
+    align-items: center;
+    color: #8c52ff;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.19s ease-in-out;
+    margin-right: 10px;
+    width: 115px;
+    height: 36px;
+    position: relative;
+    outline: none;
+}
+.buscaButton:hover{
+    color: #EAEDEF;
+    background-color: #8c52ff;
+    fill: #fff;
+}
+.space-categoria-button{
+    padding: 10px 30px;
+    border-bottom: 1px solid rgb(201, 201, 201);
+    text-align: center;
+}
+
+
 .vote{
     margin-left: 5px;
 }
@@ -443,6 +474,7 @@ nav li:first-child{
     display: flex;
     width: 100%;
     border-bottom: 1px solid rgb(156, 156, 156);   
+    margin-bottom: 5px;
 }
 
 .pesquisar{
@@ -465,7 +497,6 @@ nav li:first-child{
 .space-categoria{
     padding: 10px 30px;
     border-bottom: 1px solid rgb(201, 201, 201);
-    
 }
 .line-bottom{    
     border-bottom: 1px solid rgb(201, 201, 201);

@@ -54,92 +54,70 @@ include('../view/php/listar_compartilhar.php');
     <div class="tela">
         <div class="lado-esquerdo">
             <div class="lista">
-                <form class="bloco" method="post" action="">
-                    <!-- Campo de pesquisa -->
+                <form class="bloco" method="post" action="pesquisa.php">
                     <div class="linha">
                         <input class="pesquisar" name="pesquisar" type="text" placeholder="Procure por artigos, assuntos, pessoas, etc.">
-                    </div>
-
-                    <!-- Filtros de Data -->
-                    <div class="space-categoria">
-                        <div class="filtro-categoria">
-                            <h3>Por Data</h3>
-                            <ul class="opcoes">
-                                <li class="topico">
-                                    <label>
-                                        <input type="radio" name="data" value="" checked> Qualquer período
-                                    </label>
-                                </li>
-                                <li class="topico">
-                                    <label>
-                                        <input type="radio" name="data" value="2024"> Desde 2024
-                                    </label>
-                                </li>
-                                <li class="topico">
-                                    <label>
-                                        <input type="radio" name="data" value="2023"> Desde 2023
-                                    </label>
-                                </li>
-                                <li class="topico">
-                                    <label>
-                                        <input type="radio" name="data" value="2020"> Desde 2020
-                                    </label>
-                                </li>
-                            </ul>
-                            <div class="intervalo">
-                                <div>
-                                    <input name="data_inicio" placeholder="Início" type="number" class="year-input" min="2000" max="2059">
-                                    ____ 
-                                    <input name="data_fim" placeholder="Fim" type="number" class="year-input" min="2000" max="2059">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Filtros de Tipo de Conteúdo -->
-                    <div class="space-categoria">
-                        <div class="filtro-categoria">
-                            <h3>Tipo de Conteúdo</h3>
-                            <select name="categoria">
-                                <option value="" selected>Escolha a categoria</option>
-                                <option value="geografia">Geografia</option>
-                                <option value="historia">História</option>
-                                <option value="ciencias">Ciências</option>
-                                <option value="literatura">Literatura</option>
-                            </select>
-                            <div>
-                                <input type="checkbox" id="em_andamento" name="status[]" value="Em andamento">
-                                <label for="em_andamento">Em andamento</label>
-                            </div>
-                            <div class="filtro-bottom">
-                                <input type="checkbox" id="concluido" name="status[]" value="Concluído">
-                                <label for="concluido">Concluído</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ordenação -->
-                    <div class="space-categoria line-bottom">
-                        <div class="filtro-categoria">
-                            <h3>Ordenar por</h3>
-                            <ul class="opcoes">
-                                <li class="topico">
-                                    <label>
-                                        <input type="radio" name="ordenar" value="relevancia" checked> Relevância
-                                    </label>
-                                </li>
-                                <li class="topico">
-                                    <label>
-                                        <input type="radio" name="ordenar" value="data"> Data
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="space-categoria-button line-bottom">
-                        <button type="submit" class="buscaButton">Buscar</button>
+                        <!--<button type="submit" name="EnviarPesquisa" value="EnviarPesquisa" class="blocoImg"><img src="../view/img/pesquisa1.png" alt=""></button>-->
                     </div>
                 </form>
+
+                <div class="bloco">
+                    <div class="titulo-filtro"><h2>Filtrar Resultados</h2></div>
+                       <div class="space-categoria"><div class="filtro-categoria">
+                            <h3>Por Data</h3>
+                            <ul class="opcoes" >
+                                <li class="topico"><a class="texto" href="#">Qualquer período</a></li>
+                                <li class="topico"><a class="texto" href="#">Desde 2024</a></li>
+                                <li class="topico"><a class="texto" href="#">Desde 2023</a></li>
+                                <li class="topico"><a class="texto" href="#">Desde 2020</a></li>
+                                <li class="margin topico">
+                                    <p class="texto" id="openIntervalo">Intervalo personalizado...</p>
+                                </li>
+                            </ul>
+                            <script src="js/filtroIntervalo.js"></script>
+                            <div class="intervalo">
+                                <div>
+                                    <input placeholder="Início" type="number" class="year-input" min="2000" max="2059">
+                                    ____
+                                    <input placeholder="Fim" type="number" class="year-input"  min="2000" max="2059">
+                                    <input type="submit" value="Buscar">
+                                    <script src="js/digitos-input-filtro.js"></script>
+                                </div>
+                                
+                            </div>
+                        </div></div>                
+                        <div class="space-categoria">
+                            <div class="filtro-categoria">
+                                <h3>Tipo de Conteúdo</h3>                                
+                                    <select>
+                                        <option value="" disabled selected>Escolha a categoria</option>
+                                        <option value="geografia">Geografia</option>
+                                        <option value="historia">História</option>
+                                        <option value="ciencias">Ciências</option>
+                                        <option value="literatura">Literatura</option>
+                                    </select>                                
+                                <div>
+                                    <input type="checkbox" id="patents">
+                                    <label for="patents">Em andamento</label>
+                                </div>
+                                <div class="filtro-bottom">
+                                    <input type="checkbox" id="citations">
+                                    <label for="citations">Concluído</label>
+                                </div>
+                            </div>
+                        </div>                    
+                        <div class="space-categoria line-bottom">
+                            <div class="filtro-categoria">
+                                <h3>Ordenar por</h3>
+                                <ul class="opcoes" >
+                                    <li class="topico"><a class="texto" href="#">Relevância</a></li>
+                                    <li class="topico margin"><a class="texto" href="#">Data</a></li>
+                                </ul>
+                            </div>
+                        </div> <div class="space-bottom"></div>
+                
+                    
+                </div>
             </div>
         </div>
         <div class="lado-direito">
@@ -150,11 +128,9 @@ include('../view/php/listar_compartilhar.php');
                 <div class="bloco-mid">
                     <div class="cabecalho-postagem">                              
                         <div class="conteudo-postagem">
-                            <a>Interessado em publicar seu projeto? Faça sua postagem!</a>
+                            <a>Resultados</a>
                         </div>
-                        <div class="butao">
-                            <button class="publicar" id="openPopup">PUBLICAR</button>                            
-                        </div> 
+
                     </div>
                 </div>
                 <div class="upload-mid">
@@ -167,18 +143,16 @@ include('../view/php/listar_compartilhar.php');
             <?php
                 require_once('php/carregar_artigos_pesquisa.php');
 
-                // Captura os valores enviados pelo formulário
-                $pesquisa = isset($_POST['pesquisar']) ? trim($_POST['pesquisar']) : '';
-                $data = isset($_POST['data']) ? $_POST['data'] : '';
-                $data_inicio = isset($_POST['data_inicio']) ? $_POST['data_inicio'] : '';
-                $data_fim = isset($_POST['data_fim']) ? $_POST['data_fim'] : '';
-                $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
-                $status = isset($_POST['status']) ? $_POST['status'] : [];
-                $ordenar = isset($_POST['ordenar']) ? $_POST['ordenar'] : 'relevancia';
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pesquisar'])) {
+                    $pesquisa = trim($_POST['pesquisar']);
+                } else {
+                    $pesquisa = ''; // Sem pesquisa
+                }
 
-                // Chama a função para carregar artigos com os filtros
-                carregarArtigos($conection, $userId, $pesquisa, $data, $data_inicio, $data_fim, $categoria, $status, $ordenar);
+                // Exibir artigos com base na pesquisa
+                carregarArtigos($conection, $userId, $pesquisa);
             ?>
+
 
             <div class='notification' id='notification'>
                             <h4 id='notificationTitle'>Arquivo salvo com sucesso!</h4>
