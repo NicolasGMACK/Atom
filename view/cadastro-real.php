@@ -25,7 +25,7 @@ inserirUsuarios($conection);
                 <h2 class="title">CADASTRO</h2>
                 <div class="alert-mensagem"></div>
                 <div class="caixa-texto1">
-                    <div class="simbolo"><img src="../view/img/user.png" alt=""></div>
+                    <div class="simbolo"><img src="../view/img/user-cinza.png" alt=""></div>
                     <input type="text" required name="nome" placeholder="Digite seu nome...">
                 </div>
                 <div class="caixa-texto1">
