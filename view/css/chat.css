@@ -281,7 +281,7 @@ nav li:first-child{
   display: flex;
 }
 .message.user {
-  background-color: #bde5d4;
+  background-color: #cabeff;
   align-self: flex-end; /* Alinha mensagens do usuário à direita */
   word-wrap: break-word;
  
@@ -328,7 +328,7 @@ nav li:first-child{
 
 .chat-input button {
   padding: 8px 12px;
-  background-color: #0084ff;
+  background-color: #8c52ff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -336,7 +336,7 @@ nav li:first-child{
 }
 
 .chat-input button:hover {
-  background-color: #005bb5;
+  background-color: #742fff;
 }
 .date-separator {
   text-align: center;

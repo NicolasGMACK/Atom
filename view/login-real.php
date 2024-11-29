@@ -59,7 +59,7 @@ if(isset($_POST['email']) || isset($_POST['password'])){
             <form action="" method="post" class="login">
                 <h2 class="title">LOGIN</h2>
                 <div class="caixa-texto">
-                    <div class="simbolo"><img src="../view/img/user.png" alt=""></div>
+                    <div class="simbolo"><img src="../view/img/user-cinza.png" alt=""></div>
                     <input type="text" required name="email" placeholder="Digite seu e-mail...">
                 </div>
                 <div class="caixa-texto">
