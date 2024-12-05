@@ -67,7 +67,7 @@ if(isset($_POST['email']) || isset($_POST['password'])){
                     <input type="password" required name="password" placeholder="Digite sua senha...">
                 </div>
                 <div class="esquecer">
-                <label class="subtexto"for="">Esqueceu sua senha?</label>
+               <!-- <label class="subtexto"for="">Esqueceu sua senha?</label> -->
                </div>
                 <div class="bloco-botao">
                     <div class="botao-justify">

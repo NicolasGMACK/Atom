@@ -104,13 +104,13 @@ html {
     border: none;
     background: none;
     font: inherit;
-    cursor: pointer;
+   /* cursor: pointer; */
     padding: 5px;
 }
-.votos:hover{
+/*.votos:hover{
     border-radius: 15px;
     background-color: #f1f1f1;
-}
+} */
 .votos p{
     padding: 5px 2px 0 5px;
 }

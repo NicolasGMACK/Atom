@@ -161,7 +161,7 @@ include('../view/php/listar_compartilhar.php');
                                 <div class="autor-nome"><p><?php echo $autor; ?></p></div>
                               </a>
                         </div>
-                           <div class="follow"><p>Seguir</p></div>
+                           <!-- <div class="follow"><p>Seguir</p></div> -->
                         </div>                        
                          <div class="space-bottom"></div>
                     </div>
